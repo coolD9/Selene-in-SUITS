@@ -1,6 +1,6 @@
 ## UI Requirements
 
-The following requirements are organized based on `shall`, `should`, and `may`, as per the mission description requirements for the rover, __only pertaining to the User Interface portions__. They will be accompanied with a scale from `P0` - `P4`, where `P0` is lowest priority and `P4` is the highest priority **within the respective category, NOT OVERALL**. 
+The following requirements are organized based on `shall`, `should`, and `may`, as per the mission description requirements for the rover, __only pertaining to the User Interface portions__. They will be accompanied with a scale from `P0` - `P4`, where `P0` is the highest priority and `P4` is the lowest priority **within the respective category, NOT OVERALL**. 
 These priority levels will help determine what tasks should be accomplished first within that category. Please note priorities are prone to changing based on team confidence in subjects. I personally made the decision to mark some tasks with `CR` for "Communication Required", which will require coordination with UCI to determine how exactly we want to interface with their data.
 
 **Note:** Section 7 and 8 of the requirements page are for the Autonomous parts of the PR.
