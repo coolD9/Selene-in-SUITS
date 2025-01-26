@@ -42,6 +42,3 @@ The Mission Description states that items listed with `may` are optional goals f
 - [ ] __P1:__ The map *may* draw the LTV's projected and traversed path.
 - [ ] __P2:__ The map *may* draw the EV's projected and traversed path.
 - [ ] __P3:__ Teams *may* store XRF data for recall
-
-
-
