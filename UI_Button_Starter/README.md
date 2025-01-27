@@ -1,5 +1,5 @@
 ## UI_Button_Starter
-The following is copy and paste from Issue #3, so if you've already read that, don't waste your time. Alternatively, don't waste your time reading Issue #3 if this is what you read first.
+The following is copy and paste from Issue #4, so if you've already read that, don't waste your time. Alternatively, don't waste your time reading Issue #4 if this is what you read first.
 
 For week 2, I would like to officially get everybody integrated with our development language of choice. We will be using **Python** as the main language as well as the **QML** and **PyQt5** frameworks for frontend and backend work/management. Subsequently, I would love for everybody to familiarize themselves with Python and the frameworks. I think in order to successfully develop a functioning and robust interface, it's crucial for everybody to start small and work our way up to the bigger picture. To achieve this level of learning while also practicing using GitHub for version control I want the end goal of this project to be a singular window with everybody's button that introduces themselves. More details on that at the end of this issue.
 
