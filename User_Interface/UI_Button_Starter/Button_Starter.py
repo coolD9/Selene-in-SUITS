@@ -34,8 +34,6 @@ class Window(QWidget):
         self.button_font = QFont("Times New Roman")
         self.button_font.setPointSize(20)
 
-        #self.button_font.setFamily("Helvetica")
-
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
         # _____ _____  ___  ___  ___   ______ _   _ _____ _____ _____ _   _  _____     _____ _____     _   _  ___________ _____ #
         #|_   _|  ___|/ _ \ |  \/  |   | ___ \ | | |_   _|_   _|  _  | \ | |/  ___|   |  __ \  _  |   | | | ||  ___| ___ \  ___|#
@@ -60,7 +58,6 @@ class Window(QWidget):
         # Movement of button to top left cell
         self.rykir_button.resize(self.width() // 3, self.height() // 12)
         self.rykir_button.move(self.width() // 12, self.height() // 32)
-
 
         # User defined attributes
         self.rykir_button.nameTag = "Rykir"
