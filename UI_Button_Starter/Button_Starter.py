@@ -21,15 +21,112 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QLabel, QVBoxLayout
 from PyQt5.QtCore import Qt, QRect
-from PyQt5.QtGui import QPainter, QColor, QPen
+from PyQt5.QtGui import QPainter, QColor, QPen, QFont
 
 class Window(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Buttons')
         self.setGeometry(100, 100, 1920, 1080)  # Set the window size and position
+
+        self.button_font = QFont("Times New Roman")
+        self.button_font.setPointSize(20)
+
+        #self.button_font.setFamily("Helvetica")
+
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # _____ _____  ___  ___  ___   ______ _   _ _____ _____ _____ _   _  _____     _____ _____     _   _  ___________ _____ #
+        #|_   _|  ___|/ _ \ |  \/  |   | ___ \ | | |_   _|_   _|  _  | \ | |/  ___|   |  __ \  _  |   | | | ||  ___| ___ \  ___|#
+        #  | | | |__ / /_\ \| .  . |   | |_/ / | | | | |   | | | | | |  \| |\ `--.    | |  \/ | | |   | |_| || |__ | |_/ / |__  #
+        #  | | |  __||  _  || |\/| |   | ___ \ | | | | |   | | | | | | . ` | `--. \   | | __| | | |   |  _  ||  __||    /|  __| #
+        #  | | | |___| | | || |  | |   | |_/ / |_| | | |   | | \ \_/ / |\  |/\__/ /   | |_\ \ \_/ /   | | | || |___| |\ \| |___ #
+        #  \_/ \____/\_| |_/\_|  |_/   \____/ \___/  \_/   \_/  \___/\_| \_/\____/     \____/\___/    \_| |_/\____/\_| \_\____/ #
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #                                                                                                                      
+        # 
+        # Only the initial declaration of your button will go here
+        # Make sure to update the other class methods to properly handle interacting with your button
+        #     
+
+        # # # # # # # # # # # #
+        # Rykir's Button      #
+        # # # # # # # # # # # #
+
+        # Declaration of button and initial attributes
+        self.rykir_button = QPushButton("Display Name", self)
+        self.rykir_button.setFont(self.button_font)
+
+        # Movement of button to top left cell
+        self.rykir_button.resize(self.width() // 3, self.height() // 12)
+        self.rykir_button.move(self.width() // 12, self.height() // 32)
+
+
+        # User defined attributes
+        self.rykir_button.nameTag = "Rykir"
+        self.rykir_button.activated = False # Necessary to be clicked
+
+        # Signal connection
+        self.rykir_button.clicked.connect(self.on_click)
+
+        ## End Rykir's Button ##
+
+
+        # # # # # # # # # # # #
+        # 's Button      #
+        # # # # # # # # # # # #
+
+
+    def on_click(self):
+
+        # Gathering data from button that was clicked
+        button = self.sender()
+        name = button.nameTag
+        position = button.pos()
+
+        # Display label for specific button
+        if(not button.activated):
+            # Create font
+            labelFont = QFont()
+            labelFont.setPointSize(30)
+
+            # Initial label creation and relative location
+            self.label = QLabel(self)
+            self.label.setGeometry(0, 0, button.width(), button.height())
+            self.label.setAlignment(Qt.AlignCenter)
+            self.label.setFont(labelFont)
+            self.label.move(position.x(), position.y() + 100)
+
+            # Showing the label
+            self.label.setText(f"This is {name}'s button!")
+            self.label.show()
+            button.activated = True
+
+        else:
+            # Hide
+            self.label.hide()
+            self.label.destroy()
+            button.activated = False
+
+
+
+    def resizeEvent(self, event):
+
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # For neatness, everyone should add resize handling to their button and text
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+        # Currently, I'm not sure how to attach the text to the button so that it's resized correctly
+
+        # Rykir's Button resize handling
+        self.rykir_button.resize(self.width() // 3, self.height() // 12)
+        self.rykir_button.move(self.width() // 12, self.height() // 32)
+
+
+
+        
+
+        
+        super().resizeEvent(event)
 
     # Grid painting
     def paintEvent(self, event):
@@ -66,52 +163,9 @@ class Window(QWidget):
 def main():
     # This is to draw the grid
     app = QApplication(sys.argv)
-    window = Window()
-
-    # Global variables for location settings
-    global width 
-    width = window.width()
-    global height
-    height = window.height()
-
-
-
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    # _____ _____  ___  ___  ___   ______ _   _ _____ _____ _____ _   _  _____     _____ _____     _   _  ___________ _____ #
-    #|_   _|  ___|/ _ \ |  \/  |   | ___ \ | | |_   _|_   _|  _  | \ | |/  ___|   |  __ \  _  |   | | | ||  ___| ___ \  ___|#
-    #  | | | |__ / /_\ \| .  . |   | |_/ / | | | | |   | | | | | |  \| |\ `--.    | |  \/ | | |   | |_| || |__ | |_/ / |__  #
-    #  | | |  __||  _  || |\/| |   | ___ \ | | | | |   | | | | | | . ` | `--. \   | | __| | | |   |  _  ||  __||    /|  __| #
-    #  | | | |___| | | || |  | |   | |_/ / |_| | | |   | | \ \_/ / |\  |/\__/ /   | |_\ \ \_/ /   | | | || |___| |\ \| |___ #
-    #  \_/ \____/\_| |_/\_|  |_/   \____/ \___/  \_/   \_/  \___/\_| \_/\____/     \____/\___/    \_| |_/\____/\_| \_\____/ #
-    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #                                                                                                                      
-                                                                                                                                                                                                                                       
-
-    # # # # # # # # # # # #
-    # Rykir's Button      #
-    # # # # # # # # # # # #
-
-    rykir_button = QPushButton("Display Name", window)
-    rykir_button.resize(width // 3, height // 12)
-    rykir_button.move(width // 12, height // 32)
-
-    # Rest of the functionality is intended to be implemented soon
-
-
-    # # # # # # # # # # # #
-    # 
-    # # # # # # # # # # # #
-
-
-
-
-
-
-    window.show()
-    sys.exit(app.exec_())
-
-# # # # # # # # # # # #
-# End of Program      #
-# # # # # # # # # # # #
+    window = Window() # Create window object
+    window.show() # Show the window
+    sys.exit(app.exec_()) # This executes the event loop
 
 if __name__ == '__main__':
     main()
