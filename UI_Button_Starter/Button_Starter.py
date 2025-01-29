@@ -115,7 +115,10 @@ class Window(QWidget):
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
         # For neatness, everyone should add resize handling to their button and text
         # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-        # Currently, I'm not sure how to attach the text to the button so that it's resized correctly
+        # Currently, I'm not sure how to attach the text to the button so that it's resized correctly with the button
+        # I've been experimenting with layout managers, but they seem clunky and difficult to manage, but I just need
+        # to learn more
+        # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 
         # Rykir's Button resize handling
         self.rykir_button.resize(self.width() // 3, self.height() // 12)
