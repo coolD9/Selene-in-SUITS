@@ -22,11 +22,6 @@
 
 - Shall display real-time resource data on the PR interface. (P0)
 
-#### Predictive Analytics:
-
-- Shall use machine learning models to predict future resource usage based on current consumption patterns and historical data. (P0)
-
-- Shall provide real-time updates on resource depletion risks. (P0)
 
 #### Caution and Warning System:
 
@@ -48,6 +43,12 @@
 - Shall provide estimates of remaining resources at each destination. (P1)
 
 - Shall suggest turn-around points to prevent resource depletion. (P1)
+
+#### Predictive Analytics:
+
+- Shall use machine learning models to predict future resource usage based on current consumption patterns and historical data. (P1)
+
+- Shall provide real-time updates on resource depletion risks. (P1)
 
 ### P2: Medium Priority
 #### Logging and Analysis:
