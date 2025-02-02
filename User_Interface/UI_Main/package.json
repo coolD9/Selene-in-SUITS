@@ -1,0 +1,15 @@
+{
+  "name": "ui_main",
+  "version": "1.0.0",
+  "description": "This is where the actual development will happen for our UI. I would like to meet with the GUI Sub-team to brainstorm our exact layout of how we want to structure the interface, and then we can be begin coding from there.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
