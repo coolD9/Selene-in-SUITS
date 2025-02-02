@@ -9,8 +9,8 @@ These priority levels will help determine what tasks should be accomplished firs
 As a reminder, `Shall` denotes a minimum requirement for the functionality of the UI, all of these **must** be accomplished before our final submission and accomplished before any other section.
 
 - [ ] __P0:__ *Shall* develop system for controlling the rover in the virtual DUST environment.
-- [ ]  __P1:__ The UI *Shall* display crewmember buimedical data. This data *shall* be easily accessible.
-- [ ]  __P1:__ The UI *shall* display spacesuit system state data. This data *shall* be easily accessible.
+- [ ]  __P1:__ The UI *Shall* display crewmember biomedical data. This data *shall* be easily accessible.
+- [ ]  __CR:__ The UI *shall* display spacesuit system state data. This data *shall* be easily accessible.
      *  Note: The data will come from your partnered team, we must coordinate with them to figure out what form this data will come in.
 - [ ]  __P2:__ The UI *shall* display the Lunar Terrain Vehicle (LTV) native camera feed.
 - [ ]  __P1:__ The UI *shall* display the LTV telemetry. This data *shall* be easily accessible.
