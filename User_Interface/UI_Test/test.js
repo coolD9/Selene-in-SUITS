@@ -15,7 +15,7 @@ app.listen(PORT, () => {
     // can use ${var name} to call for a string literal and include that information
     // can also just call variable outside to be printed
     console.log(`Server is listening on http://localhost:${PORT}, PORT`, PORT);
-})
+});
 
 // send response of Hello World when visiting homepage
 app.get('/', (request, response) => {
@@ -23,14 +23,15 @@ app.get('/', (request, response) => {
 });
 
 // set status to running
-// when requesting status page, will get response of the status, which is paired with Running
+// when requesting status page, will get response of the status
 app.get('/status', (request, response) => {
+    // defining a JSON object
     const status = {
         "Status" : "Running"
-    }
+    };
 
-    response.send(status)
-})
+    response.send(status);
+});
 
-
+// *** START WITH USER MODULE PART OF TUTORIAL FROM HERE ***
 
