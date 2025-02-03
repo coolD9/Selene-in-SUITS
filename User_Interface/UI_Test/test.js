@@ -1,3 +1,5 @@
+//Node.js and Express.js tutorial
+
 const express = require('express');
 // app will use express
 const app = express();
@@ -20,6 +22,8 @@ app.get('/', (request, response) => {
     response.send('Hello World!');
 });
 
+// set status to running
+// when requesting status page, will get response of the status, which is paired with Running
 app.get('/status', (request, response) => {
     const status = {
         "Status" : "Running"
