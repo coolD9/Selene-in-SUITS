@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Map from './components/Map'; // No curly braces
+import EVA from './components/EVA';  
+import UIA from './components/UIA';
+import Setup from './components/Setup';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Map />} />
+          <Route path="/map" element={<Map />} />
+          <Route path="/eva" element={<EVA />} />
+          <Route path="/uia" element={<UIA />} />
+          <Route path="/setup" element={<Setup />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
