@@ -7,6 +7,7 @@ import Map from './components/Map';
 import EVA from './components/EVA';  
 import UIA from './components/UIA';
 import Setup from './components/Setup';
+//import Begin from './components/Begin'
 import'./components/css/NavbarCSS.css';
 
 /*
@@ -14,7 +15,7 @@ import'./components/css/NavbarCSS.css';
 *
 * Description:
 *      Main driving function for React application. Currently
-*      holds a Navbar to be displayed on every page of the app
+*      manages the routes between different pages.
 *
 * Params:
 *     None

@@ -2,6 +2,19 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';  // Import NavLink
 import './css/NavbarCSS.css';
 
+/*
+* Navbar() - **Component**
+*
+* Description:
+*      Navbar component to facilitate seamless traversal between
+*      different pages while indicating active page
+*
+* Params:
+*     None
+*
+* Returns:
+*     A JSX object to be displayed.
+*/
 function Navbar() {
   return (
     <div className="navbar">
