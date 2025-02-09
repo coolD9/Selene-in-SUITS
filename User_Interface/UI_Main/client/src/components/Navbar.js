@@ -1,29 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';  // Import NavLink
+import './css/NavbarCSS.css';
 
-/*
-* Navbar() - **Navbar Component**
-*
-* Description:
-*      A navigation bar component that will be displayed at the
-*      top of every page, facilitating traversal between pages.
-*
-* Params:
-*     None
-*
-* Returns:
-*     A JSX object to be displayed.
-*/
 function Navbar() {
   return (
-    <nav>
-      <ul>
-        <li><Link to="/map">Map</Link></li>
-        <li><Link to="/eva">EVA</Link></li>
-        <li><Link to="/uia">UIA</Link></li>
-        <li><Link to="/setup">Setup</Link></li>
-      </ul>
-    </nav>
+    <div className="navbar">
+      <div className="navbar-items">
+        <NavLink 
+          to="/eva" 
+          className={({ isActive }) => (isActive ? 'navbar-item active-link' : 'navbar-item')}
+        >
+          EVA
+        </NavLink>
+        <NavLink 
+          to="/map" 
+          className={({ isActive }) => (isActive ? 'navbar-item active-link' : 'navbar-item')}
+        >
+          Map
+        </NavLink>
+        <NavLink 
+          to="/uia" 
+          className={({ isActive }) => (isActive ? 'navbar-item active-link' : 'navbar-item')}
+        >
+          UIA
+        </NavLink>
+        <NavLink 
+          to="/setup" 
+          className={({ isActive }) => (isActive ? 'navbar-item active-link' : 'navbar-item')}
+        >
+          Setup
+        </NavLink>
+      </div>
+      <h2 className="team-title">Team Selene</h2>
+    </div>
   );
 }
 

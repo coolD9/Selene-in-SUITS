@@ -7,6 +7,7 @@ import Map from './components/Map';
 import EVA from './components/EVA';  
 import UIA from './components/UIA';
 import Setup from './components/Setup';
+import'./components/css/NavbarCSS.css';
 
 /*
 * App()
@@ -24,7 +25,7 @@ import Setup from './components/Setup';
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="NavbarCSS">
         {/* Navbar routes */}
         <Navbar /> 
         <Routes>

@@ -1,0 +1,44 @@
+/* Navbar container */
+.navbar {
+    display: flex;                /* Enable flexbox */
+    justify-content: left;        /* Distribute items evenly across the navbar */
+    align-items: center;          /* Vertically center the items */
+    width: 100%;                  /* Stretch the navbar across the entire width */
+    background-color: #333;     /* Set the background color of the navbar */
+    padding: 0.25% 0;                /* Add some padding to the navbar */
+  }
+  
+  /* Individual navbar item */
+  .navbar-item {
+    background-color: #555;     /* Set background color for each item */
+    color: white;               /* Set text color */
+    padding: 5% 30%;              /* Add padding inside each item */
+    margin-left: 15%;             /* Give slight spacing between items*/
+    text-decoration: none;        /* Remove underline from links */
+    font-size: large;             /* Make button text bigger*/
+    border: 2px solid #444;     /* Add a border around each item */
+    border-radius: 5px;           /* Optional: rounded corners for the items */
+    transition: background-color 0.3s ease; /* Add smooth hover transition */
+  }
+  
+  /* Hover effect for navbar items */
+  .navbar-item:hover {
+    background-color: #ada1a1;       /* Change the background color on hover */
+  }
+
+  /* Active link styles */
+  .active-link {
+    background-color: #81bbfe;  /* Highlight the active tab */
+    color: #ffffff;                /* Optional: change text color for active tab */
+    border: 2px solid #888;     /* Optional: change border style for active tab */
+    }
+
+/* Aligning team-title to the right */
+.team-title {
+    color: white;
+    font-size: 24px;
+    margin-left: auto;
+    margin-right: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%
+}
