@@ -1,6 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/*
+* Navbar() - **Navbar Component**
+*
+* Description:
+*      A navigation bar component that will be displayed at the
+*      top of every page, facilitating traversal between pages.
+*
+* Params:
+*     None
+*
+* Returns:
+*     A JSX object to be displayed.
+*/
 function Navbar() {
   return (
     <nav>

@@ -1,5 +1,18 @@
 import React from 'react';
 
+/*
+* UIA() - **PAGE**
+*
+* Description:
+*      Page component where UIA tasks and procedures will be
+*      displayed.
+*
+* Params:
+*     None
+*
+* Returns:
+*     A JSX object to be displayed.
+*/
 function UIA() {
   return(
     <div>
