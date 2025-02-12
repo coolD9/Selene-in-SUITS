@@ -1,4 +1,5 @@
 import React from 'react';
+import './css/UIACSS.css'
 
 /*
 * UIA() - **PAGE**
@@ -15,9 +16,17 @@ import React from 'react';
 */
 function UIA() {
   return(
-    <div>
-        <h2>UIA Page</h2>
-        <p>This is the UIA Page!</p>
+    <div className='UIA_container'>
+      <div className='egress_container'>
+        <div className='egress_button'>
+          <button>Egress</button>
+        </div>
+      </div>
+      <div className='ingress_container'>
+        <div classname='ingress_button'>
+          <button>Ingress</button>
+        </div>
+      </div>
     </div>
   )
 }
