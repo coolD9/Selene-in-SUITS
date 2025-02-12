@@ -1,0 +1,34 @@
+.LTV {
+  border: 1px solid black;
+  width: 370px;
+  height: 200px;
+  background-color: darkgray;
+  filter: contrast(50%);
+}
+
+.ParentContainerLTV {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.EVA {
+  border: 1px solid black;
+  width: 370px;
+  height: 200px;
+  background-color: darkgray;
+  filter: contrast(50%);
+}
+
+.ParentContainerEVA {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.WarningContainer h1 {
+  font-size: 50px;
+  width: 740px;
+  text-align: center;
+  margin: -5px;
+}
