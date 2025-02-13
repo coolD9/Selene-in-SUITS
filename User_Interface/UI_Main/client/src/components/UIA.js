@@ -1,4 +1,5 @@
 import React from 'react';
+import './css/UIACSS.css'
 
 /*
 * UIA() - **PAGE**
@@ -11,13 +12,23 @@ import React from 'react';
 *     None
 *
 * Returns:
-*     A JSX object to be displayed.
+*     A JSX object to be displayed which shows two sections
+*     for egress/ingress with relevant buttons
 */
 function UIA() {
   return(
-    <div>
-        <h2>UIA Page</h2>
-        <p>This is the UIA Page!</p>
+    <div className='UIA_container'>
+      <div className='egress_container'>
+        <div>
+          <button className="egress_button">Egress</button>
+        </div>
+      </div>
+      <div className='ingress_container'>
+        <div>
+          <button className='ingress_button'>Ingress</button>
+
+        </div>
+      </div>
     </div>
   )
 }
