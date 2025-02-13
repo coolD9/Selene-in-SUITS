@@ -12,13 +12,14 @@ import './css/UIACSS.css'
 *     None
 *
 * Returns:
-*     A JSX object to be displayed.
+*     A JSX object to be displayed which shows two sections
+*     for egress/ingress with relevant buttons
 */
 function UIA() {
   return(
     <div className='UIA_container'>
       <div className='egress_container'>
-        <div className=''>
+        <div>
           <button className="egress_button">Egress</button>
         </div>
       </div>

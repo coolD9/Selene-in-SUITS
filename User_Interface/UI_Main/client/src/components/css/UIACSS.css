@@ -1,39 +1,40 @@
 .UIA_container{
     display: flex;
     flex: auto;
+    overflow: hidden;
     background-color: rgb(255, 255, 255);
     padding: 1vh;
 }
 
-
+/* Combined Rule for egress/ingress containers, setting flexbox, dimensions, and alignment */
 .egress_container, .ingress_container{
     display: flex;
     flex-direction: column;
-    height: 90vh;
-    width: 50%;
+    align-self: center;
     align-items: center;
+    height: 90vh;
+    width: 49%;
     border-radius: 10px;
-    gap: 5vh;
 }
 
+/* Egress container class specifying color and margin values for center*/
 .egress_container{
-    /* background-color: rgb(37, 154, 150); */
     background: linear-gradient(rgba(216, 112, 80, 0.694), rgba(204, 178, 107, 0.379));
-    margin-left: 1vw;
+    margin-left: 0vw;
     margin-right: 1vw;
 }
 
+/* Ingress container class for specifying color and margin values to center the div*/
 .ingress_container{
-    /* background-color: rgb(255, 230, 255); */
     background: linear-gradient(rgba(131, 97, 209, 0.811), rgba(213, 157, 236, 0.445));
     display: flex;
     flex-direction: column;
     justify-items: center;
     margin-left: 1vw;
-    margin-right: 1vw;
+    margin-right: 0vw;
 }
 
-
+/* Combined button classes for font, padding, and border */
 .egress_button, .ingress_button{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin: 40vh;
@@ -44,10 +45,12 @@
     font-size: xx-large;
 }
 
+/* Egress button class for background color */
 .egress_button{
     background-color: rgba(211, 91, 31, 0.381);
 }
 
+/* Ingress button class for background color */
 .ingress_button{
     background-color: rgba(31, 109, 211, 0.381);
 }
