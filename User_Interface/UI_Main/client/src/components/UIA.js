@@ -18,13 +18,14 @@ function UIA() {
   return(
     <div className='UIA_container'>
       <div className='egress_container'>
-        <div className='egress_button'>
-          <button>Egress</button>
+        <div className=''>
+          <button className="egress_button">Egress</button>
         </div>
       </div>
       <div className='ingress_container'>
-        <div classname='ingress_button'>
-          <button>Ingress</button>
+        <div>
+          <button className='ingress_button'>Ingress</button>
+
         </div>
       </div>
     </div>
