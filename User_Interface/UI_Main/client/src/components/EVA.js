@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./css/EVA.css";
 /*
 * EVA() - **PAGE**
 *
@@ -15,9 +15,18 @@ import React from 'react';
 */
 function EVA() {
   return (
-    <div>
-      <h2>EVA Page</h2>
-      <p>This is the EVA Page!</p>
+    <div className = "EVAngelion_container" >
+      <div className = "panel EV_tracker">
+        <p>Here is where the EV tracker info will be</p>
+      </div>
+      <div className = "panel task_tracker">
+        <p>Here is where the tasks will be tracked</p>
+        {/* Note that this is where the Modals will be. Currently utilizing scroll bar */}
+        <button onClick={alert('Shinji get in the robot')}>Click Me!</button>
+      </div>
+      <div className = "panel xray_tracker">
+        <p>Here is where the Xray Spectrometry will be</p>
+      </div>
     </div>
   );
 }

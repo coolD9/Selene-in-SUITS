@@ -1,0 +1,27 @@
+.body{
+    overflow: hidden;
+}
+
+.EVAngelion_container{
+    display: flex;
+    height: 100vh;
+}
+
+.panel{
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.EV_tracker{
+    background-color: #571515;
+}
+
+.task_tracker{
+    background-color: #cfc537;
+    overflow-y: scroll;
+}
+
+.xray_tracker{
+    background-color: #f0f0f0;
+}
