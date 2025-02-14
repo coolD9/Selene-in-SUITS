@@ -50,6 +50,5 @@ If not on main, transition to main with `git checkout main`
 git push destination main
 ```
 
-
 <br>
 Once all of that is accomplished, it should be good to go!
