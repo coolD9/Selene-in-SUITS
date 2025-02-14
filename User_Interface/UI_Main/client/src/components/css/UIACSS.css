@@ -38,19 +38,46 @@
 .egress_button, .ingress_button{
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin: 40vh;
-    border: solid 1px;
+    border: solid 2px;
     padding: 10vh;
     padding-top: 5vh;
     padding-bottom: 5svh;
     font-size: xx-large;
+    box-shadow: 3px 5px 12px rgba(20, 20, 19, 0.5);
+    border-radius: 60px;
+    transition: background-color 3ms;
+    
+    
 }
 
 /* Egress button class for background color */
 .egress_button{
     background-color: rgba(211, 91, 31, 0.381);
+        
 }
 
 /* Ingress button class for background color */
 .ingress_button{
     background-color: rgba(31, 109, 211, 0.381);
+    
+}
+
+.egress_button:hover {
+    background-color: rgba(211, 91, 31, 0.8);
+    transform: scale(1.00); /* Slight pop effect */
+}
+
+.ingress_button:hover {
+    background-color: rgba(31, 109, 211, 0.8);
+    transform: scale(1.00);
+}
+
+.egress_button:active {
+    background-color: rgba(211, 91, 31, 0.6);
+    transform: scale(0.94); /* Slight press effect */
+}
+
+.ingress_button:active {
+    background-color: rgba(31, 109, 211, 0.6);
+    transform: scale(0.94);
 }
