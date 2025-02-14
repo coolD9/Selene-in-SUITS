@@ -1,0 +1,51 @@
+.body {
+  width: 100%;
+  display: flex;
+}
+
+.LeftContainer {
+  width: 70%;
+}
+
+.LTV {
+  border: 1px solid green;
+  width: 370px;
+  height: 25vh;
+  background-color: darkgray;
+  filter: contrast(50%);
+}
+
+.ParentContainerLTV {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.EVA {
+  border: 1px solid green;
+  width: 370px;
+  height: 25vh;
+  background-color: darkgray;
+  filter: contrast(50%);
+}
+
+.ParentContainerEVA {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+}
+
+.WarningContainer {
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  width: 747px;
+  height: 42vh;
+  margin: -5px;
+  border: 1px solid red;
+}
+
+.mapcontainer {
+  width: 30%;
+  height: 100%;
+}
