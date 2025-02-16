@@ -1,4 +1,5 @@
 import React from 'react';
+import './css/Setup.css'
 
 /*
 * Setup() - **PAGE**
@@ -15,11 +16,21 @@ import React from 'react';
 */
 function Setup() {
   return(
-    <div>
-        <h2>Setup Page</h2>
-        <p>This is the Setup Page!</p>
+    <div className = "tss">
+        <p>Tss IP</p>
+
+        <div className = "dust">
+          <p>Dust IP</p>
+        </div>
+
+        <div className = "Interoperability">
+          <p>Interoperability IP</p>
+        </div>
+
     </div>
+
+    
   )
-}
+} 
 
 export default Setup;
