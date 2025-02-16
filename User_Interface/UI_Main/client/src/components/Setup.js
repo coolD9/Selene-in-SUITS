@@ -16,21 +16,29 @@ import React from 'react';
 function Setup() {
   return(
     <div>
-        <h2>Setup Page</h2>
-        <p>This is the Setup Page!</p>
 
         <h2>Enter IP adressses</h2>
        
         <label>
-        DUST IP: <input name="myInput" defaultValue="00.0.0.000:0000" />
+          DUST IP: <input name="dustInput" defaultValue="00.0.0.000:0000" />
         </label>
+        
 
-        <p>DUST IP:</p>
-        <p>TSS IP:</p>
+        <p>
+          TSS IP: <input name="tssInput" defaultValue="00.0.0.000:0000" />
+        </p>
 
-        <p>EVA 1:</p>
-        <p>EVA 2:</p>
-        <p>LTV:</p>
+        <p>
+          EVA 1: <input name="eva1Input" defaultValue="00.0.0.000:0000" />
+        </p>
+
+        <p>
+          EVA 2:<input name="eva2sInput" defaultValue="00.0.0.000:0000" /> 
+        </p>
+
+        <p>
+          LTV: <input name="ltvInput" defaultValue="00.0.0.000:0000" />
+        </p>
 
     </div>
   )
