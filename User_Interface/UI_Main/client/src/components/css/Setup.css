@@ -17,7 +17,7 @@
     opacity:1;
     position: relative;
 }
-.Interoperability {
+.eva {
     color:black;
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
@@ -25,3 +25,22 @@
     opacity:1;
     position: relative;
 }
+
+.eva2 {
+    color:black;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:normal;
+    opacity:1;
+    position: relative;
+}
+
+.ltv {
+    color:black;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:normal;
+    opacity:1;
+    position: relative;
+}
+

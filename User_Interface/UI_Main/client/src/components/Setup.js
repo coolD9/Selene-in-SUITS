@@ -19,26 +19,39 @@ function Setup() {
 
         <h2>Enter IP adressses</h2>
        
-        <label>
-          DUST IP: <input name="dustInput" defaultValue="00.0.0.000:0000" />
-        </label>
+        <div className = "dust">
+          <label>DUST IP: </label>
+          <input name="dustInput" defaultValue="00.0.0.000:0000" />
+
+        </div>
+
+        <div className = "tss">
+          <label>TSS IP: </label>
+          <input name="tssInput" defaultValue="00.0.0.000:0000" />
+          
+        </div>
         
+        <div className = "dust">
+          <label>DUST IP: </label>
+          <input name="dustInput" defaultValue="00.0.0.000:0000" />
+          
+        </div>
 
-        <p>
-          TSS IP: <input name="tssInput" defaultValue="00.0.0.000:0000" />
-        </p>
+        <div className = "eva">
+          <label>EVA 1: </label>
+          <input name="evaInput" defaultValue="00.0.0.000:0000" />
+        </div>
 
-        <p>
-          EVA 1: <input name="eva1Input" defaultValue="00.0.0.000:0000" />
-        </p>
+        <div className = "eva2">
+          <label>EVA 2: </label>
+          <input name="eva2Input" defaultValue="00.0.0.000:0000" />
+        </div>
 
-        <p>
-          EVA 2:<input name="eva2sInput" defaultValue="00.0.0.000:0000" /> 
-        </p>
+        <div className = "ltv">
+          <label>LTV : </label>
+          <input name="ltvInput" defaultValue="00.0.0.000:0000" />
+        </div>
 
-        <p>
-          LTV: <input name="ltvInput" defaultValue="00.0.0.000:0000" />
-        </p>
 
     </div>
   )
