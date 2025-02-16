@@ -1,13 +1,15 @@
 
+.body {
+    display:flex;
+    flex-direction: column;
+}
 .tss {
     color:black;
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight:normal;
     opacity:1;
-    position: relative;
-    top: 20px;
-    left: 50px;
+    
 }
 .dust {
     color:black;
@@ -15,7 +17,6 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight:normal;
     opacity:1;
-    position: relative;
 }
 .eva {
     color:black;
@@ -23,7 +24,6 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight:normal;
     opacity:1;
-    position: relative;
 }
 
 .eva2 {
@@ -32,7 +32,6 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight:normal;
     opacity:1;
-    position: relative;
 }
 
 .ltv {
@@ -41,6 +40,5 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight:normal;
     opacity:1;
-    position: relative;
 }
 

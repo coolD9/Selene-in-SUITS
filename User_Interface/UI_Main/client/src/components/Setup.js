@@ -15,7 +15,7 @@ import React from 'react';
 */
 function Setup() {
   return(
-    <div>
+    <div className>
 
         <h2>Enter IP adressses</h2>
        
