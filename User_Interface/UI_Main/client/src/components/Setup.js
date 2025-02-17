@@ -1,4 +1,6 @@
 import React from 'react';
+import "./css/SetupCSS.css";
+
 
 /*
 * Setup() - PAGE
@@ -52,45 +54,6 @@ function Setup() {
         </div>
       </form>
 
-      {/* Sets how the page should be formated. 
-          If try to place this in css, the inpt boxes will not be
-          aligned properly.*/}
-      <style>{`
-
-        .setup-container {
-          
-          padding: 20px;
-          max-width: 500px;
-        }
-
-        .ip-form {
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
-        }
-
-        .form-row {
-          display: grid;
-          grid-template-columns: 80px 1fr;
-          align-items: center;
-          gap: 10px;
-        }
-
-        label {
-          color: black;
-          font-size: 16px;
-          font-family: Arial, Helvetica, sans-serif;
-          font-weight: normal;
-        }
-
-        input {
-          padding: 8px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          font-size: 16px;
-          width: 100%;
-        }
-      `}</style>
     </div>
   );
 }
