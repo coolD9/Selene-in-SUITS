@@ -1,5 +1,6 @@
 import React from 'react';
 import './css/UIACSS.css'
+import { useNavigate } from 'react-router-dom';
 
 /*
 * UIA() - **PAGE**
@@ -16,16 +17,28 @@ import './css/UIACSS.css'
 *     for egress/ingress with relevant buttons
 */
 function UIA() {
+  const navigate = useNavigate();
+
+  const navEgress = () =>
+  {
+    navigate('/uia/egress');
+  }
+
+  const navIngress = () =>
+  {
+    navigate('/uia/ingress');
+  }
+
   return(
     <div className='UIA_container'>
       <div className='egress_container'>
         <div>
-          <button className="egress_button">Egress</button>
+          <button className="egress_button" onClick={navEgress}>Egress</button>
         </div>
       </div>
       <div className='ingress_container'>
         <div>
-          <button className='ingress_button'>Ingress</button>
+          <button className='ingress_button' onClick={navIngress}>Ingress</button>
 
         </div>
       </div>

@@ -4,7 +4,7 @@ import React from 'react';
 * Egress() - **PAGE**
 *
 * Description:
-*      Page component where specifically egress operations will
+*      Page component where specifically ingress operations will
 *      be displayed 
 *
 * Params:
@@ -13,12 +13,12 @@ import React from 'react';
 * Returns:
 *     A JSX object to be displayed.
 */
-function Egress() {
+function Ingress() {
   return(
     <div>
-     <p> Hello World </p>
+     <p> Ingress page </p>
     </div>
   )
 }
 
-export default Egress;
+export default Ingress;
