@@ -1,3 +1,8 @@
+::placeholder{
+  /* Makes the placeholder text gray */
+  color: 999;
+}
+
 .setup-container {
     padding: 20px;
     max-width: 500px;
