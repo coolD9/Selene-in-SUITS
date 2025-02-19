@@ -1,17 +1,19 @@
 from sklearn.datasets import load_iris
 from sklearn import tree
-# from PredictiveAnalysis.py import PredictiveAnalysis
+import numpy as np
+# from datetime import datetime, timedelta
+# from PredictionSystem.py import PredictionSystem
 # from AlertSystem.py import AlertSystem
 # from Alert.py import Alert
 
 # Load the iris dataset
 iris = load_iris()
+# Need data and target set up for DecisionTreeClassifier
 x, y = iris.data, iris.target   
 clf = tree.DecisionTreeClassifier()
 clf = clf.fit(x, y)
 
-# Resource values
-oxygenL, batteryL, co2L, waterL = 0.1, 0.3, 0.2, 0.4
+
 
 # ResourceMonitor class
 class ResourceMonitor:
