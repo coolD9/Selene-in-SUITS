@@ -34,12 +34,12 @@ function UIA() {
     <div className='UIA_container theme_background'>
       <div className='egress_container theme_light_border'>
         <div>
-          <button className="egress_button theme_light_border" onClick={navEgress}>Egress</button>
+          <button className="egress_button theme_light_border theme_text" onClick={navEgress}>Egress</button>
         </div>
       </div>
       <div className='ingress_container theme_light_border'>
         <div>
-          <button className='ingress_button theme_light_border' onClick={navIngress}>Ingress</button>
+          <button className='ingress_button theme_light_border theme_text' onClick={navIngress}>Ingress</button>
 
         </div>
       </div>
