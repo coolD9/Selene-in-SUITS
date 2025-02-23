@@ -44,7 +44,7 @@
   justify-content: center;
   font-size: 25px;
   width: 100%;
-  height: 40vh;
+  height: 43vh;
   margin: -5px;
   border: 1px solid red;
   position: relative;
@@ -62,7 +62,6 @@
   bottom: 11px;
   right: 19px;
 }
-
 .resize button {
   background-color: #555;
   color: white;

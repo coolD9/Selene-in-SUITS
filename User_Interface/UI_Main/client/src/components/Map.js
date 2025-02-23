@@ -1,5 +1,5 @@
 import { display } from "@mui/system";
-import React from "react";
+import React, { useState } from "react";
 import "./css/MapCSS.css";
 
 /*
@@ -16,6 +16,11 @@ import "./css/MapCSS.css";
  *     A JSX object to be displayed.
  */
 function Map() {
+  const [size, setSize] = useState("");
+
+  const resizeit = () => {
+    setSize(size === "370" ? "740" : "370");
+  };
   return (
     <div className="body">
       <div className="LeftContainer">
@@ -23,13 +28,17 @@ function Map() {
           <div className="EVA" id="container1">
             <h1>EVA1</h1>
             <div className="resize">
-              <button type="button">Resize</button>
+              <button onClick={resizeit} type="button">
+                Resize
+              </button>
             </div>
           </div>
           <div className="EVA" id="container2">
             <h1>EVA2</h1>
             <div className="resize">
-              <button type="button">Resize</button>
+              <button onClick={resizeit} type="button">
+                Resize
+              </button>
             </div>
           </div>
         </div>
@@ -38,19 +47,23 @@ function Map() {
           <div className="LTV" id="container3">
             <h1>LTV1</h1>
             <div className="resize">
-              <button type="button">Resize</button>
+              <button onClick={resizeit} type="button">
+                Resize
+              </button>
             </div>
           </div>
           <div className="LTV" id="container4">
             <h1>LTV2</h1>
             <div className="resize">
-              <button type="button">Resize</button>
+              <button onClick={resizeit} type="button">
+                Resize
+              </button>
             </div>
           </div>
         </div>
 
         <div className="WarningContainer">
-          <h1>Warning</h1>
+          <h1>Control</h1>
         </div>
       </div>
 
