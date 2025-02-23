@@ -1,6 +1,7 @@
 import React from 'react';
+import DCU_Front from "./../images/DCU_Front.jpg";
 
-/*
+/*  
 * Egress() - **PAGE**
 *
 * Description:
@@ -17,6 +18,8 @@ function Egress() {
   return(
     <div>
      <p> Hello World </p>
+     <img src={DCU_Front}> 
+     </img>
     </div>
   )
 }
