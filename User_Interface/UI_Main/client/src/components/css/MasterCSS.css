@@ -1,6 +1,6 @@
 .theme_background
 {
-    background: linear-gradient(rgba(0, 18, 70, 0.911), rgba(14, 13, 13, 0.726));  
+    background: linear-gradient(rgba(0, 20, 50, 0.9), rgba(15, 10, 10, 0.725));  
     overflow: hidden;
     padding: 1vh;
 }
@@ -9,4 +9,10 @@
 {
     border: 2px solid rgb(100, 200, 250);
     border-radius: 10px;
+}
+
+.theme_text
+{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
 }
