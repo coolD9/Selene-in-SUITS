@@ -1,9 +1,8 @@
 .UIA_container{
-    background: linear-gradient(rgb(0, 38, 152), rgba(14, 13, 13, 0.726));  
+    background: linear-gradient(rgb(0, 18, 70), rgba(14, 13, 13, 0.726));  
     display: flex;
     flex: auto;
     overflow: hidden;
-    background-color: rgb(255, 255, 255);
     padding: 1vh;
 }
 
