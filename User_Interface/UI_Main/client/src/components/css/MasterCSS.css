@@ -1,0 +1,12 @@
+.theme_background
+{
+    background: linear-gradient(rgba(0, 18, 70, 0.911), rgba(14, 13, 13, 0.726));  
+    overflow: hidden;
+    padding: 1vh;
+}
+
+.theme_light_border
+{
+    border: 2px solid rgb(100, 200, 250);
+    border-radius: 10px;
+}

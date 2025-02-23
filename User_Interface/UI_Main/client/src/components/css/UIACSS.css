@@ -1,9 +1,7 @@
 .UIA_container{
-    background: linear-gradient(rgb(0, 18, 70), rgba(14, 13, 13, 0.726));  
     display: flex;
     flex: auto;
     overflow: hidden;
-    padding: 1vh;
 }
 
 /* Combined Rule for egress/ingress containers, setting flexbox, dimensions, and alignment */
@@ -14,8 +12,6 @@
     align-items: center;
     height: 90vh;
     width: 49%;
-    border-radius: 10px;
-    border: 2px solid rgb(99, 204, 249);
 }
 
 /* Egress container class specifying color and margin values for center*/
@@ -48,7 +44,6 @@
     box-shadow: 3px 5px 12px rgba(20, 20, 19, 0.5);
     border-radius: 60px;
     transition: background-color 3ms;
-    border-color: rgb(99, 204, 249);
     
     
 }
