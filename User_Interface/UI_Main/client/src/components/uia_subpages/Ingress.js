@@ -21,10 +21,10 @@ function Ingress() {
   return(
     <div className=''>
       <div>
-        <img src={DCU_Front}></img>
+        <img src={DCU_Front} alt='DCU'></img>
       </div>
       <div>
-        <img src={UIA_Panel}></img>
+        <img src={UIA_Panel} alt='UIA'></img>
       </div>
     </div>
   )
