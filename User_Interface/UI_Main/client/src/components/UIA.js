@@ -30,17 +30,28 @@ function UIA() {
     navigate('/uia/ingress');
   }
 
-  return(
-    <div className='UIA_container theme_background'>
-      <div className='egress_container theme_light_border'>
-        <div>
-          <button className="egress_button theme_light_border theme_text" onClick={navEgress}>Egress</button>
-        </div>
-      </div>
-      <div className='ingress_container theme_light_border'>
-        <div>
-          <button className='ingress_button theme_light_border theme_text' onClick={navIngress}>Ingress</button>
+  const navMonitor = () =>
+  {
+    navigate('/uia/monitor')
+  }
 
+  return(
+    <div className='theme_background'>
+      <div className='monitor_container theme_light_border'>
+        <button className="monitor_button theme_light_border" onClick={navMonitor}>Monitor UIA</button>
+      </div>
+      <div className='UIA_container  theme_text'>
+        
+        <div className='egress_container theme_light_border'>
+          <div>
+            <button className="egress_button theme_light_border" onClick={navEgress}>Egress</button>
+          </div>
+        </div>
+        <div className='ingress_container theme_light_border'>
+          <div>
+            <button className='ingress_button theme_light_border' onClick={navIngress}>Ingress</button>
+
+          </div>
         </div>
       </div>
     </div>

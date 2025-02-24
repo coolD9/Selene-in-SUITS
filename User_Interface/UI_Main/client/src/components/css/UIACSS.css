@@ -4,13 +4,27 @@
     overflow: hidden;
 }
 
+.monitor_container{
+    background: linear-gradient(rgba(1, 75, 38, 0.644), rgba(106, 110, 107, 0.747));
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    height: 17.5vh;
+    width: 99%;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    margin-right: 5vw;
+    padding-top: 3vh;
+}
+
 /* Combined Rule for egress/ingress containers, setting flexbox, dimensions, and alignment */
 .egress_container, .ingress_container{
     display: flex;
     flex-direction: column;
     align-self: center;
     align-items: center;
-    height: 90vh;
+    height: 65vh;
     width: 49%;
 }
 
@@ -24,7 +38,7 @@
 /* Ingress container class for specifying color and margin values to center the div*/
 .ingress_container{
     background: linear-gradient(rgb(128, 86, 234), rgba(212, 204, 214, 0.724));
-    display: flex;
+    display: flex;  
     flex-direction: column;
     justify-items: center;
     margin-left: 1vw;
@@ -34,7 +48,7 @@
 /* Combined button classes for font, padding, and border */
 .egress_button, .ingress_button{
     color: white;
-    margin: 40vh;
+    margin: 30vh;
     padding: 10vh;
     padding-top: 5vh;
     padding-bottom: 5svh;
@@ -57,6 +71,19 @@
     
 }
 
+.monitor_button{
+    color: white;
+    align-self: center;
+    background-color: rgba(50, 100, 60, 0.47);
+    padding: 10vh;
+    padding-top: 5vh;
+    padding-bottom: 5svh;
+    font-size: 30px;
+    box-shadow: 3px 5px 12px rgba(20, 20, 19, 0.5);
+    border-radius: 60px;
+    transition: background-color 3ms;
+}
+
 .egress_button:hover {
     background-color: rgba(31, 109, 211, 0.381);
     transform: scale(1.00); /* Slight pop effect */
@@ -74,6 +101,16 @@
 
 .ingress_button:active {
     background-color: rgba(223, 104, 229, 0.381);
+    transform: scale(0.94);
+}
+
+.monitor_button:hover {
+    background-color: rgba(50, 100, 60, 0.381);
+    transform: scale(1.00); /* Slight pop effect */
+}
+
+.monitor_button:active {
+    background-color: rgba(50, 100, 60, 0.381);
     transform: scale(0.94);
 }
 
