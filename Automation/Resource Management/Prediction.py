@@ -1,5 +1,5 @@
 from sklearn import tree
-import numpy as pd
+import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 
 
@@ -55,6 +55,10 @@ class Prediction:
 
     # Returns a bool
     def turnBack(self):
+        if(self.resourceLevels["oxygen"] < .3 or self.resourceLevels["battery"] < .3 or self.resourceLevels["water"] < .3 or self.resourceLevels["co2"] < .3):
+            return True
+        else:
+            return False
         pass
 
 

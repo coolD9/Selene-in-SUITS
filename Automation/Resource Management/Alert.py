@@ -17,5 +17,10 @@ class Alert:
         self.resourceLevel = resourceLevel
     
     def sendAlert(self):
+        if(Prediction.turnBack() == True):
+            return True
+        else:
+            return False
+        
         pass
         
