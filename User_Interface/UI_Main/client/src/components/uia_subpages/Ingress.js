@@ -19,8 +19,9 @@ import './../css/UIACSS.css'
 */
 function Ingress() {
   return(
-    <div className=''>
+    <div className='theme_background'>
       <div>
+        <p>Hello World!</p>
         <img src={DCU_Front}></img>
       </div>
       <div>
