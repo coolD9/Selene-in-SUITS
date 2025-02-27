@@ -1,5 +1,7 @@
 import React from 'react';
 import "./css/SetupCSS.css";
+import "./css/MasterCSS.css";
+
 
 /*
 * Setup() - PAGE
