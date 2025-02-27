@@ -21,6 +21,7 @@
 }
 
   /* 
+  * Theme for Setup.
   * Form layout and structure
   * Maintains responsive grid layout
   */
@@ -38,7 +39,7 @@
   }
   
   /*
-  * Label styling - Blue text
+  * Label styling - White text
   */
   label {
     color: white;
