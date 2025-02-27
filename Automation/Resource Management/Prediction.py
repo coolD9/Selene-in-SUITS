@@ -10,7 +10,7 @@ class Prediction:
     def __init__(self, resource):
 
         self.resource = resource
-        # 1 is warning, 2 is caution, 3 is safe
+        # 3 is critical, 2 is warning, 1 is caution, 0 is safe
         self.resourceLevels = {"oxygen":0, "battery":0, "water":0, "co2":0}
 
         
