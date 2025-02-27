@@ -17,15 +17,6 @@
   gap: 15px;
 }
 
-/*
-* Label styling - Blue text
-*/
-label {
-  color: #007bff;
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 600;
-}
 
 /* 
 * Input field styling - Dark theme with blue accents

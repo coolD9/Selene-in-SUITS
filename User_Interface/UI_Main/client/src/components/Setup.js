@@ -20,9 +20,9 @@ import "./css/MasterCSS.css";
 
 function Setup() {
   return (
-    <div className="page-wrapper">
-      <div className="setup-container">
-        <h2>Enter IP addresses</h2>
+    <div className="theme_background">
+      <div className="">
+        <h2 className="theme_heading"> Enter IP addresses</h2>
 
         {/* Form used for input fields.*/}
         <form className="ip-form">
