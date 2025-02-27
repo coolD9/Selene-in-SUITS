@@ -1,3 +1,4 @@
+import { display } from "@mui/system";
 import React from "react";
 import "./css/MapCSS.css";
 
@@ -21,18 +22,30 @@ function Map() {
         <div className="ParentContainerEVA">
           <div className="EVA" id="container1">
             <h1>EVA1</h1>
+            <div className="resize">
+              <button type="button">Resize</button>
+            </div>
           </div>
           <div className="EVA" id="container2">
             <h1>EVA2</h1>
+            <div className="resize">
+              <button type="button">Resize</button>
+            </div>
           </div>
         </div>
 
         <div className="ParentContainerLTV">
           <div className="LTV" id="container3">
             <h1>LTV1</h1>
+            <div className="resize">
+              <button type="button">Resize</button>
+            </div>
           </div>
           <div className="LTV" id="container4">
             <h1>LTV2</h1>
+            <div className="resize">
+              <button type="button">Resize</button>
+            </div>
           </div>
         </div>
 
