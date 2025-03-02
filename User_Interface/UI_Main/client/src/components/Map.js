@@ -1,5 +1,7 @@
 import React from "react";
+import { useState } from "react";
 import "./css/MapCSS.css";
+import "./css/MasterCSS.css";
 
 /*
  * Map() - **PAGE**
@@ -15,49 +17,123 @@ import "./css/MapCSS.css";
  *     A JSX object to be displayed.
  */
 function Map() {
+  const [expandedContainer, setExpandedContainer] = useState(null);
+
+  // Function to expand or collapse a container
+  const resizeit = (id) => {
+    // If clicking the already expanded container, collapse it
+    if (expandedContainer === id) {
+      setExpandedContainer(null);
+    } else {
+      // Otherwise, expand the clicked container
+      setExpandedContainer(id);
+    }
+  };
+
+  // Determine which container is visible based on expanded state
+  const isVisible = (id) => {
+    // If no container is expanded, all are visible
+    if (expandedContainer === null) {
+      return true;
+    }
+    // Otherwise, only the expanded container is visible
+    return expandedContainer === id;
+  };
+
   return (
     <div className="body">
       <div className="LeftContainer">
-        <div className="ParentContainerEVA">
-          <div className="EVA" id="container1">
-            <h1>EVA1</h1>
-            <div className="resize">
-              <button type="button">Resize</button>
+        <div
+          className="ParentContainerEVA"
+          style={{ flexDirection: expandedContainer ? "column" : "row" }}
+        >
+          {isVisible("container1") && (
+            <div
+              className="EVA"
+              id="container1"
+              style={{
+                width: expandedContainer === "container1" ? "642px" : "370px",
+                height: expandedContainer === "container1" ? "50vh" : "25vh",
+              }}
+            >
+              <h1>EVA1</h1>
+              <div className="resize">
+                <button onClick={() => resizeit("container1")} type="button">
+                  {expandedContainer === "container1" ? "Collapse" : "Expand"}
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="EVA" id="container2">
-            <h1>EVA2</h1>
-            <div className="resize">
-              <button type="button">Resize</button>
+          )}
+          {isVisible("container2") && (
+            <div
+              className="EVA"
+              id="container2"
+              style={{
+                width: expandedContainer === "container2" ? "642px" : "370px",
+                height: expandedContainer === "container2" ? "50vh" : "25vh",
+              }}
+            >
+              <h1>EVA2</h1>
+              <div className="resize">
+                <button onClick={() => resizeit("container2")} type="button">
+                  {expandedContainer === "container2" ? "Collapse" : "Expand"}
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
-
-        <div className="ParentContainerLTV">
-          <div className="LTV" id="container3">
-            <h1>LTV1</h1>
-            <div className="resize">
-              <button type="button">Resize</button>
+        <div
+          className="ParentContainerLTV"
+          style={{ flexDirection: expandedContainer ? "column" : "row" }}
+        >
+          {isVisible("container3") && (
+            <div
+              className="LTV"
+              id="container3"
+              style={{
+                width: expandedContainer === "container3" ? "642px" : "370px",
+                height: expandedContainer === "container3" ? "50vh" : "25vh",
+              }}
+            >
+              <h1>LTV1</h1>
+              <div className="resize">
+                <button onClick={() => resizeit("container3")} type="button">
+                  {expandedContainer === "container3" ? "Collapse" : "Expand"}
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="LTV" id="container4">
-            <h1>LTV2</h1>
-            <div className="resize">
-              <button type="button">Resize</button>
+          )}
+          {isVisible("container4") && (
+            <div
+              className="LTV"
+              id="container4"
+              style={{
+                width: expandedContainer === "container4" ? "642px" : "370px",
+                height: expandedContainer === "container4" ? "50vh" : "25vh",
+              }}
+            >
+              <h1>LTV2</h1>
+              <div className="resize">
+                <button onClick={() => resizeit("container4")} type="button">
+                  {expandedContainer === "container4" ? "Collapse" : "Expand"}
+                </button>
+              </div>
             </div>
-          </div>
+          )}
         </div>
-
+        {/* Show Warning Container only when no container is expanded */}
         <div className="WarningContainer">
-          <h1>Warning</h1>
+          <h1>Control</h1>
         </div>
       </div>
-
       <div className="mapcontainer">
         <h1 id="map">Map</h1>
       </div>
     </div>
   );
 }
+
+// Don't forget to import useState at the top of your file
+// import { useState } from 'react';
 
 export default Map;
