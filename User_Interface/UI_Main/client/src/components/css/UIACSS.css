@@ -5,7 +5,7 @@
 }
 
 .monitor_container{
-    background: linear-gradient(rgba(1, 75, 38, 0.644), rgba(106, 110, 107, 0.747));
+    background: linear-gradient(rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.9));
     display: flex;
     flex-direction: column;
     align-self: center;
@@ -49,6 +49,7 @@
 .egress_button, .ingress_button{
     color: white;
     margin: 30vh;
+    margin-top: 27vh;
     padding: 10vh;
     padding-top: 5vh;
     padding-bottom: 5svh;
@@ -71,7 +72,7 @@
     
 }
 
-.monitor_button{
+/* .monitor_button{
     color: white;
     align-self: center;
     background-color: rgba(50, 100, 60, 0.47);
@@ -82,7 +83,7 @@
     box-shadow: 3px 5px 12px rgba(20, 20, 19, 0.5);
     border-radius: 60px;
     transition: background-color 3ms;
-}
+} */
 
 .egress_button:hover {
     background-color: rgba(31, 109, 211, 0.381);
@@ -104,13 +105,13 @@
     transform: scale(0.94);
 }
 
-.monitor_button:hover {
+/* .monitor_button:hover {
     background-color: rgba(50, 100, 60, 0.381);
-    transform: scale(1.00); /* Slight pop effect */
+    transform: scale(1.00); /* Slight pop effect 
 }
 
 .monitor_button:active {
     background-color: rgba(50, 100, 60, 0.381);
     transform: scale(0.94);
-}
+} */
 
