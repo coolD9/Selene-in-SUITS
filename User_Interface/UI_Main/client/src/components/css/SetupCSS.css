@@ -1,37 +1,47 @@
-::placeholder{
-  /* Makes the placeholder text gray */
-  color: 999;
+
+
+/* 
+* Form layout and structure
+* Maintains responsive grid layout
+*/
+.ip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.setup-container {
-    padding: 20px;
-    max-width: 500px;
-  }
-  
-  .ip-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .form-row {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  label {
-    color: black;
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-  }
-  
-  input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    width: 100%;
-  }
+.form-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  gap: 15px;
+}
+
+
+/* 
+* Input field styling - Dark theme with blue accents
+*/
+input {
+  padding: 10px;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 30%;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+/*
+* Placeholder styling - Subtle gray
+*/
+::placeholder {
+  color: #666;
+  opacity: 1;
+}
