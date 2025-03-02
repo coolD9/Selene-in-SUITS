@@ -24,21 +24,6 @@
   * Theme for Setup.
   * Form layout and structure
   * Maintains responsive grid layout
-  */
-  .ip-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .form-row {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  /*
   * Label styling - White text
   */
   label {
