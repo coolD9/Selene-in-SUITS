@@ -9,13 +9,49 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    align-items: center;
-    height: 17.5vh;
-    width: 99%;
+    height: 20.5vh;
+    width: 98vw;
     margin-top: 2vh;
     margin-bottom: 2vh;
     margin-right: 5vw;
-    padding-top: 3vh;
+
+}
+
+.monitor_title{
+    margin: auto;
+    margin-top: -.25vh;
+    text-align: center;
+    padding: 0;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+}
+
+.monitor_statuses{
+    display: flex;
+    flex-direction: row;
+    color: white;
+    padding-bottom: 1vh;
+}
+
+.status_block{
+    background: rgba(0, 0, 0, 0);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    content: 0px;
+}
+
+.status_block p{
+    padding: .1vh;
+    margin: 0px;
+    content: 0px;
+    font-size: 16px;
 }
 
 /* Combined Rule for egress/ingress containers, setting flexbox, dimensions, and alignment */
