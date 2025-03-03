@@ -19,7 +19,7 @@ import socket  # used to communicate with UDP socket
         N/A
     
     DESCRIPTION:
-        This method will create a packet that will be sent to the TSS server
+        This function will create a packet that will be sent to the TSS server
         in the given format (Timestamp|Command)
 """
 def send_command(command):
@@ -55,28 +55,38 @@ def send_command(command):
         N/A
     
     DESCRIPTION:
-        This method will receive a packet from the TSS and unpack it, returning
-        the unpacked data. For anything but lidar: (timestamp | command number | value) 
+        This function will receive a packet from the TSS and unpack it, returning
+        the unpacked data. For everything but lidar: (timestamp | command number | value) 
         For lidar: (timestamp | command number | 13 float values)
     """
 def receive_command(command):
       # get commands
         if command < 167 and command > 1:
+          
           # recvfrom returns a tuple with the data and the address 
           # of the sender. Could use recv() if we dont need the address
            data, address = udp_socket.recvfrom(12)
+          
+           # unpacking the data. Assigning three variables since the
+           # data is sent to us as a tuple of 3 items. The actual data
+           # from the json files is the 3rd item so that is what is going
+           # to be returned here.
+           # if assigning the whole unpacked data to just one variable,
+           # when printed, it would look like (120, 119, 2.9994838)
+           # (random numbers for the example) meaning 
+           # (timestamp, command number, valuefromfile).
+           # by assigning all 3 we get rid of the tuple. 
+           # unpacking twice, one for ints one for floats. If there's a
+           # better way then please communicate about it. 
            int_Timestamp, int_commandN, int_info = struct.unpack('>III', data)
            float_Timestamp, float_commandN, float_info = struct.unpack('>IIf', data)
 
-           # unpacking the data. Assigning three variables since the
-           # data is sent to us as a tuple of 3 items. The actual data
-           # from the json files is the 3rd item so that is what is returned here.
-           # if assigning the whole unpacked data to just one variable,
-           # when printed, it would look like (120, 119, 2.9994838)
-           # (random numbers for the example) meaning (timestamp, command number, valuefromfile).
-           # by assigning all 3 we get rid of the tuple. 
+           
+           # all the commands that return a float. Can have more if 
+           # statements so its not a big line.
            if(command >= 17 and command <= 47) or (command >= 58 and command <= 118) or (command >= 126 and command <= 139) or (command >= 141 and command <= 159) or (command >= 161 and command <= 163):
                return float_info
+           # everything else is an int or a bool so just return an int. (bool will be 0 or 1)
            else:
                  return int_info
 
@@ -84,6 +94,8 @@ def receive_command(command):
         elif command == 167:
                 # recvfrom returns a tuple with the data and the address 
                 # of the sender. Could use recv() if we dont need the address
+                # size of 60 in this case since we receive 13 floats,
+                # command number and timestamp.
                dataR, address = udp_socket.recvfrom(60)
 
           # unpacking the data on a tuple this time. We receive a tuple of
@@ -117,7 +129,7 @@ def receive_command(command):
         N/A
     
     DESCRIPTION:
-        This Method will begin reading keystrokes and performing neccesary function
+        This function will begin reading keystrokes and performing neccesary function
         based on key stroke entered
 """
 def get_commands():
