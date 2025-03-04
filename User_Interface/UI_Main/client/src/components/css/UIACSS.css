@@ -4,10 +4,11 @@
     overflow: hidden;
 }
 
+/* Div styling for the large overlapping container holding statuses */
 .monitor_container{
     background: linear-gradient(rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.9));
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* To allow status blocks to be placed under the title */
     align-self: center;
     height: 20.5vh;
     width: 98vw;
@@ -17,38 +18,43 @@
 
 }
 
+/* Div styling for the title of the monitor section */
 .monitor_title{
+    font-weight: bold;
     margin: auto;
-    margin-top: -.25vh;
+    margin-top: -.25vh; /* Get closer to top of monitor container */
     text-align: center;
     padding: 0;
-    padding-left: 2vw;
-    padding-right: 2vw;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    border-top-left-radius: 0;  /* Blend into overlapping container with right angle */
+    border-top-right-radius: 0; /* Blend into overlapping container with right angle */
 
 }
 
+/* Div styling for holding status blocks */
 .monitor_statuses{
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Expand status blocks horizontally */
     color: white;
     padding-bottom: 1vh;
 }
 
+/* Div styling for status block section to hold statuses inside the status area*/
 .status_block{
     background: rgba(0, 0, 0, 0);
     align-items: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Status items stacked vertically within the block */
     width: 100%;
     padding: 0px;
     margin: 0px;
     content: 0px;
 }
 
+/* Paragraph element customization for inside the status block */
 .status_block p{
-    padding: .1vh;
+    padding: .1vh; /*Squeeze status elements together */
     margin: 0px;
     content: 0px;
     font-size: 16px;
@@ -66,14 +72,14 @@
 
 /* Egress container class specifying color and margin values for center*/
 .egress_container{
-    background: linear-gradient(rgba(47, 92, 255, 0.758), rgba(236, 236, 224, 0.747));
+    background: linear-gradient(rgba(47, 92, 255, 0.75), rgba(236, 236, 224, 0.75));
     margin-left: 0vw;
     margin-right: 1vw;
 }
 
 /* Ingress container class for specifying color and margin values to center the div*/
 .ingress_container{
-    background: linear-gradient(rgb(128, 86, 234), rgba(212, 204, 214, 0.724));
+    background: linear-gradient(rgba(128, 86, 234), rgba(212, 204, 214, 0.724));
     display: flex;  
     flex-direction: column;
     justify-items: center;
@@ -93,8 +99,6 @@
     box-shadow: 3px 5px 12px rgba(20, 20, 19, 0.5);
     border-radius: 60px;
     transition: background-color 3ms;
-    
-    
 }
 
 /* Egress button class for background color */
@@ -108,46 +112,26 @@
     
 }
 
-/* .monitor_button{
-    color: white;
-    align-self: center;
-    background-color: rgba(50, 100, 60, 0.47);
-    padding: 10vh;
-    padding-top: 5vh;
-    padding-bottom: 5svh;
-    font-size: 30px;
-    box-shadow: 3px 5px 12px rgba(20, 20, 19, 0.5);
-    border-radius: 60px;
-    transition: background-color 3ms;
-} */
-
+/* Button animation */
 .egress_button:hover {
     background-color: rgba(31, 109, 211, 0.381);
     transform: scale(1.00); /* Slight pop effect */
 }
 
+/* Button animation */
 .ingress_button:hover {
     background-color: rgba(223, 104, 229, 0.381);
     transform: scale(1.00);
 }
 
+/* Button animation */
 .egress_button:active {
     background-color: rgba(31, 109, 211, 0.381);
     transform: scale(0.94); /* Slight press effect */
 }
 
+/* Button animation */
 .ingress_button:active {
     background-color: rgba(223, 104, 229, 0.381);
     transform: scale(0.94);
 }
-
-/* .monitor_button:hover {
-    background-color: rgba(50, 100, 60, 0.381);
-    transform: scale(1.00); /* Slight pop effect 
-}
-
-.monitor_button:active {
-    background-color: rgba(50, 100, 60, 0.381);
-    transform: scale(0.94);
-} */
-
