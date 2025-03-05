@@ -1,14 +1,11 @@
 from Prediction import Prediction
 class Alert:
     def __init__(self):
-        # 1 - Warning, 2 - Caution, 3 - Safe 
+        # 3 - Critical, 2 - Warning, 1 - Caution, 0 - Safe 
         self.criticality = 3
 
         # 1 - Is 100% (Float)
-        self.resourceLevel = {"oxygen": 1,
-                               "battery": 1,
-                                "water": 1,
-                                "co2": 1}
+        self.resourceLevel = {"oxygen": 0, "battery": 0, "water": 0, "co2": 0}
         
         self.steps = {}
         
@@ -17,5 +14,13 @@ class Alert:
         self.resourceLevel = resourceLevel
     
     def sendAlert(self):
-        pass
+        if(Prediction.turnBack() == True):
+            print("Alert: Turn back")
+            return True
+        elif(self.criticality == 3):
+            print("Alert: Critical")
+            return True
+        else:
+            return False
         
+        pass
