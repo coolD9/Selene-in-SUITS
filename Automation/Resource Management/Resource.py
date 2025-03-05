@@ -20,12 +20,14 @@ class Resource:
         self.temp = temp
 
     def update(self, pri_oxygen, sec_oxygen, pri_pressure, sec_pressure, battery, water, co2, coolant_storage, temp):
-        self.oxygen = {
-            "pri_storage": pri_oxygen,
-            "sec_storage": sec_oxygen,
-            "pri_pressure": pri_pressure,
-            "sec_pressure": sec_pressure
-        }
+        
+
+        self.oxygen['pri_storage'] = pri_oxygen
+        self.oxygen['sec_storage'] = sec_oxygen
+        self.oxygen['pri_pressure'] = pri_pressure
+        self.oxygen['sec_pressure'] = sec_pressure
+
+        
         self.battery = battery
         self.water = water
         self.co2 = co2
