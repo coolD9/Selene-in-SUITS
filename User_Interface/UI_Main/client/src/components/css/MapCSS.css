@@ -1,60 +1,59 @@
 .body {
-  width: 100%;
   display: flex;
+  width: 100%;
+  box-sizing: border-box;
 }
-
 .LeftContainer {
   width: 50%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-.LTV {
-  border: 1px solid green;
-  width: 370px;
-  height: 25vh;
-  background-color: darkgray;
-  filter: contrast(50%);
-  text-align: center;
-  position: relative;
-}
-
-.ParentContainerLTV {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-}
-
+.LTV,
 .EVA {
   border: 1px solid green;
-  width: 370px;
   height: 25vh;
   background-color: darkgray;
   filter: contrast(50%);
   text-align: center;
   position: relative;
+  box-sizing: border-box;
+  margin: 0;
 }
 
+.ParentContainerLTV,
 .ParentContainerEVA {
   display: flex;
   flex-direction: row;
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.WarningContainer {
+.ControlContainer {
   display: flex;
   justify-content: center;
   font-size: 25px;
   width: 100%;
-  height: 40vh;
-  margin: -5px;
+  height: 43vh;
+  margin: 0;
   border: 1px solid red;
   position: relative;
+  box-sizing: border-box;
+}
+
+.Controls {
 }
 
 .mapcontainer {
-  width: 100%;
+  width: 50%;
   height: 100%;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .resize {
