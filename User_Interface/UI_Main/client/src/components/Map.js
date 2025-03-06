@@ -51,8 +51,9 @@ function Map() {
             <div
               className="EVA"
               id="container1"
+              // Expand container if height is width is equal to 370 and height is equal to 25vh
               style={{
-                width: expandedContainer === "container1" ? "642px" : "370px",
+                width: expandedContainer === "container1" ? "100%" : "50%",
                 height: expandedContainer === "container1" ? "50vh" : "25vh",
               }}
             >
@@ -69,7 +70,7 @@ function Map() {
               className="EVA"
               id="container2"
               style={{
-                width: expandedContainer === "container2" ? "642px" : "370px",
+                width: expandedContainer === "container2" ? "100%" : "50%",
                 height: expandedContainer === "container2" ? "50vh" : "25vh",
               }}
             >
@@ -91,7 +92,7 @@ function Map() {
               className="LTV"
               id="container3"
               style={{
-                width: expandedContainer === "container3" ? "642px" : "370px",
+                width: expandedContainer === "container3" ? "100%" : "50%",
                 height: expandedContainer === "container3" ? "50vh" : "25vh",
               }}
             >
@@ -108,7 +109,7 @@ function Map() {
               className="LTV"
               id="container4"
               style={{
-                width: expandedContainer === "container4" ? "642px" : "370px",
+                width: expandedContainer === "container4" ? "100%" : "50%",
                 height: expandedContainer === "container4" ? "50vh" : "25vh",
               }}
             >
@@ -121,9 +122,10 @@ function Map() {
             </div>
           )}
         </div>
-        {/* Show Warning Container only when no container is expanded */}
-        <div className="WarningContainer">
+        {/* Show Control Container only when no container is expanded */}
+        <div className="ControlContainer">
           <h1>Control</h1>
+          <div className="Controls"></div>
         </div>
       </div>
       <div className="mapcontainer">
@@ -132,8 +134,5 @@ function Map() {
     </div>
   );
 }
-
-// Don't forget to import useState at the top of your file
-// import { useState } from 'react';
 
 export default Map;
