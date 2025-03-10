@@ -18,15 +18,17 @@ import './../css/UIASubpageCSS.css'
 */
 function Egress() {
   return(
-    <div className="DCUFront_image">
-     <img src={DCU_Front} alt='DCU'>     
-     </img>
-
-     <img src={SUITS_UIA_PANEL} alt='PANEL'>
-     </img>
-
+    <div className="container">
+    <div className="image-container">
+      <img className="DCUFront_image" src={DCU_Front} alt="DCU Front" />
     </div>
-  )
+  
+    <div className="image-container">
+      <img className="SUITS_UIA_PANEL_image" src={SUITS_UIA_PANEL} alt="Panel" />
+    </div>
+  </div>
+    
+  );
 }
 
 export default Egress;

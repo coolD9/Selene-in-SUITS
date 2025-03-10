@@ -1,15 +1,25 @@
-.DCUFront_image {
+.container {
     display: flex;
-    border-radius: 50px; /* Circular image */
-    width: 200px;
-    height: 300px;
+    flex-direction: column;  /* Stacks images vertically */
+    gap: 20px;  /* Space between images */
+    align-items: flex-end;  /* Moves images to the right */
     margin-top: 30px;
-    
-
+    height: 100vh; /* Optional: Makes sure it takes full height */
+    justify-content: center; /* Optional: Centers images vertically */
 }
 
-.SUITS_UIA_PANEL_image{
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;           /* Optional: Adjust for styling */
+    background-color: #c61b1b;   /* Optional: Light background */
+    padding: 20px;
+}
+.DCUFront_image, .SUITS_UIA_PANEL_image {
     display: flex;
     width: 200px;
     height: 300px;
+    border-radius: 20px;           /* Optional: Rounded corners */
+                /* Ensures images fit without stretching */
 }
