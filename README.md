@@ -1,3 +1,5 @@
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/coolD9/Selene-in-SUITS)
+
 ## Selene-in-SUITS
 Welcome to the Selene in SUITS 2024-2025 repository! Our most recent upload is for February 13th, and it includes basic layout for our autonomous structure and UI layouts. Below are the instructions to run our project as is.
 
