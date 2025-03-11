@@ -1,0 +1,15 @@
+
+{
+	"uia": {
+		"eva1_power":        false,
+		"eva1_oxy":          false,
+		"eva1_water_supply": false,
+		"eva1_water_waste":  false,
+		"eva2_power":        false,
+		"eva2_oxy":          false,
+		"eva2_water_supply": false,
+		"eva2_water_waste":  false,
+		"oxy_vent":          false,
+		"depress":           false
+	}
+}
