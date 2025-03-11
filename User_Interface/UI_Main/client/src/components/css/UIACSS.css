@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column; /* To allow status blocks to be placed under the title */
     align-self: center;
-    height: 20.5vh;
+    height: 25.5vh;
     width: 98vw;
     margin-top: 2vh;
     margin-bottom: 2vh;
@@ -21,12 +21,11 @@
 /* Div styling for the title of the monitor section */
 .monitor_title{
     font-weight: bold;
+    font-size: 25px;
     margin: auto;
     margin-top: -.25vh; /* Get closer to top of monitor container */
     text-align: center;
-    padding: 0;
-    padding-left: 3vw;
-    padding-right: 3vw;
+    padding: .75vh 2vw .75vh 2vw;    
     border-top-left-radius: 0;  /* Blend into overlapping container with right angle */
     border-top-right-radius: 0; /* Blend into overlapping container with right angle */
 
@@ -57,7 +56,37 @@
     padding: .1vh; /*Squeeze status elements together */
     margin: 0px;
     content: 0px;
-    font-size: 16px;
+    font-size: 20px;
+    text-align: justify;
+    text-justify: inter-cluster;
+}
+
+/* Styling for item-value pairs */
+.uia_pair {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: right;
+}
+
+/* Styling for title of the item for which the value is related to */
+.value_title{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 50%;
+    margin-left: 1vw;
+}
+
+/* Slight spacing from the item for value display */
+.uia_value p{
+    display: flex;
+    width: 50%;
+    margin-left: 1vw;
+}
+
+/* Cosmetic positioning drop for the left and middle status blocks */
+.lm_drop{
+    padding-top: 1.25vh
 }
 
 /* Combined Rule for egress/ingress containers, setting flexbox, dimensions, and alignment */
@@ -66,7 +95,7 @@
     flex-direction: column;
     align-self: center;
     align-items: center;
-    height: 65vh;
+    height: 60vh;
     width: 49%;
 }
 
@@ -91,7 +120,7 @@
 .egress_button, .ingress_button{
     color: white;
     margin: 30vh;
-    margin-top: 27vh;
+    margin-top: 25vh;
     padding: 10vh;
     padding-top: 5vh;
     padding-bottom: 5svh;

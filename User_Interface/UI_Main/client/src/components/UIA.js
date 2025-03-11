@@ -43,32 +43,176 @@ function UIA() {
 
             {/* Left status block  */}
             <div className='status_block'>
-              <p>EMU1 Power: Value</p>
-              <p>EV1 Supply: Value</p>
-              <p>EV1 Waste: Value</p>
-              <p>EV1 Oxygen: Value</p>
-              <p>O2 Vent: Value</p>
+
+              {/* EMU1 Power Value */}
+              <div className='uia_pair lm_drop'>
+                <div className='value_title'>
+                <p>EMU1 Power:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+              
+              {/* EV1 Supply Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV1 Supply:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+
+              {/* EV1 Waste Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV1 Waste:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+
+              {/* EV1 Oxygen Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV1 Oxygen:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+
+              {/* O2 Vent Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>O2 Vent:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
             </div>
             
             {/* Middle status block */}
             <div className='status_block'>
-              <p>EMU2 Power: Value</p>
-              <p>EV2 Supply: Value</p>
-              <p>EV2 Waste: Value</p>
-              <p>EV2 Oxygen: Value</p>
-              <p>Depress Pump: Value</p>
+
+              {/* EMU2 Power Value */}
+              <div className='uia_pair lm_drop'>
+                <div className='value_title'>
+                <p>EMU2 Power:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+              
+              {/* EV2 Supply Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV2 Supply:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+
+              {/* EV2 Waste Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV2 Waste:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+
+              {/* EV2 Oxygen Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV2 Oxygen:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+
+              {/* Depress Pump Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>Depress Pump:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
             </div>
             
             {/* Right status block */}
             <div className='status_block'>
-              <p>Battery: Value</p>
-              <p>Oxygen: Value</p>
-              <p>Comms: Value</p>
-              <p>Fan: Value</p>
-              <p>Pump: Value</p>
-              <p>CO2: Value</p>
+
+              {/* Battery Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                <p>Battery:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+              
+              {/* Oxygen Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>Oxygen:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+
+              {/* Comms Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>Comms:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+
+              {/* Fan Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>Fan:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+
+              {/* Pump Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>Pump:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
+
+              {/* CO2 Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>CO2:</p>
+                </div>
+                <div className='uia_value'>
+                  <p>Value</p>
+                </div>
+              </div>
             </div>
-          </div>{/* End status block div */}
+          </div>{/* End status block spanning div */}
       </div> {/* End monitor div */}
 
       {/* UIA Operations div */}
