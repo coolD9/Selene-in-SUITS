@@ -2,6 +2,8 @@ import React from 'react';
 import './css/MasterCSS.css';
 import './css/UIACSS.css';
 import { useNavigate } from 'react-router-dom';
+import UIA_JSON from './../TEST_JSON/UIA.json'
+import DCU_JSON from './../TEST_JSON/DCU.json'
 
 /*
 * UIA() - **PAGE**
@@ -31,17 +33,27 @@ function UIA() {
     navigate('/uia/ingress');
   }
 
+
   return(
     <div className='theme_background'> 
       {/* Status monitor div */}
       <div className='monitor_container theme_light_border'>
           {/* Monitor title */}
           <p className='theme_text theme_light_border monitor_title'>Status Monitor</p>
+
+          <div className='device_titles'>
+            <div className='uia_mon_title theme_light_border'>
+              <p>UIA</p>
+            </div>
+            <div className='dcu_mon_title theme_light_border'>
+              <p>DCU</p>
+            </div>
+          </div>
           
           {/* Div for status blocks */}
           <div className='monitor_statuses'>
 
-            {/* Left status block  */}
+            {/* Left status block (EV1 UIA Values) */}
             <div className='status_block'>
 
               {/* EMU1 Power Value */}
@@ -49,8 +61,9 @@ function UIA() {
                 <div className='value_title'>
                 <p>EMU1 Power:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={UIA_JSON.uia.eva1_power ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{UIA_JSON.uia.eva1_power ? 'ON' : 'OFF'} </p>
                 </div>
               </div>
               
@@ -59,8 +72,9 @@ function UIA() {
                 <div className='value_title'>
                   <p>EV1 Supply:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={UIA_JSON.uia.eva1_water_supply ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{UIA_JSON.uia.eva1_water_supply ? 'OPEN' : 'CLOSED'}</p>
                 </div>
               </div>
 
@@ -69,8 +83,9 @@ function UIA() {
                 <div className='value_title'>
                   <p>EV1 Waste:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={UIA_JSON.uia.eva1_water_waste ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{UIA_JSON.uia.eva1_water_waste ? 'OPEN' : 'CLOSED'}</p>
                 </div>
               </div>
 
@@ -79,8 +94,9 @@ function UIA() {
                 <div className='value_title'>
                   <p>EV1 Oxygen:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={UIA_JSON.uia.eva1_oxy ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{UIA_JSON.uia.eva1_oxy ? 'OPEN' : 'CLOSED'}</p>
                 </div>
               </div>
 
@@ -89,13 +105,14 @@ function UIA() {
                 <div className='value_title'>
                   <p>O2 Vent:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={UIA_JSON.uia.oxy_vent ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{UIA_JSON.uia.oxy_vent ? 'OPEN' : 'CLOSED'}</p>
                 </div>
               </div>
             </div>
             
-            {/* Middle status block */}
+            {/* Left Middle status block (EV2 UIA Values) */}
             <div className='status_block'>
 
               {/* EMU2 Power Value */}
@@ -103,8 +120,9 @@ function UIA() {
                 <div className='value_title'>
                 <p>EMU2 Power:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={UIA_JSON.uia.eva2_power ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{UIA_JSON.uia.eva2_power ? 'ON' : 'OFF'}</p>
                 </div>
               </div>
               
@@ -113,8 +131,9 @@ function UIA() {
                 <div className='value_title'>
                   <p>EV2 Supply:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={UIA_JSON.uia.eva2_water_supply ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{UIA_JSON.uia.eva2_water_supply ? 'OPEN' : 'CLOSED'}</p>
                 </div>
               </div>
 
@@ -123,8 +142,9 @@ function UIA() {
                 <div className='value_title'>
                   <p>EV2 Waste:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={UIA_JSON.uia.eva2_water_waste ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{UIA_JSON.uia.eva2_water_waste ? 'OPEN' : 'CLOSED'}</p>
                 </div>
               </div>
 
@@ -133,82 +153,160 @@ function UIA() {
                 <div className='value_title'>
                   <p>EV2 Oxygen:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={UIA_JSON.uia.eva2_oxy ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{UIA_JSON.uia.eva2_oxy ? 'OPEN' : 'CLOSED'}</p>
                 </div>
               </div>
 
-              {/* Depress Pump Value */}
+              {/* UIA Depress Pump Value */}
               <div className='uia_pair'>
                 <div className='value_title'>
                   <p>Depress Pump:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={UIA_JSON.uia.depress ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{UIA_JSON.uia.depress ? 'OPEN' : 'CLOSED'}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Middle block (EV1 DCU Values) */}
+            <div className='status_block' id='rm_status_block'>
+
+              {/* EV1 Battery Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                <p>EV1 Battery:</p>
+                </div>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva1.batt ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva1.batt ? 'SUIT BATT' : 'UMBILICAL'}</p>
+                </div>
+              </div>
+              
+              {/* EV1 Oxygen Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV1 Oxygen:</p>
+                </div>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva1.oxy ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva1.oxy ? 'PRIMARY' : 'SECONDARY'}</p>
+                </div>
+              </div>
+
+              {/* EV1 Comms Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV1 Comms:</p>
+                </div>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva1.comm ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva1.comm ? 'Channel A' : 'Channel B'}</p>
+                </div>
+              </div>
+
+              {/* EV1 Fan Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV1 Fan:</p>
+                </div>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva1.fan ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva1.fan ? 'PRIMARY' : 'SECONDARY'}</p>
+                </div>
+              </div>
+
+              {/* EV1 Pump Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV1 Pump:</p>
+                </div>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva1.pump ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva1.pump ? 'OPEN' : 'CLOSED'}</p>
+                </div>
+              </div>
+
+              {/* EV1 CO2 Value */}
+              <div className='uia_pair'>
+                <div className='value_title'>
+                  <p>EV1 CO2:</p>
+                </div>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva1.co2 ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva1.co2 ? 'Scrubber A' : 'Scrubber B'}</p>
                 </div>
               </div>
             </div>
             
-            {/* Right status block */}
+            {/* Right status block (EV2 DCU Values) */}
             <div className='status_block'>
 
-              {/* Battery Value */}
+              {/* EV2 Battery Value */}
               <div className='uia_pair'>
                 <div className='value_title'>
-                <p>Battery:</p>
+                <p>EV2 Battery:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva2.batt ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva2.batt ? 'SUIT BATT' : 'UMBILICAL'}</p>
                 </div>
               </div>
               
-              {/* Oxygen Value */}
+              {/* EV2 Oxygen Value */}
               <div className='uia_pair'>
                 <div className='value_title'>
-                  <p>Oxygen:</p>
+                  <p>EV2 Oxygen:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva2.oxy ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva2.oxy ? 'PRIMARY' : 'SECONDARY'}</p>
                 </div>
               </div>
 
-              {/* Comms Value */}
+              {/* EV2 Comms Value */}
               <div className='uia_pair'>
                 <div className='value_title'>
-                  <p>Comms:</p>
+                  <p>EV2 Comms:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva2.comm? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva2.comm ? 'Channel A' : 'Channel B'}</p>
                 </div>
               </div>
 
-              {/* Fan Value */}
+              {/* EV2 Fan Value */}
               <div className='uia_pair'>
                 <div className='value_title'>
-                  <p>Fan:</p>
+                  <p>EV2 Fan:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva2.fan ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva2.fan ? 'PRIMARY' : 'SECONDARY'}</p>
                 </div>
               </div>
 
-              {/* Pump Value */}
+              {/* EV2 Pump Value */}
               <div className='uia_pair'>
                 <div className='value_title'>
-                  <p>Pump:</p>
+                  <p>EV2 Pump:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva2.pump ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva2.pump ? 'OPEN' : 'CLOSED'}</p>
                 </div>
               </div>
 
-              {/* CO2 Value */}
+              {/* EV2 CO2 Value */}
               <div className='uia_pair'>
                 <div className='value_title'>
-                  <p>CO2:</p>
+                  <p>EV2 CO2:</p>
                 </div>
-                <div className='uia_value'>
-                  <p>Value</p>
+                {/* Determine which value and subsequent styling to use */}
+                <div className={DCU_JSON.dcu.eva2.co2 ? 'uia_value true_val' : 'uia_value false_val'}>
+                  <p>{DCU_JSON.dcu.eva2.co2 ? 'Scrubber A' : 'Scrubber B'}</p>
                 </div>
               </div>
             </div>
