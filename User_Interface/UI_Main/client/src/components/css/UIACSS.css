@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column; /* To allow status blocks to be placed under the title */
     align-self: center;
-    height: 25.5vh;
+    height: 30.5vh;
     width: 98vw;
     margin-top: 2vh;
     margin-bottom: 2vh;
@@ -24,11 +24,39 @@
     font-size: 25px;
     margin: auto;
     margin-top: -.25vh; /* Get closer to top of monitor container */
+    margin-bottom: 0vh;
     text-align: center;
-    padding: .75vh 2vw .75vh 2vw;    
+    padding: 0vh 2vw 0vh 2vw;    
     border-top-left-radius: 0;  /* Blend into overlapping container with right angle */
     border-top-right-radius: 0; /* Blend into overlapping container with right angle */
+}
 
+/* Div styling for the container of the titles of the UIA and DCU */
+.device_titles{
+    display: flex;
+    flex-direction: row;
+    color: white;
+    width: 100%;
+    height: 5vh;
+    text-align: center;
+}
+
+.device_titles p{
+    margin: auto;
+}
+
+
+.uia_mon_title, .dcu_mon_title{
+    flex: auto;
+    font-weight: bold;
+    font-size: 25px;
+    border-radius: 0;
+    width: 100%;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    padding-top: .25vh;
+    border-radius: 30%;
 }
 
 /* Div styling for holding status blocks */
@@ -36,7 +64,6 @@
     display: flex;
     flex-direction: row; /* Expand status blocks horizontally */
     color: white;
-    padding-bottom: 1vh;
 }
 
 /* Div styling for status block section to hold statuses inside the status area*/
@@ -46,9 +73,6 @@
     display: flex;
     flex-direction: column; /* Status items stacked vertically within the block */
     width: 100%;
-    padding: 0px;
-    margin: 0px;
-    content: 0px;
 }
 
 /* Paragraph element customization for inside the status block */
@@ -84,9 +108,9 @@
     margin-left: 1vw;
 }
 
-/* Cosmetic positioning drop for the left and middle status blocks */
+/* Cosmetic positioning drop for the left and left middle status blocks */
 .lm_drop{
-    padding-top: 1.25vh
+    padding-top: 2vh
 }
 
 /* Combined Rule for egress/ingress containers, setting flexbox, dimensions, and alignment */
@@ -95,7 +119,7 @@
     flex-direction: column;
     align-self: center;
     align-items: center;
-    height: 60vh;
+    height: 55vh;
     width: 49%;
 }
 
@@ -120,7 +144,7 @@
 .egress_button, .ingress_button{
     color: white;
     margin: 30vh;
-    margin-top: 25vh;
+    margin-top: 22.5vh;
     padding: 10vh;
     padding-top: 5vh;
     padding-bottom: 5svh;
