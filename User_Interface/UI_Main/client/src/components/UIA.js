@@ -35,7 +35,7 @@ function UIA() {
 
 
   return(
-    <div className='theme_background'> 
+    <div className='theme_background theme_text'> 
       {/* Status monitor div */}
       <div className='monitor_container theme_light_border'>
           {/* Monitor title */}

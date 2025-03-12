@@ -73,7 +73,7 @@
 
 /* Paragraph element customization for inside the status block */
 .status_block p{
-    padding: .1vh; /*Squeeze status elements together */
+    padding: .3vh; /*Squeeze status elements together */
     margin: 0px;
     content: 0px;
     font-size: 20px;
@@ -96,7 +96,7 @@
 
 /* Slight spacing from the item for value display */
 .uia_value p{
-    margin-left: 1vw;
+    margin-left: .75vw;
 }
 
 .true_val p{
