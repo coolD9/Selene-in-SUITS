@@ -3,6 +3,7 @@ import DCU_Front from './../images/DCU_Front.jpg'
 import UIA_Panel from './../images/SUITS_UIA_PANEL.jpg'
 import './../css/MasterCSS.css'
 import './../css/UIACSS.css'
+import './../css/UIASubpageCSS.css'
 
 /*
 * Egress() - **PAGE**
@@ -19,13 +20,18 @@ import './../css/UIACSS.css'
 */
 function Ingress() {
   return(
-    <div className=''>
-      <div>
-        <img src={DCU_Front} alt='DCU'></img>
+    <div className='container'>
+      <div className='image-container'>
+        <div>
+          <img className='DCUFront_image' src={DCU_Front} alt='DCU'></img>
+        </div>
       </div>
-      <div>
-        <img src={UIA_Panel} alt='UIA'></img>
+      <div className='image-container'>
+        <div>
+          <img className='SUITS_UIA_PANEL_image' src={UIA_Panel} alt='UIA'></img>
+        </div>
       </div>
+
     </div>
   )
 }
