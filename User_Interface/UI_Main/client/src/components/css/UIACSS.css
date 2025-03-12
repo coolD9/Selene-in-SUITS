@@ -6,7 +6,7 @@
 
 /* Div styling for the large overlapping container holding statuses */
 .monitor_container{
-    background: linear-gradient(rgba(20, 20, 20, 0.9), rgba(40, 40, 40, 0.9));
+    background: linear-gradient(rgba(15, 15, 15, 1), rgba(35, 35, 35, 1));
     display: flex;
     flex-direction: column; /* To allow status blocks to be placed under the title */
     align-self: center;
@@ -15,7 +15,6 @@
     margin-top: 2vh;
     margin-bottom: 2vh;
     margin-right: 5vw;
-
 }
 
 /* Div styling for the title of the monitor section */
@@ -34,45 +33,42 @@
 /* Div styling for the container of the titles of the UIA and DCU */
 .device_titles{
     display: flex;
-    flex-direction: row;
-    color: white;
     width: 100%;
     height: 5vh;
     text-align: center;
 }
 
+/* Positioning for the titles of the UIA and DCU */
 .device_titles p{
     margin: auto;
 }
 
-
+/* Styling for the titles for UIA and DCU */
 .uia_mon_title, .dcu_mon_title{
     flex: auto;
     font-weight: bold;
+    color: rgb(200, 200, 200);
     font-size: 25px;
-    border-radius: 0;
     width: 100%;
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    padding-top: .25vh;
-    border-radius: 30%;
+    padding-top: 0.5vh;
+    border-radius: 0%;/* Not sure if I want to add a radius atp */
 }
 
-/* Div styling for holding status blocks */
+/* Div styling for the container holding status blocks */
 .monitor_statuses{
     display: flex;
     flex-direction: row; /* Expand status blocks horizontally */
-    color: white;
+    color: rgb(240, 240, 240);
 }
 
 /* Div styling for status block section to hold statuses inside the status area*/
 .status_block{
-    background: rgba(0, 0, 0, 0);
-    align-items: center;
-    display: flex;
     flex-direction: column; /* Status items stacked vertically within the block */
     width: 100%;
+    margin-top: 2vh;
 }
 
 /* Paragraph element customization for inside the status block */
@@ -81,8 +77,6 @@
     margin: 0px;
     content: 0px;
     font-size: 20px;
-    text-align: justify;
-    text-justify: inter-cluster;
 }
 
 /* Styling for item-value pairs */
@@ -90,7 +84,6 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    align-items: right;
 }
 
 /* Styling for title of the item for which the value is related to */
@@ -103,14 +96,21 @@
 
 /* Slight spacing from the item for value display */
 .uia_value p{
-    display: flex;
-    width: 50%;
     margin-left: 1vw;
+}
+
+.true_val p{
+
+    color: rgb(0, 175, 0);
+}
+
+.false_val p{
+    color: rgba(255, 255, 255, 0.4);
 }
 
 /* Cosmetic positioning drop for the left and left middle status blocks */
 .lm_drop{
-    padding-top: 2vh
+    padding-top: 1vh
 }
 
 /* Combined Rule for egress/ingress containers, setting flexbox, dimensions, and alignment */
@@ -120,13 +120,13 @@
     align-self: center;
     align-items: center;
     height: 55vh;
-    width: 49%;
+    width: 48%;
 }
 
 /* Egress container class specifying color and margin values for center*/
 .egress_container{
     background: linear-gradient(rgba(47, 92, 255, 0.75), rgba(236, 236, 224, 0.75));
-    margin-left: 0vw;
+    margin-left: 0.5vw;
     margin-right: 1vw;
 }
 
@@ -137,7 +137,7 @@
     flex-direction: column;
     justify-items: center;
     margin-left: 1vw;
-    margin-right: 5vw;
+    margin-right: 1vw;
 }
 
 /* Combined button classes for font, padding, and border */
@@ -180,11 +180,11 @@
 /* Button animation */
 .egress_button:active {
     background-color: rgba(31, 109, 211, 0.381);
-    transform: scale(0.94); /* Slight press effect */
+    transform: scale(0.95); /* Slight press effect */
 }
 
 /* Button animation */
 .ingress_button:active {
     background-color: rgba(223, 104, 229, 0.381);
-    transform: scale(0.94);
+    transform: scale(0.95);
 }
