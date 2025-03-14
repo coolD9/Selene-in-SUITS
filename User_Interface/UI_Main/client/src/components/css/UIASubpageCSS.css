@@ -80,3 +80,18 @@
     background-color: white;
     color: black;
 }
+
+.checkbox-container {
+    display: flex;
+    justify-content: space-between; /* Push checkbox to the right */
+    align-items: center; /* Align checkbox with text */
+    width: 100%;
+    padding: 5px 0; /* Add spacing between items */
+  }
+  
+  .checkbox-container input {
+    margin-left: 10px; /* Space between text and checkbox */
+    transform: scale(1.2); /* Optional: Increase checkbox size */
+  }
+  
+  

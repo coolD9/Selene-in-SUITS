@@ -25,10 +25,35 @@ function Egress() {
         <p>
           This section showcases the egress operations involved in our system. 
         </p>
-        <Collapsible title="Section 1">Content for section 1</Collapsible>
-        <Collapsible title="Section 2">Content for section 2</Collapsible>
-        <Collapsible title="Section 3">Content for section 3</Collapsible>
-        <Collapsible title="Section 4">Content for section 4</Collapsible>
+        <Collapsible title="Connect UIA to DCU and Start Depress">
+          <div className="checkbox-container">
+            <span>UIA and DCU 1. EV1 and EV2 connect UIA and DCU umbilical</span>
+            <input type="checkbox" />
+          </div>
+
+          <div className="checkbox-container">
+            <span>UIA 2. EV-1, EV-2 PWR – ON</span>
+            <input type="checkbox" />
+          </div>
+
+          <div className="checkbox-container">
+            <span>BOTH DCU 3. BATT – UMB</span>
+            <input type="checkbox" />
+          </div>
+
+          <div className="checkbox-container">
+            <span>UIA 4. DEPRESS PUMP PWR – ON</span>
+            <input type="checkbox" />
+          </div>
+        </Collapsible>
+
+
+        <Collapsible title="Prep O2 Tanks">Content for section 2</Collapsible>
+
+        <Collapsible title="Prep Water Tanks">Content for section 3</Collapsible>
+
+        <Collapsible title="END Depress, Check Switches and Disconnect">Content for section 4</Collapsible>
+
       </div>
       <div className="image-column">
         <div className="image-container">
