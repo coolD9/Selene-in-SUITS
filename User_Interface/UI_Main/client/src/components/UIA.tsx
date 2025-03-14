@@ -2,8 +2,8 @@ import React from 'react';
 import './css/MasterCSS.css';
 import './css/UIACSS.css';
 import { useNavigate } from 'react-router-dom';
-import UIA_JSON from './../TEST_JSON/UIA.json'
-import DCU_JSON from './../TEST_JSON/DCU.json'
+import UIA_JSON from '../TEST_JSON/UIA.json'
+import DCU_JSON from '../TEST_JSON/DCU.json'
 
 /*
 * UIA() - **PAGE**
@@ -20,7 +20,7 @@ import DCU_JSON from './../TEST_JSON/DCU.json'
 *     for egress/ingress with relevant buttons as well as
 *     a section for monitoring UIA status
 */
-function UIA() {
+const UIA: React.FC = () => {
   const navigate = useNavigate();
 
   const navEgress = () =>
