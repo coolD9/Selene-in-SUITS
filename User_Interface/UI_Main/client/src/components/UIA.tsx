@@ -16,8 +16,8 @@ import DCU_JSON from '../TEST_JSON/DCU.json'
 *     None
 *
 * Returns:
-*     A JSX object to be displayed which shows two sections
-*     for egress/ingress with relevant buttons as well as
+*     A page object to be displayed which shows three sections
+*     two for egress/ingress with relevant buttons as well as
 *     a section for monitoring UIA status
 */
 const UIA: React.FC = () => {
