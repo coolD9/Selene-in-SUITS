@@ -1,3 +1,4 @@
+
 from Prediction import Prediction
 
 # Get values from resource class and optimizes the usage of resouces accordingly.
@@ -11,7 +12,6 @@ class Optimize:
     # Tracking the rate of usage of resources to identify problems.
     def trackConsumption(self):
         pass
-
     # Return the new values of usage for resources.
     def optimize(self, resource, hazardLevel=0, missionDuration=None, priorityOverride=None):
         if(self.resourceLevels["oxygen"] == 3):
