@@ -1,6 +1,9 @@
 import React from 'react';
+import DCU_Front from "./../images/DCU_Front.jpg";
+import SUITS_UIA_PANEL from "./../images/SUITS_UIA_PANEL.jpg";
+import './../css/UIASubpageCSS.css'
 
-/*
+/*  
 * Egress() - **PAGE**
 *
 * Description:
@@ -15,7 +18,13 @@ import React from 'react';
 */
 function Egress() {
   return(
-    <div>
+    <div className="DCUFront_image">
+     <img src={DCU_Front} alt='DCU'>     
+     </img>
+
+     <img src={SUITS_UIA_PANEL} alt='PANEL'>
+     </img>
+
     </div>
   )
 }
