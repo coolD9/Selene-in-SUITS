@@ -1,3 +1,4 @@
+
 # Gets the monitored values for resources and stores and processes them here.
 class Resource:
 
@@ -51,3 +52,5 @@ class Resource:
     
     def getTemp(self):
         return self.temp
+
+

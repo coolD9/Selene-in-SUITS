@@ -11,11 +11,11 @@ class LogAlert:
         self.file1 = open("Log.txt")
 
     def logData(self):
-        #Unimplemented
+
+        # Unimplemented.
         self.file1.write(self.alert.timestamp, ": ", self.alert.resource,", ", self.alert.criticality, self.alert.alertmessage)
 
 class LogData:
-
     def __init__(self, o2, battery, water, co2, coolant_storage, temp):
         self.o2 = o2
         self.battery = battery
@@ -23,6 +23,7 @@ class LogData:
         self.co2 = co2
         self.coolant = coolant_storage
         self.temp = temp
+
 
         self.index = 0
 
@@ -42,6 +43,7 @@ class LogData:
             reader = csv.reader(file)
             for row in reader:  
                 timestamp = row[0]
+
                 if variable == 'o2_pri_storage':
                     value = row[1]
                 

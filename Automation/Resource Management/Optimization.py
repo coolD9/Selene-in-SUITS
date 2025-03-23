@@ -1,3 +1,4 @@
+
 from Prediction import Prediction
 
 # Get values from resource class and optimizes the usage of resouces accordingly.
@@ -40,4 +41,4 @@ class Optimize:
             return self.resourceLevels
         else:
             # If the criticality is not 3, then optimize the resource levels.
-            pass
+        pass
