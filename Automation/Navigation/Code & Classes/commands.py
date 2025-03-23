@@ -371,10 +371,54 @@ class Command:
         self.uia["uia"]["oxy_vent"] = self.send_command(56)
         self.uia["uia"]["depress"] = self.send_command(57)
 
-        # Getting Telemetry for EVA data.
+        # Getting Telemetry for eva1.
         self.evaTelemetry["telemetry"]["eva_time"] = self.send_command(58)
-        # self.evaTelemetry["telemetry"]["eva_time"] = self.send_command(59)
-
+        self.evaTelemetry["telemetry"]["eva1"]["batt_time_left"] = self.send_command(59)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_pri_storage"] = self.send_command(60)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_sec_storage"] = self.send_command(61)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_pri_pressure"] = self.send_command(61)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_sec_pressure"] = self.send_command(62)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_time_left"] = self.send_command(63)
+        self.evaTelemetry["telemetry"]["eva1"]["heart_rate"] = self.send_command(64)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_consumption"] = self.send_command(65)
+        self.evaTelemetry["telemetry"]["eva1"]["co2_production"] = self.send_command(66)
+        self.evaTelemetry["telemetry"]["eva1"]["suit_pressure_oxy"] = self.send_command(67)
+        self.evaTelemetry["telemetry"]["eva1"]["suit_pressure_co2"] = self.send_command(68)
+        self.evaTelemetry["telemetry"]["eva1"]["suit_pressure_other"] = self.send_command(69)
+        self.evaTelemetry["telemetry"]["eva1"]["suit_pressure_total"] = self.send_command(70)
+        self.evaTelemetry["telemetry"]["eva1"]["fan_pri_rpm"] = self.send_command(71)
+        self.evaTelemetry["telemetry"]["eva1"]["fan_sec_rpm"] = self.send_command(72)
+        self.evaTelemetry["telemetry"]["eva1"]["helmet_pressure_co2"] = self.send_command(73)
+        self.evaTelemetry["telemetry"]["eva1"]["scrubber_a_co2_storage"] = self.send_command(74)
+        self.evaTelemetry["telemetry"]["eva1"]["scrubber_b_co2_storage"] = self.send_command(75)
+        self.evaTelemetry["telemetry"]["eva1"]["temperature"] = self.send_command(76)
+        self.evaTelemetry["telemetry"]["eva1"]["coolant_ml"] = self.send_command(77)
+        self.evaTelemetry["telemetry"]["eva1"]["coolant_gas_pressure"] = self.send_command(78)
+        self.evaTelemetry["telemetry"]["eva1"]["coolant_liquid_pressure"] = self.send_command(79)
+        
+        # Getting Telemetry for eva1.
+        self.evaTelemetry["telemetry"]["eva2"]["batt_time_left"] = self.send_command(80)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_pri_storage"] = self.send_command(81)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_sec_storage"] = self.send_command(82)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_pri_pressure"] = self.send_command(83)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_sec_pressure"] = self.send_command(84)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_time_left"] = self.send_command(85)
+        self.evaTelemetry["telemetry"]["eva2"]["heart_rate"] = self.send_command(86)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_consumption"] = self.send_command(87)
+        self.evaTelemetry["telemetry"]["eva2"]["co2_production"] = self.send_command(88)
+        self.evaTelemetry["telemetry"]["eva2"]["suit_pressure_oxy"] = self.send_command(89)
+        self.evaTelemetry["telemetry"]["eva2"]["suit_pressure_co2"] = self.send_command(90)
+        self.evaTelemetry["telemetry"]["eva2"]["suit_pressure_other"] = self.send_command(91)
+        self.evaTelemetry["telemetry"]["eva2"]["suit_pressure_total"] = self.send_command(92)
+        self.evaTelemetry["telemetry"]["eva2"]["fan_pri_rpm"] = self.send_command(93)
+        self.evaTelemetry["telemetry"]["eva2"]["fan_sec_rpm"] = self.send_command(94)
+        self.evaTelemetry["telemetry"]["eva2"]["helmet_pressure_co2"] = self.send_command(95)
+        self.evaTelemetry["telemetry"]["eva2"]["scrubber_a_co2_storage"] = self.send_command(96)
+        self.evaTelemetry["telemetry"]["eva2"]["scrubber_b_co2_storage"] = self.send_command(97)
+        self.evaTelemetry["telemetry"]["eva2"]["temperature"] = self.send_command(98)
+        self.evaTelemetry["telemetry"]["eva2"]["coolant_ml"] = self.send_command(99)
+        self.evaTelemetry["telemetry"]["eva2"]["coolant_gas_pressure"] = self.send_command(100)
+        self.evaTelemetry["telemetry"]["eva2"]["coolant_liquid_pressure"] = self.send_command(101)
 
 
         
@@ -469,9 +513,15 @@ class Command:
         self.telemetry_data["pr_telemetry"]["lidar"] = self.send_command(167)
         
         # Save collected data to JSON file
-        print("Saving telemetry data to JSON file...")
+        print("Saving data to JSON file...")
         self.saveJson(self.targetDir, "ROVER_TELEMETRY.json", self.telemetry_data)
         self.saveJson(self.targetDir, "TELEMETRY.json", self.evaTelemetry)
+        self.saveJson(self.targetDir, "DCU.json", self.dcu)
+        self.saveJson(self.targetDir, "IMU.json", self.imu)
+        self.saveJson(self.targetDir, "UIA.json", self.uia)
+        self.saveJson(self.targetDir, "ROVER.json", self.rover)
+
+
         
         print("Data collection complete. Telemetry saved to ROVER_TELEMETRY.json")
         return self.telemetry_data
