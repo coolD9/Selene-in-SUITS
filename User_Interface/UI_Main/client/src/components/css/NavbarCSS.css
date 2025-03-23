@@ -30,8 +30,8 @@
   /* Active link styles */
   .active-link {
     background-color: #81bbfe;  /* Highlight the active tab */
-    color: #ffffff;             /* Optional: change text color for active tab */
-    border: 2px solid #888;     /* Optional: change border style for active tab */
+    color: #ffffff;  
+    border: 2px solid #888; 
     }
 
 /* Aligning team-title to the right */
