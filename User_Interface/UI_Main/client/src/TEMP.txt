@@ -1,0 +1,19 @@
+      {/* UIA Operations div */}
+      <div className='UIA_container theme_text'>
+        
+        {/* Egress div */}
+        <div className='egress_container theme_light_border'>
+          <div>
+            <button className="egress_button theme_light_border" onClick={navEgress}>Egress</button>
+          </div>
+        </div> {/* End egress div */}
+
+        {/* Ingress div */}
+        <div className='ingress_container theme_light_border'>
+          <div>
+            <button className='ingress_button theme_light_border' onClick={navIngress}>Ingress</button>
+          </div>
+        </div> {/* End ingress div */}
+
+      </div> 
+      {/* End UIA Operations div */}
