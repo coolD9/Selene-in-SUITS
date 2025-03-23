@@ -271,6 +271,8 @@ class Manual_Move:
                print("Exiting program")
                self.udp_socket.close()
                exit()
+    
+    # Joystick Movement 
                
     """
     Name: __init__ (DECONSTRUCTOR)
