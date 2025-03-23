@@ -1,3 +1,4 @@
+from datetime import datetime
 from Prediction import Prediction
 class Alert:
     def __init__(self):
@@ -6,21 +7,31 @@ class Alert:
 
         # 1 - Is 100% (Float)
         self.resourceLevel = {"oxygen": 0, "battery": 0, "water": 0, "co2": 0}
+
+        # Time of alert
+        self.timestamp = None
+
+        # Alert message
+        self.alertmessage = ""
         
+        # Steps taken to resolve the alert
         self.steps = {}
         
+    # Update the criticality, resource level, and timestamp continually
     def update(self, criticality, resourceLevel):
         self.criticality = criticality
         self.resourceLevel = resourceLevel
+        self.timestamp = datetime.now()
     
+    # Send an alert for various reasons including:
+    # - Prediction to turn back
+    # - Criticality is 3
     def sendAlert(self):
         if(Prediction.turnBack() == True):
-            print("Alert: Turn back")
+            self.alertmessage = "Alert: Turn back"
             return True
         elif(self.criticality == 3):
-            print("Alert: Critical")
+            self.alertmessage = "Alert: Critical"
             return True
         else:
             return False
-        
-        pass
