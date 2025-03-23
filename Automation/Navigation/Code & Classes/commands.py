@@ -77,7 +77,7 @@ class Command:
                 }
             }
         }
-        
+
         self.uia = {
              "uia": 
              {
@@ -313,7 +313,70 @@ class Command:
         Automatically fetches all telemetry data in sequence without requiring key input,
         then saves the collected data to a JSON file.
         """
-        print("Starting automated telemetry data collection...")
+        print("Starting data collection...")
+
+        print("Getting DCU data...")
+        # Getting DCU data for eva1.
+        self.dcu["dcu"]["eva1"]["batt"] = self.send_command(2)
+        self.dcu["dcu"]["eva1"]["oxy"] = self.send_command(3)
+        self.dcu["dcu"]["eva1"]["comm"] = self.send_command(4)
+        self.dcu["dcu"]["eva1"]["fan"] = self.send_command(5)
+        self.dcu["dcu"]["eva1"]["pump"] = self.send_command(6)
+        self.dcu["dcu"]["eva1"]["co2"] = self.send_command(7)
+
+        # Getting DCU data for eva2.
+        self.dcu["dcu"]["eva2"]["batt"] = self.send_command(8)
+        self.dcu["dcu"]["eva2"]["oxy"] = self.send_command(9)
+        self.dcu["dcu"]["eva2"]["comm"] = self.send_command(10)
+        self.dcu["dcu"]["eva2"]["fan"] = self.send_command(11)
+        self.dcu["dcu"]["eva2"]["pump"] = self.send_command(12)
+        self.dcu["dcu"]["eva2"]["co2"] = self.send_command(13)
+
+        print("Getting IMU data...")
+
+        # Getting IMU data for eva1.
+        self.imu["imu"]["eva1"]["posx"] = self.send_command(17)
+        self.imu["imu"]["eva1"]["posy"] = self.send_command(18)
+        self.imu["imu"]["eva1"]["heading"] = self.send_command(19)
+
+        # Getting IMU data for eva2.
+        self.imu["imu"]["eva2"]["posx"] = self.send_command(20)
+        self.imu["imu"]["eva2"]["posy"] = self.send_command(21)
+        self.imu["imu"]["eva2"]["heading"] = self.send_command(22)
+
+
+        print("Getting Rover data...")
+
+        # Getting position of rover.
+        self.rover["rover"]["posx"] = self.send_command(23)
+        self.rover["rover"]["posy"] = self.send_command(24)
+        # self.rover["rover"]["poi_1_x"] = self.send_command(22)
+        # self.rover["rover"]["poi_1_y"] = self.send_command(22)
+        # self.rover["rover"]["poi_2_x"] = self.send_command(22)
+        # self.rover["rover"]["poi_2_y"] = self.send_command(22)
+        # self.rover["rover"]["poi_3_x"] = self.send_command(22)
+        # self.rover["rover"]["poi_3_y"] = self.send_command(22)
+
+        print("Getting UIA data...")
+
+        # Getting UIA data.
+        self.uia["uia"]["eva1_power"] = self.send_command(48)
+        self.uia["uia"]["eva1_oxy"] = self.send_command(49)
+        self.uia["uia"]["eva1_water_supply"] = self.send_command(50)
+        self.uia["uia"]["eva1_water_waste"] = self.send_command(51)
+        self.uia["uia"]["eva2_power"] = self.send_command(52)
+        self.uia["uia"]["eva2_oxy"] = self.send_command(53)
+        self.uia["uia"]["eva2_water_supply"] = self.send_command(54)
+        self.uia["uia"]["eva2_water_waste"] = self.send_command(55)
+        self.uia["uia"]["oxy_vent"] = self.send_command(56)
+        self.uia["uia"]["depress"] = self.send_command(57)
+
+        # Getting Telemetry for EVA data.
+        self.evaTelemetry["telemetry"]["eva_time"] = self.send_command(58)
+        # self.evaTelemetry["telemetry"]["eva_time"] = self.send_command(59)
+
+
+
         
         # Collecting AC and environmental system data
         print("Getting environmental control systems data...")
@@ -407,14 +470,15 @@ class Command:
         
         # Save collected data to JSON file
         print("Saving telemetry data to JSON file...")
-        self.saveJson(self.targetDir)
+        self.saveJson(self.targetDir, "ROVER_TELEMETRY.json", self.telemetry_data)
+        self.saveJson(self.targetDir, "TELEMETRY.json", self.evaTelemetry)
         
         print("Data collection complete. Telemetry saved to ROVER_TELEMETRY.json")
         return self.telemetry_data
 
 
     # Saves the rover data to a specific directory as a json file.
-    def saveJson(self, directory=None, filename="ROVER_TELEMETRY.json"):
+    def saveJson(self, directory=None, filename="ROVER_TELEMETRY.json", data = None):
 
         # If no directory is specified, use the current working directory
         if directory is None:
@@ -436,7 +500,7 @@ class Command:
             # json.dump indicates what is being written to the 
             # ROVER_TELEMETRY.json file indent=4 is just a format to make the 
             # json file easier to read.
-            json.dump(self.telemetry_data, file, indent=4)
+            json.dump(data, file, indent=4)
 
 
 command = Command()
