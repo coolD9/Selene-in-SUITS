@@ -1,176 +1,37 @@
-/* 
-* Form layout and structure
-* Centered on the page with responsive grid layout
-*/
-.ip-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto; /* Center the form horizontally */
-  align-items: center; /* Center the form contents */
+::placeholder{
+  /* Makes the placeholder text gray */
+  color: 999;
 }
 
-
-.form-row {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Align items to the start for consistency */
-  width: 100%;
-  gap: 5px; /* Reduce gap for better spacing */
-}
-/* 
-* Theme for Setup.
-* Form layout and structure
-* Maintains responsive grid layout
-* Label styling - White text
-*/
-label {
-  color: white;
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 600;
-  text-align: right; /* Align labels to the right for better alignment with inputs */
-}
-
-.theme_heading {
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  margin-bottom: 25px;
-  margin-top: -30px; /* Move heading up by adding negative margin */
-  text-align: center; /* Center the heading */
-}
-
-.theme_background {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  padding-top: 0; /* Remove top padding */
-}
-
-/* Container for the entire content moved up */
-.theme_background > div {
-  margin-top: -70px; /* Move the entire form up with negative margin */
-}
-
-/* Input container to ensure alignment */
-.input-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: flex-start; /* Keep everything left-aligned */
-}
-
-/* 
-* Focus state for inputs
-* Adds blue glow to match theme_light_border
-*/
-input:focus {
-  border-color: rgb(100, 200, 250);  /* Match theme_light_border color */
-  box-shadow: 0 0 8px rgba(100, 200, 250, 0.4);  /* Blue glow effect */
-  outline: none;
-}
-
-/* 
-* Error styling for input fields 
-* Red border indicates validation error
-*/
-.input-error {
-  border-color: #faef26;  /* Brighter yellow for better visibility on dark background */
-}
-
-/* 
-* Focused error input styling 
-* Red glow effect for invalid fields when focused
-*/
-.input-error:focus {
-  box-shadow: 0 0 8px rgba(250, 222, 12, 0.5);  /* yellow glow effect */
-  border-color: #faef26;
-}
-
-/* 
-* Error message text styling
-* Bright red text for visibility on dark background
-*/
-.error-message {
-  color: #faef26; 
-  font-size: 14px; 
-  min-height: 18px; /* Reserve space even when no error */
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: left; 
-  visibility: hidden; /* Hide initially to avoid shifting */
-}
-
-.input-error + .error-message {
-  visibility: visible; /* Make it appear when there's an error */
-}
-
-/*
-* Placeholder styling - Subtle blue-gray
-* More visible against dark input background
-*/
-::placeholder {
-  color: #8aa0b8;  /* Light blue-gray that fits the theme */
-  opacity: 1;
-}
-
-/* 
-* Submit button styling
-* Uses theme_light_border blue color
-*/
-.submit-button {
-  margin-top: 20px;
-  padding: 10px 24px;
-  background-color: rgba(100, 200, 250, 0.2);  /* Semi-transparent theme blue */
-  color: white;
-  border: 1px solid rgb(100, 200, 250);        /* Theme blue border */
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
-  align-self: center; /* Center the button */
-  transition: all 0.3s ease;
-}
-
-/* 
-* Hover effect for submit button
-* Brightens the button when hovered
-*/
-.submit-button:hover {
-  background-color: rgba(100, 200, 250, 0.4);  /* More opaque on hover */
-  box-shadow: 0 0 10px rgba(100, 200, 250, 0.3);  /* Subtle glow effect */
-}
-
-/* 
-* Input field styling - Dark theme with blue accents
-*/
-input {
-  padding: 10px;
-  border: 1px solid #1a1a1a;
-  border-radius: 6px;
-  font-size: 16px;
-  width: 100%; /* Make inputs take up full available width */
-  max-width: 250px; /* Limit maximum width for larger screens */
-  background-color: #1a1a1a;
-  color: #ffffff;
-  transition: all 0.3s ease;
-}
-
-input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
-  outline: none;
-}
-
-/* Help text styling */
-.help-text {
-  color: #8aa0b8;
-  font-size: 12px;
-  margin-top: 4px;
-  width: 100%;
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
+.setup-container {
+    padding: 20px;
+    max-width: 500px;
+  }
+  
+  .ip-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  label {
+    color: black;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+  }
+  
+  input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+  }
