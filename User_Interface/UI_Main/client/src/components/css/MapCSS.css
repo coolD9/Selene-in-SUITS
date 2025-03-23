@@ -1,51 +1,76 @@
 .body {
+  display: flex;
   width: 100%;
-  display: flex;
+  box-sizing: border-box;
 }
-
 .LeftContainer {
-  width: 70%;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-.LTV {
-  border: 1px solid green;
-  width: 370px;
-  height: 25vh;
-  background-color: darkgray;
-  filter: contrast(50%);
-}
-
-.ParentContainerLTV {
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-}
-
+.LTV,
 .EVA {
   border: 1px solid green;
-  width: 370px;
   height: 25vh;
   background-color: darkgray;
   filter: contrast(50%);
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
 }
 
+.ParentContainerLTV,
 .ParentContainerEVA {
   display: flex;
   flex-direction: row;
   text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.WarningContainer {
+.ControlContainer {
   display: flex;
   justify-content: center;
   font-size: 25px;
-  width: 747px;
-  height: 42vh;
-  margin: -5px;
+  width: 100%;
+  height: 43vh;
+  margin: 0;
   border: 1px solid red;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.Controls {
 }
 
 .mapcontainer {
-  width: 30%;
+  width: 50%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.resize {
+  position: absolute;
+  bottom: 11px;
+  right: 19px;
+}
+
+.resize button {
+  background-color: #555;
+  color: white;
+  padding: 5% 20%;
+  border: 2px solid #444;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.resize button:hover {
+  background-color: #ada1a1;
 }
