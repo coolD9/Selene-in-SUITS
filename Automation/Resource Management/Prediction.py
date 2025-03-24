@@ -109,4 +109,6 @@ class Prediction:
             self.resourceLevels["temp"] < 3):
             return True
         else:
+
             return False
+

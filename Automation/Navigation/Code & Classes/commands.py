@@ -560,5 +560,3 @@ command.setIPAdress(IPAdress)
 
 while True:
     command.getData()
-
-
