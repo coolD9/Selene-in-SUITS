@@ -324,7 +324,7 @@ while True:
     command.getData()
 
 
-=======
+
 import keyboard # type: ignore | used to read keystrokes
 
 import socket  # used to communicate with UDP socket
@@ -508,4 +508,3 @@ IP_address = input("Please enter IP address: ")
 # initilizing UDP socket communication
 udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 get_commands()
-
