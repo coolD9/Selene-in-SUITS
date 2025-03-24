@@ -15,12 +15,136 @@ class Command:
     def __init__(self):
           
         self.scriptDir = os.path.dirname(os.path.abspath(__file__))  # Get the script’s directory
-        self.targetDir = os.path.abspath(os.path.join(self.scriptDir, "../../../"))  # Move up two levels
+        self.targetDir = os.path.abspath(os.path.join(self.scriptDir, "../../../User_Interface/UI_Main/client/src"))  # Move up two levels
         self.IP_address = " "     # TSS IP Address
         self.Port = 14141         # TSS UDP Port
 
         # initilizing UDP socket communication
         self.udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        
+
+        self.evaTelemetry = {
+             "telemetry": 
+             {
+                "eva_time": 0,
+                "eva1": {
+                    "batt_time_left": 5077.148926,
+                    "oxy_pri_storage": 23.755802,
+                    "oxy_sec_storage": 15.489529,
+                    "oxy_pri_pressure": 0.000000,
+                    "oxy_sec_pressure": 0.000000,
+                    "oxy_time_left": 4238,
+                    "heart_rate": 90.000000,
+                    "oxy_consumption": 0.000000,
+                    "co2_production": 0.000000,
+                    "suit_pressure_oxy": 3.072300,
+                    "suit_pressure_co2": 0.005900,
+                    "suit_pressure_other": 11.554200,
+                    "suit_pressure_total": 14.632401,
+                    "fan_pri_rpm": 0.000000,
+                    "fan_sec_rpm": 0.000000,
+                    "helmet_pressure_co2": 0.000000,
+                    "scrubber_a_co2_storage": 0.000000,
+                    "scrubber_b_co2_storage": 0.000000,
+                    "temperature": 70.000000,
+                    "coolant_ml": 20.508068,
+                    "coolant_gas_pressure": 0.000000,
+                    "coolant_liquid_pressure": 0.000000
+                },
+                "eva2": {
+                    "batt_time_left": 3384.893799,
+                    "oxy_pri_storage": 24.231962,
+                    "oxy_sec_storage": 19.419136,
+                    "oxy_pri_pressure": 0.000000,
+                    "oxy_sec_pressure": 0.000000,
+                    "oxy_time_left": 4714,
+                    "heart_rate": 90.000000,
+                    "oxy_consumption": 0.000000,
+                    "co2_production": 0.000000,
+                    "suit_pressure_oxy": 3.072300,
+                    "suit_pressure_cO2": 0.005900,
+                    "suit_pressure_other": 11.554200,
+                    "suit_pressure_total": 14.632401,
+                    "fan_pri_rpm": 0.000000,
+                    "fan_sec_rpm": 0.000000,
+                    "helmet_pressure_co2": 0.000000,
+                    "scrubber_a_co2_storage": 0.000000,
+                    "scrubber_b_co2_storage": 0.000000,
+                    "temperature": 70.000000,
+                    "coolant_ml": 22.034748,
+                    "coolant_gas_pressure": 0.000000,
+                    "coolant_liquid_pressure": 0.000000
+                }
+            }
+        }
+
+        self.uia = {
+             "uia": 
+             {
+                "eva1_power":        False,
+                "eva1_oxy":          False,
+                "eva1_water_supply": False,
+                "eva1_water_waste":  False,
+                "eva2_power":        False,
+                "eva2_oxy":          False,
+                "eva2_water_supply": False,
+                "eva2_water_waste":  False,
+                "oxy_vent":          False,
+                "depress":           False
+            }
+        }
+        self.rover = {
+             "rover": 
+                {
+                "posx": 0.000000,
+                "posy": 0.000000,
+                "poi_1_x": 0.000000,
+                "poi_1_y": 0.000000,
+                "poi_2_x": 0.000000,
+                "poi_2_y": 0.000000,
+                "poi_3_x": 0.000000,
+                "poi_3_y": 0.000000
+                }
+        }
+        self.dcu = {
+             "dcu": 
+             {
+                "eva1": {
+                    "batt": False,
+                    "oxy": False,
+                    "comm": False,
+                    "fan": False,
+                    "pump": False,
+                    "co2": False
+                },
+                "eva2": {
+                    "batt": False,
+                    "oxy": False,
+                    "comm": False,
+                    "fan": False,
+                    "pump": False,
+                    "co2": False
+                }
+            }
+        }
+
+
+        # Stores positon fo the EVA.
+        self.imu = {
+             "imu": 
+             {
+                "eva1": {
+                    "posx": 0.000000,
+                    "posy": 0.000000,
+                    "heading": 0.000000
+                },
+                "eva2": {
+                    "posx": 0.000000,
+                    "posy": 0.000000,
+                    "heading": 0.000000
+                }
+            }
+        }
         self.telemetry_data = {
             "pr_telemetry": {
                 "ac_heating": False,
@@ -189,7 +313,114 @@ class Command:
         Automatically fetches all telemetry data in sequence without requiring key input,
         then saves the collected data to a JSON file.
         """
-        print("Starting automated telemetry data collection...")
+        print("Starting data collection...")
+
+        print("Getting DCU data...")
+        # Getting DCU data for eva1.
+        self.dcu["dcu"]["eva1"]["batt"] = self.send_command(2)
+        self.dcu["dcu"]["eva1"]["oxy"] = self.send_command(3)
+        self.dcu["dcu"]["eva1"]["comm"] = self.send_command(4)
+        self.dcu["dcu"]["eva1"]["fan"] = self.send_command(5)
+        self.dcu["dcu"]["eva1"]["pump"] = self.send_command(6)
+        self.dcu["dcu"]["eva1"]["co2"] = self.send_command(7)
+
+        # Getting DCU data for eva2.
+        self.dcu["dcu"]["eva2"]["batt"] = self.send_command(8)
+        self.dcu["dcu"]["eva2"]["oxy"] = self.send_command(9)
+        self.dcu["dcu"]["eva2"]["comm"] = self.send_command(10)
+        self.dcu["dcu"]["eva2"]["fan"] = self.send_command(11)
+        self.dcu["dcu"]["eva2"]["pump"] = self.send_command(12)
+        self.dcu["dcu"]["eva2"]["co2"] = self.send_command(13)
+
+        print("Getting IMU data...")
+
+        # Getting IMU data for eva1.
+        self.imu["imu"]["eva1"]["posx"] = self.send_command(17)
+        self.imu["imu"]["eva1"]["posy"] = self.send_command(18)
+        self.imu["imu"]["eva1"]["heading"] = self.send_command(19)
+
+        # Getting IMU data for eva2.
+        self.imu["imu"]["eva2"]["posx"] = self.send_command(20)
+        self.imu["imu"]["eva2"]["posy"] = self.send_command(21)
+        self.imu["imu"]["eva2"]["heading"] = self.send_command(22)
+
+
+        print("Getting Rover data...")
+
+        # Getting position of rover.
+        self.rover["rover"]["posx"] = self.send_command(23)
+        self.rover["rover"]["posy"] = self.send_command(24)
+        # self.rover["rover"]["poi_1_x"] = self.send_command(22)
+        # self.rover["rover"]["poi_1_y"] = self.send_command(22)
+        # self.rover["rover"]["poi_2_x"] = self.send_command(22)
+        # self.rover["rover"]["poi_2_y"] = self.send_command(22)
+        # self.rover["rover"]["poi_3_x"] = self.send_command(22)
+        # self.rover["rover"]["poi_3_y"] = self.send_command(22)
+
+        print("Getting UIA data...")
+
+        # Getting UIA data.
+        self.uia["uia"]["eva1_power"] = self.send_command(48)
+        self.uia["uia"]["eva1_oxy"] = self.send_command(49)
+        self.uia["uia"]["eva1_water_supply"] = self.send_command(50)
+        self.uia["uia"]["eva1_water_waste"] = self.send_command(51)
+        self.uia["uia"]["eva2_power"] = self.send_command(52)
+        self.uia["uia"]["eva2_oxy"] = self.send_command(53)
+        self.uia["uia"]["eva2_water_supply"] = self.send_command(54)
+        self.uia["uia"]["eva2_water_waste"] = self.send_command(55)
+        self.uia["uia"]["oxy_vent"] = self.send_command(56)
+        self.uia["uia"]["depress"] = self.send_command(57)
+
+        # Getting Telemetry for eva1.
+        self.evaTelemetry["telemetry"]["eva_time"] = self.send_command(58)
+        self.evaTelemetry["telemetry"]["eva1"]["batt_time_left"] = self.send_command(59)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_pri_storage"] = self.send_command(60)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_sec_storage"] = self.send_command(61)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_pri_pressure"] = self.send_command(61)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_sec_pressure"] = self.send_command(62)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_time_left"] = self.send_command(63)
+        self.evaTelemetry["telemetry"]["eva1"]["heart_rate"] = self.send_command(64)
+        self.evaTelemetry["telemetry"]["eva1"]["oxy_consumption"] = self.send_command(65)
+        self.evaTelemetry["telemetry"]["eva1"]["co2_production"] = self.send_command(66)
+        self.evaTelemetry["telemetry"]["eva1"]["suit_pressure_oxy"] = self.send_command(67)
+        self.evaTelemetry["telemetry"]["eva1"]["suit_pressure_co2"] = self.send_command(68)
+        self.evaTelemetry["telemetry"]["eva1"]["suit_pressure_other"] = self.send_command(69)
+        self.evaTelemetry["telemetry"]["eva1"]["suit_pressure_total"] = self.send_command(70)
+        self.evaTelemetry["telemetry"]["eva1"]["fan_pri_rpm"] = self.send_command(71)
+        self.evaTelemetry["telemetry"]["eva1"]["fan_sec_rpm"] = self.send_command(72)
+        self.evaTelemetry["telemetry"]["eva1"]["helmet_pressure_co2"] = self.send_command(73)
+        self.evaTelemetry["telemetry"]["eva1"]["scrubber_a_co2_storage"] = self.send_command(74)
+        self.evaTelemetry["telemetry"]["eva1"]["scrubber_b_co2_storage"] = self.send_command(75)
+        self.evaTelemetry["telemetry"]["eva1"]["temperature"] = self.send_command(76)
+        self.evaTelemetry["telemetry"]["eva1"]["coolant_ml"] = self.send_command(77)
+        self.evaTelemetry["telemetry"]["eva1"]["coolant_gas_pressure"] = self.send_command(78)
+        self.evaTelemetry["telemetry"]["eva1"]["coolant_liquid_pressure"] = self.send_command(79)
+        
+        # Getting Telemetry for eva1.
+        self.evaTelemetry["telemetry"]["eva2"]["batt_time_left"] = self.send_command(80)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_pri_storage"] = self.send_command(81)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_sec_storage"] = self.send_command(82)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_pri_pressure"] = self.send_command(83)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_sec_pressure"] = self.send_command(84)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_time_left"] = self.send_command(85)
+        self.evaTelemetry["telemetry"]["eva2"]["heart_rate"] = self.send_command(86)
+        self.evaTelemetry["telemetry"]["eva2"]["oxy_consumption"] = self.send_command(87)
+        self.evaTelemetry["telemetry"]["eva2"]["co2_production"] = self.send_command(88)
+        self.evaTelemetry["telemetry"]["eva2"]["suit_pressure_oxy"] = self.send_command(89)
+        self.evaTelemetry["telemetry"]["eva2"]["suit_pressure_co2"] = self.send_command(90)
+        self.evaTelemetry["telemetry"]["eva2"]["suit_pressure_other"] = self.send_command(91)
+        self.evaTelemetry["telemetry"]["eva2"]["suit_pressure_total"] = self.send_command(92)
+        self.evaTelemetry["telemetry"]["eva2"]["fan_pri_rpm"] = self.send_command(93)
+        self.evaTelemetry["telemetry"]["eva2"]["fan_sec_rpm"] = self.send_command(94)
+        self.evaTelemetry["telemetry"]["eva2"]["helmet_pressure_co2"] = self.send_command(95)
+        self.evaTelemetry["telemetry"]["eva2"]["scrubber_a_co2_storage"] = self.send_command(96)
+        self.evaTelemetry["telemetry"]["eva2"]["scrubber_b_co2_storage"] = self.send_command(97)
+        self.evaTelemetry["telemetry"]["eva2"]["temperature"] = self.send_command(98)
+        self.evaTelemetry["telemetry"]["eva2"]["coolant_ml"] = self.send_command(99)
+        self.evaTelemetry["telemetry"]["eva2"]["coolant_gas_pressure"] = self.send_command(100)
+        self.evaTelemetry["telemetry"]["eva2"]["coolant_liquid_pressure"] = self.send_command(101)
+
+
         
         # Collecting AC and environmental system data
         print("Getting environmental control systems data...")
@@ -282,15 +513,22 @@ class Command:
         self.telemetry_data["pr_telemetry"]["lidar"] = self.send_command(167)
         
         # Save collected data to JSON file
-        print("Saving telemetry data to JSON file...")
-        self.saveJson(self.targetDir)
+        print("Saving data to JSON file...")
+        self.saveJson(self.targetDir, "ROVER_TELEMETRY.json", self.telemetry_data)
+        self.saveJson(self.targetDir, "TELEMETRY.json", self.evaTelemetry)
+        self.saveJson(self.targetDir, "DCU.json", self.dcu)
+        self.saveJson(self.targetDir, "IMU.json", self.imu)
+        self.saveJson(self.targetDir, "UIA.json", self.uia)
+        self.saveJson(self.targetDir, "ROVER.json", self.rover)
+
+
         
         print("Data collection complete. Telemetry saved to ROVER_TELEMETRY.json")
         return self.telemetry_data
 
 
     # Saves the rover data to a specific directory as a json file.
-    def saveJson(self, directory=None, filename="ROVER_TELEMETRY.json"):
+    def saveJson(self, directory=None, filename="ROVER_TELEMETRY.json", data = None):
 
         # If no directory is specified, use the current working directory
         if directory is None:
@@ -312,7 +550,7 @@ class Command:
             # json.dump indicates what is being written to the 
             # ROVER_TELEMETRY.json file indent=4 is just a format to make the 
             # json file easier to read.
-            json.dump(self.telemetry_data, file, indent=4)
+            json.dump(data, file, indent=4)
 
 
 command = Command()
@@ -322,189 +560,3 @@ command.setIPAdress(IPAdress)
 
 while True:
     command.getData()
-
-
-
-import keyboard # type: ignore | used to read keystrokes
-
-import socket  # used to communicate with UDP socket
-
-
-"""
-    Name: send_command
-    
-    INPUT: 
-        command:        TSS command number
-    
-    RETURN: 
-        N/A
-    
-    DESCRIPTION:
-        This function will create a packet that will be sent to the TSS server
-        in the given format (Timestamp|Command)
-"""
-def send_command(command):
-        # get timestamp
-        timestamp = int(time.time())
-        
-        # creating packet that will be sent
-        data = struct.pack(">II", timestamp, command)
-        try: 
-            # sending UDP packet
-            udp_socket.sendto(data, (IP_address, Port))
-             
-        # error checking, ending program if error occurs in sending
-        except socket.error as err:
-            print(f"Command was unsuccesfully sent: {err}")
-            print("Exiting program")
-            # closing UDP socket
-            udp_socket.close()
-            exit()
-        
-        response = receive_command(command)
-
-        return response
-
-       
-"""
-    Name: receive_command
-    
-    INPUT: 
-        command:        TSS command number
-    
-    RETURN: s
-        N/A
-    
-    DESCRIPTION:
-        This function will receive a packet from the TSS and unpack it, returning
-        the unpacked data. For everything but lidar: (timestamp | command number | value) 
-        For lidar: (timestamp | command number | 13 float values)
-    """
-def receive_command(command):
-      # get commands
-        if command < 167 and command > 1:
-          
-          # recvfrom returns a tuple with the data and the address 
-          # of the sender. Could use recv() if we dont need the address
-           data, address = udp_socket.recvfrom(12)
-          
-           # unpacking the data. Assigning three variables since the
-           # data is sent to us as a tuple of 3 items. The actual data
-           # from the json files is the 3rd item so that is what is going
-           # to be returned here.
-           # if assigning the whole unpacked data to just one variable,
-           # when printed, it would look like (120, 119, 2.9994838)
-           # (random numbers for the example) meaning 
-           # (timestamp, command number, valuefromfile).
-           # by assigning all 3 we get rid of the tuple. 
-           # unpacking twice, one for ints one for floats. If there's a
-           # better way then please communicate about it. 
-           int_Timestamp, int_commandN, int_info = struct.unpack('>III', data)
-           float_Timestamp, float_commandN, float_info = struct.unpack('>IIf', data)
-
-           
-           # all the commands that return a float. Can have more if 
-           # statements so its not a big line.
-           if(command >= 17 and command <= 47) or (command >= 58 and command <= 118) or (command >= 126 and command <= 139) or (command >= 141 and command <= 159) or (command >= 161 and command <= 163):
-               return float_info
-           # everything else is an int or a bool so just return an int. (bool will be 0 or 1)
-           else:
-                 return int_info
-
-        # get lidar command
-        elif command == 167:
-                # recvfrom returns a tuple with the data and the address 
-                # of the sender. Could use recv() if we dont need the address
-                # size of 60 in this case since we receive 13 floats,
-                # command number and timestamp.
-               dataR, address = udp_socket.recvfrom(60)
-
-          # unpacking the data on a tuple this time. We receive a tuple of
-          # 15 values in this case. 
-               info = struct.unpack('>II13f', dataR)
-        
-          # timestamp is the first element of the tuple,
-          # command number is the second, then the remaining
-          # values are the lidar values.
-               r_timestamp = info[0]
-               command_num = info[1]
-               list_of_lidar = info[2:]
-        
-          # just returning lidar values for example sake. If we were to need 
-          # timestamp and command number then the example above is how to get them.
-          # we could return the whole tuple and then get each value outside the 
-          # function for whatever purposes.
-               return list_of_lidar
-
-        # no command  
-        else:
-               return "command not found."
-
-"""
-    Name: get_commands
-    
-    INPUT: 
-       N/A
-    
-    RETURN: 
-        N/A
-    
-    DESCRIPTION:
-        This function will begin reading keystrokes and performing neccesary function
-        based on key stroke entered
-"""
-def get_commands():
-     # using keys just for example purposes, doesnt mean this is how we will 
-     # implement it. Feel free to change the values for testing.
-        while True:
-           # reading real time keystrokes
-           key = keyboard.read_event().name
-           if key == 'h':
-                print("getting rover ac_heating status...")
-                time.sleep(0.1)
-                print(send_command(119))
-
-           elif key == 'c':
-                print("getting rover ac_cooling status...")
-                time.sleep(0.1)
-                print(send_command(120))
-            
-           elif key == 'r':
-                print("getting rover co2_scrubber status...")
-                time.sleep(0.1)
-                print(send_command(121))
-
-           elif key == 'l':
-                print("getting rover lights status...")
-                time.sleep(0.1)
-                print(send_command(122))
-            
-           elif key == 't':
-                print("getting oxygen levels...")
-                time.sleep(0.1)
-                print(send_command(151))
-
-           elif key == 'p':
-                print("getting oxygen pressure levels...")
-                time.sleep(0.1)
-                print(send_command(138))
-                    
-           elif key == 'i':
-                print("getting lidar...")
-                time.sleep(0.1)
-                print(send_command(167))
-
-            #end program and close packet 
-           elif key == "q":
-               print("Exiting program")
-               udp_socket.close()
-               exit()
-        
-
-IP_address = " "     # TSS IP Address
-Port = 14141         # TSS UDP Port
-IP_address = input("Please enter IP address: ")
-
-# initilizing UDP socket communication
-udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-get_commands()
