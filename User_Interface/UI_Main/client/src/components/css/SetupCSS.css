@@ -34,7 +34,7 @@ label {
   text-align: right; /* Align labels to the right for better alignment with inputs */
 }
 
-.theme_heading {
+.setup_heading {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 25px;
@@ -42,17 +42,18 @@ label {
   text-align: center; /* Center the heading */
 }
 
-.theme_background {
+.center_drop {
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   padding: 20px;
   padding-top: 0; /* Remove top padding */
+  
 }
 
 /* Container for the entire content moved up */
-.theme_background > div {
+.center_drop > div {
   margin-top: -70px; /* Move the entire form up with negative margin */
 }
 

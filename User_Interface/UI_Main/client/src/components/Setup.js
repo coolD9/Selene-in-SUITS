@@ -124,9 +124,9 @@ function Setup() {
   };
 
   return (
-    <div className="theme_background">
+    <div className="theme_background center_drop">
       <div className="">
-        <h2 className="theme_heading"> Enter IP addresses</h2>
+        <h2 className="setup_heading"> Enter IP addresses</h2>
 
         {/* Form with onSubmit handler to process the form when submitted */}
         <form className="ip-form" onSubmit={handleSubmit}>
