@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    flex-direction: row;  /* Ensures text is on left, images on right */
+    justify-content: space-between; /* Separates text & images */
+    align-items: center; /* Keeps both containers aligned properly */
+    height: 87vh;
+    padding: 50px; /* Adds spacing from edges */
+    
+}
+
+/* Text Container (Left Side) */
+.text-container {
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    width: 49%;
+    background-color: #ed8e8e;
+    
+    /* Moves text separately */
+    margin-left: 40px; /* Moves text container to the right  */
+    /* margin-top: 0px;  Moves text container down */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Image Column (Right Side) */
+.image-column {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    align-items: flex-end; /* Ensures images stay on the right */
+}
+
+/* Image Box */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #ed8e8e;
+    width: 600px;
+    margin-left: 40px; /* Moves text container to the right  */
+    margin-top: 10px;  /*Moves text container down */
+    padding: 10px;
+}
+
+/* Images */
+.DCUFront_image, .SUITS_UIA_PANEL_image {
+    display: flex;
+    width: 500px;
+    height: 310px;
+    border-radius: 20px;
+}
+
+.collapsible {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.collapsible-header {
+    width: 100%;
+    padding: 10px;
+    background-color: #d9534f;
+    color: white;
+    text-align: left;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.collapsible-header:hover {
+    background-color: #c9302c;
+}
+
+.collapsible-content {
+    padding: 10px;
+    background-color: white;
+    color: black;
+}
+
+.checkbox-container {
+    display: flex;
+    justify-content: space-between; /* Push checkbox to the right */
+    align-items: center; /* Align checkbox with text */
+    width: 100%;
+    padding: 5px 0; /* Add spacing between items */
+  }
+  
+  .checkbox-container input {
+    margin-left: 10px; /* Space between text and checkbox */
+    transform: scale(1.2); /* Optional: Increase checkbox size */
+  }
+  
+  

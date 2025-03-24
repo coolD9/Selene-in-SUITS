@@ -5,10 +5,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Map from './components/Map'; 
 import EVA from './components/EVA';  
-import UIA from './components/UIA';
+import UIA from './components/UIA.tsx';
 import Setup from './components/Setup';
 //import Begin from './components/Begin'
 import'./components/css/NavbarCSS.css';
+import Egress  from './components/uia_subpages/Egress'
+import Ingress  from './components/uia_subpages/Ingress'
+
 
 /*
 * App()
@@ -35,6 +38,8 @@ function App() {
           <Route path="/eva" element={<EVA />} />
           <Route path="/uia" element={<UIA />} />
           <Route path="/setup" element={<Setup />} />
+          <Route path="/uia/egress" element={<Egress />} />
+          <Route path="/uia/ingress" element={<Ingress />} />
         </Routes>
       </div>
     </Router>
