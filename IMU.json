@@ -1,0 +1,14 @@
+{
+    "imu": {
+        "eva1": {
+            "posx": 0.0,
+            "posy": 0.0,
+            "heading": 0.0
+        },
+        "eva2": {
+            "posx": 0.0,
+            "posy": 0.0,
+            "heading": 0.0
+        }
+    }
+}
