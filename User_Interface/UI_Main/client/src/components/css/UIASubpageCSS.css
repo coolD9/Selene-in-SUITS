@@ -5,7 +5,7 @@
     align-items: center; /* Keeps both containers aligned properly */
     height: 87vh;
     padding: 50px; /* Adds spacing from edges */
-    
+    background: linear-gradient(rgba(5, 9, 28, 0.863), rgba(40, 43, 69, 0.747));    
 }
 
 /* Text Container (Left Side) */
@@ -14,13 +14,15 @@
     flex-direction: column;
     height: 85vh;
     width: 49%;
-    background-color: #ed8e8e;
+    background: linear-gradient(rgb(113, 140, 234), rgba(44, 58, 212, 0.747));
+
     
     /* Moves text separately */
     margin-left: 40px; /* Moves text container to the right  */
     /* margin-top: 0px;  Moves text container down */
     padding: 20px;
     border-radius: 10px;
+    color:white;
 }
 
 /* Image Column (Right Side) */
@@ -37,7 +39,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background-color: #ed8e8e;
+    background-color: rgba(44, 58, 212, 0.747);
     width: 600px;
     margin-left: 40px; /* Moves text container to the right  */
     margin-top: 10px;  /*Moves text container down */
@@ -62,8 +64,8 @@
 .collapsible-header {
     width: 100%;
     padding: 10px;
-    background-color: #d9534f;
-    color: white;
+    background-color: #4d4d4d;
+    color: rgb(254, 254, 254);
     text-align: left;
     font-size: 18px;
     border: none;
@@ -72,26 +74,73 @@
 }
 
 .collapsible-header:hover {
-    background-color: #c9302c;
+    background-color: #797979;
 }
 
 .collapsible-content {
+    max-height: 300px; /* Adjust height as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
     padding: 10px;
-    background-color: white;
-    color: black;
+    background-color: rgba(0, 0, 0, 0.686);
+    color: rgb(255, 255, 255);
+    border-top: 1px solid #ccc; /* Adds a slight separation */
 }
 
+/* Hide the default checkbox */
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Style the label as a flexbox */
 .checkbox-container {
     display: flex;
-    justify-content: space-between; /* Push checkbox to the right */
-    align-items: center; /* Align checkbox with text */
-    width: 100%;
-    padding: 5px 0; /* Add spacing between items */
-  }
-  
-  .checkbox-container input {
-    margin-left: 10px; /* Space between text and checkbox */
-    transform: scale(1.2); /* Optional: Increase checkbox size */
-  }
-  
-  
+    align-items: center; /* Align text and checkbox */
+    gap: 10px; /* Space between checkbox and text */
+    cursor: pointer;
+    font-size: 17px;
+    user-select: none;
+    margin-bottom: 12px;
+}
+
+
+/* Custom checkbox appearance */
+.checkmark {
+    width: 25px;
+    height: 25px;
+    background-color: #eee;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* When hovering, change background */
+.checkbox-container:hover .checkmark {
+    background-color: #807e7e;
+}
+
+/* When checked, change background */
+.checkbox-container input:checked + .checkmark {
+    background-color: #21f36e;
+}
+
+/* Custom checkmark tick */
+.checkmark::after {
+    content: "";
+    display: none;
+    position: absolute;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+/* Show checkmark tick when checked */
+.checkbox-container input:checked + .checkmark::after {
+    display: block;
+}
