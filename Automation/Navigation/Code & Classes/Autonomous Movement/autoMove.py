@@ -13,8 +13,8 @@ class AutoMove:
 
      def __init__(self):
           # self.throttle, self.brakes, self.steering = 0.0, False, 0.0
-          # self.optimal_speed, self.minT, self.maxT = 3.6, 30, 100
-          # self.TIR, self.SIR, self.speed = 3, 0.2, 0.0
+          # self.optimalSpeed, self.minT, self.maxT = 3.6, 30, 100
+          # self.TIR, self.SIR, self.speed = 3, 0.2, 0.0s
           self.throttle = 0.0
           self.brakes = False
           self.steering = 0.0
@@ -48,14 +48,14 @@ class AutoMove:
           
                try: 
                     # sending UDP packet
-                    udp_socket.sendto(data, (IP_address, Port))
+                    udpSocket.sendto(data, (ipAdress, Port))
                
                # error checking, ending program if error occurs in sending
                except socket.error as err:
                     print(f"Command was unsuccesfully sent: {err}")
                     print("Exiting program")
                     # closing UDP socket
-                    udp_socket.close()
+                    udpSocket.close()
                     exit()
           else:
                print("command not found or not needed")
@@ -65,7 +65,7 @@ class AutoMove:
           # get speed or heading
           if command == 135 or command == 131:
                try:
-                    data = udp_socket.recv(12)
+                    data = udpSocket.recv(12)
                     rData = struct.unpack('>IIf', data)[2]
                     return rData
                
@@ -92,19 +92,19 @@ class AutoMove:
                self.steering += self.SIR  
                self.sendCommand(1110, self.steering)
 
-     def steer_half_right(self):
+     def steerHalfRight(self):
           while self.SIR > self.steering:
                self.steering += (self.SIR / 2)
                self.sendCommand(1110, self.steering)
 
-     def stop_turning_right(self, turning):
+     def stopRight(self, turning):
           if self.steering != 0:
                self.steering -= self.SIR
                self.sendCommand(1110,self.steering)
           else:
                turning = False
 
-     def stop_half_right(self, turning):
+     def stopHalfRight(self, turning):
           if self.steering != 0:
                self.steering -= (self.SIR / 2)
                self.sendCommand(1110,self.steering)
@@ -116,19 +116,19 @@ class AutoMove:
                self.steering -= self.SIR
                self.sendCommand(1110, self.steering)
 
-     def steer_half_left(self):
+     def steerHalfLeft(self):
           while -self.SIR < self.steering:
                self.steering -= (self.SIR)
                self.sendCommand(1110, self.steering)
 
-     def stop_turning_left(self, turning):
+     def stopLeft(self, turning):
           if self.steering != 0:
                self.steering += self.SIR
                self.sendCommand(1110,self.steering)
           else:
                turning = False
 
-     def stop_half_left(self, turning):
+     def stopHalfLeft(self, turning):
           if self.steering != 0:
                self.steering += (self.SIR / 2)
                self.sendCommand(1110,self.steering)
@@ -189,7 +189,7 @@ class AutoMove:
                     self.maintainSpeed()
                     # update facing to tss 
                     if(facing > self.east[0] and facing < self.east[1]):
-                         self.stop_turning_right(turning)
+                         self.stopRight(turning)
           
           elif facing > self.east[0] and facing < self.southeast[1]:
                self.steerRight()
@@ -197,7 +197,7 @@ class AutoMove:
                     self.maintainSpeed()
                     # update facing to tss 
                     if(facing < self.south[0] and facing > self.south[1]):
-                         self.stop_turning_right(turning)
+                         self.stopRight(turning)
 
           elif facing > self.south[1] or facing < self.southwest[0]:
                self.steerRight()
@@ -205,7 +205,7 @@ class AutoMove:
                     self.maintainSpeed()
                     # update facing to tss 
                     if(facing < self.west[0] and facing > self.west[1]):
-                         self.stop_turning_right(turning)
+                         self.stopRight(turning)
           
           elif facing > self.west[1] or facing < self.northwest[0]:
                self.steerRight()
@@ -213,7 +213,7 @@ class AutoMove:
                     self.maintainSpeed()
                     # update facing to tss 
                     if(facing > self.north[0] and facing < self.north[1]):
-                         self.stop_turning_right(turning)
+                         self.stopRight(turning)
 
      def diagonalRight(self):
           turning = True
@@ -228,7 +228,7 @@ class AutoMove:
                     self.maintainSpeed()
                     # update facing to tss 
                     if(facing < self.west[0] and facing > self.west[1]):
-                         self.stop_turning_left(turning)
+                         self.stopLeft(turning)
           
           elif facing > self.west[0] and facing < self.southwest[1]:
                self.steerLeft()
@@ -236,7 +236,7 @@ class AutoMove:
                     self.maintainSpeed()
                     # update facing to tss 
                     if(facing < self.south[0] and facing > self.south[1]):
-                         self.stop_turning_left(turning)
+                         self.stopLeft(turning)
 
           elif facing > self.south[0] or facing < self.southeast[0]:
                self.steerLeft()
@@ -244,7 +244,7 @@ class AutoMove:
                     self.maintainSpeed()
                     # update facing to tss 
                     if(facing < self.west[0] and facing > self.west[1]):
-                         self.stop_turning_left(turning)
+                         self.stopLeft(turning)
           
           elif facing > self.east[1] or facing < self.northeast[0]:
                self.steerLeft()
@@ -252,7 +252,7 @@ class AutoMove:
                     self.maintainSpeed()
                     # update facing to tss 
                     if(facing > self.north[0] and facing < self.north[1]):
-                         self.stop_turning_left(turning)
+                         self.stopLeft(turning)
 
      def diagonalLeft(self):
           turning = True
@@ -263,13 +263,13 @@ class AutoMove:
 
 
 
-IP_address = " "     # TSS IP Address
+ipAdress = " "     # TSS IP Address
 Port = 14141         # TSS UDP Port
-IP_address = input("Please enter IP address: ")
+ipAdress = input("Please enter IP address: ")
 
 throttle = 0.0
 brakes = 0
 steering = 0.0
 
 # initilizing UDP socket communication
-udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+udpSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
