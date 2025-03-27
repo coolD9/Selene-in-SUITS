@@ -14,7 +14,7 @@ class AutoMove:
      def __init__(self):
           # self.throttle, self.brakes, self.steering = 0.0, False, 0.0
           # self.optimalSpeed, self.minT, self.maxT = 3.6, 30, 100
-          # self.TIR, self.SIR, self.speed = 3, 0.2, 0.0s
+          # self.TIR, self.SIR, self.speed = 3, 0.2, 0.0
           self.throttle = 0.0
           self.brakes = False
           self.steering = 0.0
