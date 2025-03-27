@@ -1,14 +1,14 @@
 {
     "uia": {
-        "eva1_power": 0,
-        "eva1_oxy": 0,
-        "eva1_water_supply": 0,
-        "eva1_water_waste": 0,
+        "eva1_power": 1,
+        "eva1_oxy": 1,
+        "eva1_water_supply": 1,
+        "eva1_water_waste": 1,
         "eva2_power": 0,
         "eva2_oxy": 0,
         "eva2_water_supply": 0,
         "eva2_water_waste": 0,
-        "oxy_vent": 0,
+        "oxy_vent": 1,
         "depress": 0
     }
 }
