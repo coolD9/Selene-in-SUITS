@@ -365,65 +365,104 @@ class Manual_Move:
     Name: horizontalJoystickmove
     
     INPUT: 
-       axis:   value from the y axis of 
+       axis:   value from the x axis of 
     
     RETURN: 
         N/A
     
     DESCRIPTION:
-        This method will accept the y axis values from the Joystick then
-        update the throttle function which will allow the rover to accelerate 
-        and decelarate (move forward and move backward)
+        This method will accept the x axis values from the Joystick then
+        update the throttle function which will allow the rover to move 
+        left and right
     """
     def horizontalJoystickmove(self,axis):
+        # if checking the difference between current steering and the x axis of the controller
         diff = axis - self.steering
+        
+        # updating the steering based on the distance
         self.steering += diff
+        
+        # if the steering is negative that is a left turn and positive turn is a right tuen 
         if self.steering < 0:
             print("Turning Left....")
         else:
             print("Turning Right....")
-        self.send_command(1110,self.steering)
         
+        # sending updated steering to the TSS and the Rover
+        self.send_command(1110,self.steering)
+    """
+    Name: moveRoverjoystick
+    
+    INPUT: 
+        N/A
+    
+    RETURN: 
+        N/A
+    
+    DESCRIPTION:
+        This method will read the input from the Joystick and based on the input recieve
+        perform different functions. 
+    """   
     def moveRoverjoystick(self):
         moving = True
         while moving:
+            # getting the input from Joystick
             for event in pygame.event.get():
+                # base case for checking if recieveing input from Joystick
                 if event.type == pygame.QUIT:
                     break
+                # checking for axis motion of the stick on the joystick
                 elif event.type == pygame.JOYAXISMOTION:
+                    # moving the rover vertically 
                     self.verticalJoystickmove(self.roverStick.get_axis(1))
+                    # moving the rover horizonatally 
                     self.horizontalJoystickmove(self.roverStick.get_axis(0))
+                
+                # checking for buttons on the joystick being pushed
                 elif event.type == pygame.JOYBUTTONDOWN:
+                    
+                    #press button 2 to toggle brakes
                     if self.roverStick.get_button(1):
                         self.toggle_brakes()
                         self.send_command(1107,self.braking)
                         print("Braking...")
+                    
+                    # press button 7 to toggle between modes
                     elif self.roverStick.get_button(6):
                         moving = False
                         self.toggle_controls = True
+                        
+                    # press button 8 to exit the program 
                     elif self.roverStick.get_button(7):
                         self.udp_socket.close()
                         pygame.quit()
                         print("Exiting Program")
                         exit()
                     
+    """
+    Name: Modes
     
+    INPUT: 
+        N/A
+    
+    RETURN: 
+        N/A
+    
+    DESCRIPTION:
+        This method will allow the user to switch between the keyboard movement and 
+        joystick Movement
+    """  
     def Modes(self):
         while True:
+            # if the flag is true allow for keyboard movement 
             if self.toggle_controls == True: 
                 self.Move_Rover()
+            # if false allow for the joystick movement 
             else:
                 self.moveRoverjoystick()
                 
                 
-                        
-
-                        
                     
-                
-        
-    
-    
                
     """
     Name: __del__ (DECONSTRUCTOR)
@@ -449,7 +488,6 @@ class Manual_Move:
 Move = Manual_Move()
 
 # begin moving the rover
-#Move.moveRoverjoystick()
 Move.Modes()
 
 
