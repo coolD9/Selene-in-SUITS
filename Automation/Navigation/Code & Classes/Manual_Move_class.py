@@ -8,6 +8,8 @@ import keyboard # type: ignore | used to read keystrokes
 
 import socket  # used to communicate with UDP socket
 
+import pygame   # used to read inputs from the Joystick 
+
 """
 CLASS: Manual_Move
 
@@ -17,18 +19,24 @@ ATTRIBUTES:
     int braking:        stores if the brake is engaged or not (1 or 0)
     string IP_address:  stores the IP address of the TSS server 
     int Port:           stores the UDP port used by TSS server
+    roverStick:         stores the joystick object 
+    toggle_control      stores the flag to indicate whether using keyboard controls or joystick control
     socket udp_socket:  socket communicator 
 
 METHODS: 
 
     __init__:                   Constructor
-    set_forward_throttle():     increases throttle of Rover
-    set_backward_throttle():    decreases throttle of Rover
-    right_turn():               increases steering to allow for right turn
-    left_turn():                decrease steering to allow for left turn
+    set_forward_throttle():     increases throttle of Rover when using keyboard controls
+    set_backward_throttle():    decreases throttle of Rover when using keyboard controls
+    right_turn():               increases steering to allow for right turn whne using keyboard controls
+    left_turn():                decrease steering to allow for left turn when using keyoard controls
     toggle_brakes               turns brake on and off
     send_command                sends UDP packet to the TSS with movement commands
     Move_Rover                  updates the attributes based on keyboard stroke
+    verticalJoystickmove()      controlling vertical movement when using joystick controls (y axis control)
+    horizontalJoystickmove()    control horizontal movement when using joystick controls (x axis control)
+    moveRoverjoystick()         controls the PR rover based on joystick input 
+    Modes()                     Toggles between keyboard movement and joystick movement 
     __del__                     Destructor
 
 PACKAGES:
@@ -36,12 +44,17 @@ PACKAGES:
     import time         to create time stamps and pause input reciever
     import keyboard     used to accept keystrokes
     import socket       used to communicate with UDP socket
+    import pygame       used to read input from joystick
     
 DESCRIPTION:
 
     Manual_Move class is used to manually controll the movement of DUST simulation of 
-    NASA Pressurized Rover by allowing the use of wsadb key strokes to control Acceleration,
-    Deceleration/Reverse, left turn, right turn and braking respectively 
+    NASA Pressurized Rover by allowing the user to control the rover by using the keyboard 
+    or a joystick. The Joystick controls allows the user to push the stick foward, pull back, 
+    move left or right, to accelerate, decelarate and turn rover respectively and allows the
+    user to press button 2 to brake, button 7 to switch controll modes and 8 to quit exit the program.
+    For the keyboard controlls the user will use wasd to accelerate, turn left, decelerate and right turn 
+    respectivley then press b for brake, t for switching modes and q for quiting the entire program
     
 """
 class Manual_Move:
@@ -50,6 +63,8 @@ class Manual_Move:
     braking = 0          # current brake status
     IP_address = " "     # TSS IP Address
     Port = 14141         # TSS UDP Port
+    roverStick = 0.0     # storing the joystick object
+    toggle_controls = False # flag to check control moce
     
     # initilizing UDP socket communication
     udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -68,8 +83,25 @@ class Manual_Move:
         Communication to TSS
     """
     def __init__(self):
-        # asking user of TSS IP address
+        # setting flag to default start in Joystick mode
+        self.toggle_controls = False
+         # asking user of TSS IP address
         self.IP_address = input("Please enter IP address: ")
+        
+        #initializing the joystick object
+        pygame.init()
+        pygame.joystick.init()
+        count = pygame.joystick.get_count()
+        
+        #checking of joystick is connected
+        if count == 0:
+            print("Joystick not connected")
+             # if joystick is not connected set the default mode to keyboard mode
+            self.toggle_controls = True
+            pygame.quit()
+        else:
+            self.roverStick = pygame.joystick.Joystick(0)
+        
 
     """
     Name: Set_forward_throttle
@@ -174,11 +206,11 @@ class Manual_Move:
     """
     def toggle_brakes(self):
         # switch to on if off
-        if self.braking == 0:
-            self.braking == 1
+        if self.braking == 0.0:
+            self.braking == 1.0
         # switch to off if on 
-        elif self.braking == 1:
-            self.braking == 0
+        elif self.braking == 1.0:
+            self.braking == 0.0
 
     """
     Name: send_command
@@ -265,15 +297,136 @@ class Manual_Move:
                self.send_command(1107,self.braking)
                print("Toggling Brake")
                time.sleep(0.1)
-            
             #end program and close packet 
            elif key == "q":
                print("Exiting program")
                self.udp_socket.close()
                exit()
+            # switching to joystick mode
+           elif key == "t":
+               print("Switching modes")
+               self.toggle_controls = False
+               break
+    
+    # JOYSTICK MOVEMENT  
+    """
+    Name: verticalJoystickmove
+    
+    INPUT: 
+       axis:   value from the y axis of 
+    
+    RETURN: 
+        N/A
+    
+    DESCRIPTION:
+        This method will accept the y axis values from the Joystick then
+        update the throttle function which will allow the rover to accelerate 
+        and decelarate (move forward and move backward)
+    """
+    def verticalJoystickmove(self, axis):
+        # the throttle from the last check
+        prevThrottlepercent = 0
+        
+        # converting the axis movement to percentage
+        throttlePercent = axis * 100
+        
+        #flipping the sign so + means forward and - means backward
+        throttlePercent *= -1
+        
+        # if the current axis percent is positive moving forward
+        if throttlePercent > 0:
+            #if the throttle is decreasing decelerating else accelerating 
+            if throttlePercent < prevThrottlepercent:
+                print("Decelerating...")
+            else: 
+                print("Accelerating...")
+        else:
+            if throttlePercent > prevThrottlepercent:
+                print("Decelerating...")
+            else: 
+                print("Accelerating...")
+                
+        # updating previous throttle percent
+        prevThrottlepercent = throttlePercent
+        # finding the difference between the current throttle and the new throttle
+        diff = throttlePercent - self.throttle
+        # updating the stored throrrle 
+        self.throttle += diff
+        
+        # if the throttle is negative the rover is reversing else it is moving forward (advancing)
+        if self.throttle < 0:
+            print("Reversing...")
+        else:
+            print("Advancing...")
+        
+        # sending the new throttle to the TSS to start movement 
+        self.send_command(1109,self.throttle)
+    """
+    Name: horizontalJoystickmove
+    
+    INPUT: 
+       axis:   value from the y axis of 
+    
+    RETURN: 
+        N/A
+    
+    DESCRIPTION:
+        This method will accept the y axis values from the Joystick then
+        update the throttle function which will allow the rover to accelerate 
+        and decelarate (move forward and move backward)
+    """
+    def horizontalJoystickmove(self,axis):
+        diff = axis - self.steering
+        self.steering += diff
+        if self.steering < 0:
+            print("Turning Left....")
+        else:
+            print("Turning Right....")
+        self.send_command(1110,self.steering)
+        
+    def moveRoverjoystick(self):
+        moving = True
+        while moving:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    break
+                elif event.type == pygame.JOYAXISMOTION:
+                    self.verticalJoystickmove(self.roverStick.get_axis(1))
+                    self.horizontalJoystickmove(self.roverStick.get_axis(0))
+                elif event.type == pygame.JOYBUTTONDOWN:
+                    if self.roverStick.get_button(1):
+                        self.toggle_brakes()
+                        self.send_command(1107,self.braking)
+                        print("Braking...")
+                    elif self.roverStick.get_button(6):
+                        moving = False
+                        self.toggle_controls = True
+                    elif self.roverStick.get_button(7):
+                        self.udp_socket.close()
+                        pygame.quit()
+                        print("Exiting Program")
+                        exit()
+                    
+    
+    def Modes(self):
+        while True:
+            if self.toggle_controls == True: 
+                self.Move_Rover()
+            else:
+                self.moveRoverjoystick()
+                
+                
+                        
+
+                        
+                    
+                
+        
+    
+    
                
     """
-    Name: __init__ (DECONSTRUCTOR)
+    Name: __del__ (DECONSTRUCTOR)
     
     INPUT: 
         N/A
@@ -296,7 +449,8 @@ class Manual_Move:
 Move = Manual_Move()
 
 # begin moving the rover
-Move.Move_Rover()
+#Move.moveRoverjoystick()
+Move.Modes()
 
 
     
