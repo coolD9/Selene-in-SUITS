@@ -1,27 +1,33 @@
-.body{
+.Adam{
+    background: linear-gradient(rgba(0, 10, 35, 0.875), rgba(0, 10, 10, 0.875));
+    display: flex;
+    flex: auto;
     overflow: hidden;
+    padding: 1vh;
 }
 
-.EVAngelion_container{
-    display: flex;
+.lilin{
+    background: linear-gradient(rgba(47, 92, 255, 0.758), rgba(236, 236, 224, 0.747));
+    padding: 1%;
+    width: 30%;
     height: 100vh;
 }
 
-.panel{
-    flex: 1;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.EV_tracker{
-    background-color: #571515;
-}
-
 .task_tracker{
-    background-color: #cfc537;
-    overflow-y: scroll;
+    background: linear-gradient(rgb(128, 86, 234), rgba(212, 204, 214, 0.724));
+    padding: 1%;
+    width: 40%;
+    height: 100vh;
+}
+
+.warnings{
+    background-color: blueviolet;
+    height: 50vh;
 }
 
 .xray_tracker{
     background-color: #f0f0f0;
+    padding: 1%;
+    width: 30%;
+    height: 100vh;
 }
