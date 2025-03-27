@@ -18,7 +18,7 @@ class AutoMove:
           self.throttle = 0.0
           self.brakes = False
           self.steering = 0.0
-          self.optimal_speed = 3.6
+          self.optimalSpeed = 3.6
           self.minT = 30
           self.maxT = 100
           self.TIR = 3
@@ -80,14 +80,14 @@ class AutoMove:
                print("command not found or not needed")
                return -1
 
-     def maintain_speed(self):
+     def maintainSpeed(self):
           if self.speed > 0 and self.speed < 3.4:
                self.throttle += self.TIR
           if self.speed < 0 and self.speed > -3.4:
                self.throttle -= self.TIR
           self.sendCommand(1109, self.throttle)
 
-     def steer_right(self):
+     def steerRight(self):
           while self.SIR > self.steering:
                self.steering += self.SIR  
                self.sendCommand(1110, self.steering)
@@ -111,7 +111,7 @@ class AutoMove:
           else:
                turning = False
 
-     def steer_left(self):
+     def steerLeft(self):
           while -self.SIR < self.steering:
                self.steering -= self.SIR
                self.sendCommand(1110, self.steering)
@@ -184,38 +184,38 @@ class AutoMove:
           facing = self.receiveCommand(131)
 
           if facing > self.north[0] and facing < self.northeast[1]:
-               self.steer_right()
+               self.steerRight()
                while turning:
-                    self.maintain_speed()
+                    self.maintainSpeed()
                     # update facing to tss 
                     if(facing > self.east[0] and facing < self.east[1]):
                          self.stop_turning_right(turning)
           
           elif facing > self.east[0] and facing < self.southeast[1]:
-               self.steer_right()
+               self.steerRight()
                while turning:
-                    self.maintain_speed()
+                    self.maintainSpeed()
                     # update facing to tss 
                     if(facing < self.south[0] and facing > self.south[1]):
                          self.stop_turning_right(turning)
 
           elif facing > self.south[1] or facing < self.southwest[0]:
-               self.steer_right()
+               self.steerRight()
                while turning:
-                    self.maintain_speed()
+                    self.maintainSpeed()
                     # update facing to tss 
                     if(facing < self.west[0] and facing > self.west[1]):
                          self.stop_turning_right(turning)
           
           elif facing > self.west[1] or facing < self.northwest[0]:
-               self.steer_right()
+               self.steerRight()
                while turning:
-                    self.maintain_speed()
+                    self.maintainSpeed()
                     # update facing to tss 
                     if(facing > self.north[0] and facing < self.north[1]):
                          self.stop_turning_right(turning)
 
-     def diagonal_right(self):
+     def diagonalRight(self):
           turning = True
 
      def left(self):
@@ -223,38 +223,38 @@ class AutoMove:
           facing = self.receiveCommand(131)
 
           if facing > self.north[1] and facing < self.northwest[0]:
-               self.steer_left()
+               self.steerLeft()
                while turning:
-                    self.maintain_speed()
+                    self.maintainSpeed()
                     # update facing to tss 
                     if(facing < self.west[0] and facing > self.west[1]):
                          self.stop_turning_left(turning)
           
           elif facing > self.west[0] and facing < self.southwest[1]:
-               self.steer_left()
+               self.steerLeft()
                while turning:
-                    self.maintain_speed()
+                    self.maintainSpeed()
                     # update facing to tss 
                     if(facing < self.south[0] and facing > self.south[1]):
                          self.stop_turning_left(turning)
 
           elif facing > self.south[0] or facing < self.southeast[0]:
-               self.steer_left()
+               self.steerLeft()
                while turning:
-                    self.maintain_speed()
+                    self.maintainSpeed()
                     # update facing to tss 
                     if(facing < self.west[0] and facing > self.west[1]):
                          self.stop_turning_left(turning)
           
           elif facing > self.east[1] or facing < self.northeast[0]:
-               self.steer_left()
+               self.steerLeft()
                while turning:
-                    self.maintain_speed()
+                    self.maintainSpeed()
                     # update facing to tss 
                     if(facing > self.north[0] and facing < self.north[1]):
                          self.stop_turning_left(turning)
 
-     def diagonal_left(self):
+     def diagonalLeft(self):
           turning = True
 
 
