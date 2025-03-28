@@ -12,6 +12,7 @@ class Optimize:
     # Tracking the rate of usage of resources to identify problems.
     def trackConsumption(self):
         pass
+
     # Return the new values of usage for resources.
     def optimize(self, resource, hazardLevel=0, missionDuration=None, priorityOverride=None):
         if(self.resourceLevels["oxygen"] == 3):
@@ -40,4 +41,4 @@ class Optimize:
             return self.resourceLevels
         else:
             # If the criticality is not 3, then optimize the resource levels.
-            pass
+        pass

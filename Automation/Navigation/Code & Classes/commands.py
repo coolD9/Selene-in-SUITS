@@ -15,7 +15,7 @@ class Command:
     def __init__(self):
           
         self.scriptDir = os.path.dirname(os.path.abspath(__file__))  # Get the script’s directory
-        self.targetDir = os.path.abspath(os.path.join(self.scriptDir, "../../../User_Interface/UI_Main/client/src"))  # Move up two levels
+        self.targetDir = os.path.abspath(os.path.join(self.scriptDir, "../../../User_Interface/UI_Main/client/src/telemetry_json"))  # Move up two levels
         self.IP_address = " "     # TSS IP Address
         self.Port = 14141         # TSS UDP Port
 
@@ -560,5 +560,3 @@ command.setIPAdress(IPAdress)
 
 while True:
     command.getData()
-
-
