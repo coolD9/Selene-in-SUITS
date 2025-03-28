@@ -11,19 +11,32 @@ class Resource:
 # water has amount left
 # co2 has amount left
 # coolant_storage has amount left
-    def __init__(self, oxygen=0, battery=0, water=0, co2=0, coolant_storage=0, temp=0):
+    def __init__(self):
         self.oxygen = {
-            "pri_storage": oxygen,
-            "sec_storage": oxygen,
-            "pri_pressure": 0,
-            "sec_pressure": 0
+            "oxygen_levels": 00.000000000000000,
+            "oxygen_tank": 0.00000000000000,
+            "oxygen_pressure": 0000.00000000000000,
         }
-        self.battery = battery
-        self.water = water
-        self.co2 = co2
-        self.coolant_storage = coolant_storage
-        self.temp = temp
-        self.path = "User_Interface/UI_Main/client/src/telemetry_json/TELEMETRY.json"
+        self.battery ={
+         "battery_level": 00.00000000000000,
+         "power_consumption_rate": 0.0000000000000000000,
+        "solar_panel_efficiency": 0.0,
+        }
+
+        # Do not have values for water in the Rover Telemetry JSON file
+        # self.water = water
+
+        # Do not have values for co2 in the Rover Telemetry JSON file
+        # self.co2 = co2
+        self.coolant_storage = {
+            "pr_coolant_tank": 00.00000000000000,
+            "pr_coolant_level": 00.000000000000000,
+            "pr_coolant_pressure": 000.0000000000000,
+
+        }
+        self.temp = 00.000000000000000,
+
+        self.path = "User_Interface/UI_Main/client/src/telemetry_json/ROVER_TELEMETRY.json"
 
         self.currentData = None
         self.oldDataFile = None
@@ -33,7 +46,10 @@ class Resource:
         try:
             with open(self.path, 'r') as file:
                 print(f"Loading telemetry data from {self.path}")
-                return json.load(file)
+                self.currentData = json.load(file)
+                print("JSON Data:")
+                print(json.dumps(self.currentData, indent=2))
+
 
         except FileNotFoundError:
             print(f"Error: File {self.path} not found.")
@@ -43,33 +59,62 @@ class Resource:
             return None
         
     def monitorData(self):
-        print(f"Monitoring file: {self.path}")
+        print(f"Monitoring file: ROVER_TELEMETRY.json")
 
         # Stores the old version of the Json file.
         self.oldDataFile = os.path.getmtime(self.path)
 
 
         try: 
-            while True:
-                self.currentData = os.path.getmtime(self.path)
+            self.currentData = os.path.getmtime(self.path)
 
-                # Checks if the JSON file has been updated.
-                # If so, the new Json file will be processed instead.
-                if self.currentData != self.oldDataFile:
-                    print("\n--- File Updated ---")
-                    data = self.loadJson(self.path)
+            # Checks if the JSON file has been updated.
+            # If so, the new Json file will be processed instead.
+            if self.currentData != self.oldDataFile:
+                print("\n--- File Updated ---")
+                data = self.loadJson(self.path)
 
-                    if data is not None:
-                        print("Updated JSON Data:")
+                if data is not None:
+                    print("Updated JSON Data:")
 
-                    self.oldDataFile = self.currentData
+                self.oldDataFile = self.currentData
 
-                # Checks the JSON file every second.
-                time.sleep(1)
-                
+            # Checks the JSON file every second.
+            time.sleep(1)
 
-        except:
-            pass
+
+        except KeyboardInterrupt:
+            print("\n--- Monitoring Stopped ---")
+
+
+    def processData(self):
+
+        # Processes the oxygen data from the Rover Telemetry JSON file.
+        self.oxygen["oxygen_levels"] = self.currentData["pr_telemetry"].get("oxygen_levels")
+        print(f"Oxygen Levels: {self.oxygen['oxygen_levels']}")
+        self.oxygen["oxygen_tank"] = self.currentData["pr_telemetry"].get("oxygen_tank")
+        print(f"Oxygen Tank: {self.oxygen['oxygen_tank']}")
+        self.oxygen["oxygen_pressure"] = self.currentData["pr_telemetry"].get("oxygen_pressure")
+        print(f"Oxygen Pressure: {self.oxygen['oxygen_pressure']}")
+
+        # Processes the battery data from the Rover Telemetry JSON file.
+        self.battery["battery_level"] = self.currentData["pr_telemetry"].get("battery")
+        print(f"Battery Level: {self.battery}")
+        self.battery["power_consumption_rate"] = self.currentData["pr_telemetry"].get("power_consumption_rate")
+        print(f"Power Consumption Rate: {self.battery['power_consumption_rate']}")
+        self.battery["solar_panel_efficiency"] = self.currentData["pr_telemetry"].get("solar_panel_efficiency")
+        print(f"Solar Panel Efficiency: {self.battery['solar_panel_efficiency']}")
+
+        # Processes the temperature data from the Rover Telemetry JSON file.
+        self.temp = self.currentData["pr_telemetry"].get("cabin_temperature")
+        print(f"Cabin temperature: {self.temp}")
+
+        # Processes the coolant storage data from the Rover Telemetry JSON file.
+        self.coolant_storage["pr_coolant_tank"] = self.currentData["pr_telemetry"].get("pr_coolant_tank")
+        print(f"Coolant Tank: {self.coolant_storage['pr_coolant_tank']}")
+        self.coolant_storage["pr_coolant_level"] = self.currentData["pr_telemetry"].get("pr_coolant_level")
+        print(f"Coolant Level: {self.coolant_storage['pr_coolant_level']}")
+        self.coolant_storage["pr_coolant_pressure"] = self.currentData["pr_telemetry"].get("pr_coolant_pressure")
 
 
     def update(self, pri_oxygen, sec_oxygen, pri_pressure, sec_pressure, battery, water, co2, coolant_storage, temp):
@@ -109,8 +154,12 @@ class Resource:
     
 
 resource = Resource()
+
 resource.loadJson()
-resource.monitorData()
+
+while True:
+    resource.processData()
+    resource.monitorData()
     
 
 
