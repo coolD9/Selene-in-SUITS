@@ -1,15 +1,146 @@
-.DCUFront_image {
+.container {
     display: flex;
-    border-radius: 50px; /* Circular image */
-    width: 200px;
-    height: 300px;
-    margin-top: 30px;
-    
-
+    flex-direction: row;  /* Ensures text is on left, images on right */
+    justify-content: space-between; /* Separates text & images */
+    align-items: center; /* Keeps both containers aligned properly */
+    height: 87vh;
+    padding: 50px; /* Adds spacing from edges */
+    background: linear-gradient(rgba(5, 9, 28, 0.863), rgba(40, 43, 69, 0.747));    
 }
 
-.SUITS_UIA_PANEL_image{
+/* Text Container (Left Side) */
+.text-container {
     display: flex;
-    width: 200px;
-    height: 300px;
+    flex-direction: column;
+    height: 85vh;
+    width: 49%;
+    background: linear-gradient(rgb(113, 140, 234), rgba(44, 58, 212, 0.747));
+
+    
+    /* Moves text separately */
+    margin-left: 40px; /* Moves text container to the right  */
+    /* margin-top: 0px;  Moves text container down */
+    padding: 20px;
+    border-radius: 10px;
+    color:white;
+}
+
+/* Image Column (Right Side) */
+.image-column {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    align-items: flex-end; /* Ensures images stay on the right */
+}
+
+/* Image Box */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgba(44, 58, 212, 0.747);
+    width: 600px;
+    margin-left: 40px; /* Moves text container to the right  */
+    margin-top: 10px;  /*Moves text container down */
+    padding: 10px;
+}
+
+/* Images */
+.DCUFront_image, .SUITS_UIA_PANEL_image {
+    display: flex;
+    width: 500px;
+    height: 310px;
+    border-radius: 20px;
+}
+
+.collapsible {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.collapsible-header {
+    width: 100%;
+    padding: 10px;
+    background-color: #4d4d4d;
+    color: rgb(254, 254, 254);
+    text-align: left;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.collapsible-header:hover {
+    background-color: #797979;
+}
+
+.collapsible-content {
+    max-height: 300px; /* Adjust height as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.686);
+    color: rgb(255, 255, 255);
+    border-top: 1px solid #ccc; /* Adds a slight separation */
+}
+
+/* Hide the default checkbox */
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Style the label as a flexbox */
+.checkbox-container {
+    display: flex;
+    align-items: center; /* Align text and checkbox */
+    gap: 10px; /* Space between checkbox and text */
+    cursor: pointer;
+    font-size: 17px;
+    user-select: none;
+    margin-bottom: 12px;
+}
+
+
+/* Custom checkbox appearance */
+.checkmark {
+    width: 25px;
+    height: 25px;
+    background-color: #eee;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* When hovering, change background */
+.checkbox-container:hover .checkmark {
+    background-color: #807e7e;
+}
+
+/* When checked, change background */
+.checkbox-container input:checked + .checkmark {
+    background-color: #21f36e;
+}
+
+/* Custom checkmark tick */
+.checkmark::after {
+    content: "";
+    display: none;
+    position: absolute;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+/* Show checkmark tick when checked */
+.checkbox-container input:checked + .checkmark::after {
+    display: block;
 }

@@ -1,12 +1,12 @@
 {
     "dcu": {
         "eva1": {
-            "batt": 0,
-            "oxy": 0,
-            "comm": 0,
-            "fan": 0,
-            "pump": 0,
-            "co2": 0
+            "batt": 1,
+            "oxy": 1,
+            "comm": 1,
+            "fan": 1,
+            "pump": 1,
+            "co2": 1
         },
         "eva2": {
             "batt": 0,

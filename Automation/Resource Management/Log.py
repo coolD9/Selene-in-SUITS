@@ -11,6 +11,7 @@ class LogAlert:
         self.file1 = open("Log.txt")
 
     def logData(self):
+
         # Unimplemented.
         self.file1.write(self.alert.timestamp, ": ", self.alert.resource,", ", self.alert.criticality, self.alert.alertmessage)
 

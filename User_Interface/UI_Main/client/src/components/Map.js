@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./css/MapCSS.css";
 import "./css/MasterCSS.css";
+import ROCK_YARD_MAP from "./../components/images/rockYardMap-min.png"
 
 /*
  * Map() - **PAGE**
@@ -57,7 +58,7 @@ function Map() {
                 height: expandedContainer === "container1" ? "50vh" : "25vh",
               }}
             >
-              <h1>EVA1</h1>
+              <h1>EVA1 CAM</h1>
               <div className="resize">
                 <button onClick={() => resizeit("container1")} type="button">
                   {expandedContainer === "container1" ? "Collapse" : "Expand"}
@@ -74,7 +75,7 @@ function Map() {
                 height: expandedContainer === "container2" ? "50vh" : "25vh",
               }}
             >
-              <h1>EVA2</h1>
+              <h1>EVA2 CAM</h1>
               <div className="resize">
                 <button onClick={() => resizeit("container2")} type="button">
                   {expandedContainer === "container2" ? "Collapse" : "Expand"}
@@ -96,7 +97,7 @@ function Map() {
                 height: expandedContainer === "container3" ? "50vh" : "25vh",
               }}
             >
-              <h1>LTV1</h1>
+              <h1>LTV TEL</h1>
               <div className="resize">
                 <button onClick={() => resizeit("container3")} type="button">
                   {expandedContainer === "container3" ? "Collapse" : "Expand"}
@@ -113,7 +114,7 @@ function Map() {
                 height: expandedContainer === "container4" ? "50vh" : "25vh",
               }}
             >
-              <h1>LTV2</h1>
+              <h1>LTV CAM</h1>
               <div className="resize">
                 <button onClick={() => resizeit("container4")} type="button">
                   {expandedContainer === "container4" ? "Collapse" : "Expand"}
@@ -128,8 +129,19 @@ function Map() {
           <div className="Controls"></div>
         </div>
       </div>
-      <div className="mapcontainer">
-        <h1 id="map">Map</h1>
+      <div className="right_container">
+        <div className="timers">
+          <p>Mission Timer: HH:MM:SS</p>
+          <p>Section Timer: HH:MM:SS</p>
+        </div>
+        <div className="map_container">
+          <img className="map-image-container" src={ROCK_YARD_MAP} alt="Rock yard map"/>
+        </div>
+        <div className="map_controls">
+          <button>Add POI</button>
+
+        </div>
+
       </div>
     </div>
   );
