@@ -23,11 +23,11 @@ class Resource:
         "solar_panel_efficiency": 0.0,
         }
 
-        # Do not have values for water in the Rover Telemetry JSON file
-        # self.water = water
 
-        # Do not have values for co2 in the Rover Telemetry JSON file
-        # self.co2 = co2
+        # Co2 levels are indicated through the co2 scrubber. 
+        self.co2 = 0
+
+        # Coolant accounts for the water resource as well.
         self.coolant_storage = {
             "pr_coolant_tank": 00.00000000000000,
             "pr_coolant_level": 00.000000000000000,
@@ -61,32 +61,42 @@ class Resource:
     def monitorData(self):
         print(f"Monitoring file: ROVER_TELEMETRY.json")
 
+        currentFileModificationTime = os.path.getmtime(self.path)
+        # Check if the file has been modified since last check
+        if self.oldDataFile is None or currentFileModificationTime != self.oldDataFile:
+            print("\n--- File Updated ---")
+            self.loadJson()  # Reload the JSON data
+            self.oldDataFile = currentFileModificationTime
+        time.sleep(1)
+
+
         # Stores the old version of the Json file.
-        self.oldDataFile = os.path.getmtime(self.path)
+        # self.oldDataFile = os.path.getmtime(self.path)
 
 
-        try: 
-            self.currentData = os.path.getmtime(self.path)
+        # try: 
+        #     self.currentData = os.path.getmtime(self.path)
 
-            # Checks if the JSON file has been updated.
-            # If so, the new Json file will be processed instead.
-            if self.currentData != self.oldDataFile:
-                print("\n--- File Updated ---")
-                data = self.loadJson(self.path)
+        #     # Checks if the JSON file has been updated.
+        #     # If so, the new Json file will be processed instead.
+        #     if self.currentData != self.oldDataFile:
+        #         print("\n--- File Updated ---")
+        #         data = self.loadJson(self.path)
 
-                if data is not None:
-                    print("Updated JSON Data:")
+        #         if data is not None:
+        #             print("Updated JSON Data:")
 
-                self.oldDataFile = self.currentData
+        #         self.oldDataFile = self.currentData
 
-            # Checks the JSON file every second.
-            time.sleep(1)
-
-
-        except KeyboardInterrupt:
-            print("\n--- Monitoring Stopped ---")
+        #     # Checks the JSON file every second.
+        #     time.sleep(1)
 
 
+        # except KeyboardInterrupt:
+        #     print("\n--- Monitoring Stopped ---")
+
+
+    # Extracts the specific telemetry data from the JSON file.
     def processData(self):
 
         # Processes the oxygen data from the Rover Telemetry JSON file.
@@ -116,41 +126,30 @@ class Resource:
         print(f"Coolant Level: {self.coolant_storage['pr_coolant_level']}")
         self.coolant_storage["pr_coolant_pressure"] = self.currentData["pr_telemetry"].get("pr_coolant_pressure")
 
+        # Processes the CO2 data from the Rover Telemetry JSON file.
+        self.co2 = self.currentData["pr_telemetry"].get("co2_scrubber")
+        print(f"CO2 Scrubber: {self.co2}")
 
-    def update(self, pri_oxygen, sec_oxygen, pri_pressure, sec_pressure, battery, water, co2, coolant_storage, temp):
-        
-
-        self.oxygen['pri_storage'] = pri_oxygen
-        self.oxygen['sec_storage'] = sec_oxygen
-        self.oxygen['pri_pressure'] = pri_pressure
-        self.oxygen['sec_pressure'] = sec_pressure
-
-        
-        self.battery = battery
-        self.water = water
-        self.co2 = co2
-        self.coolant_storage = coolant_storage
-        self.temp = temp
-
-
-
-    def getOxygen(self):
-        return self.oxygen
     
-    def getBattery(self):
-        return self.battery
+
+
+    # def getOxygen(self):
+    #     return self.oxygen
     
-    def getWater(self):
-        return self.water
+    # def getBattery(self):
+    #     return self.battery
     
-    def getCo2(self):
-        return self.co2
+    # def getWater(self):
+    #     return self.water
     
-    def getCoolantStorage(self):
-        return self.coolant_storage
+    # def getCo2(self):
+    #     return self.co2
     
-    def getTemp(self):
-        return self.temp
+    # def getCoolantStorage(self):
+    #     return self.coolant_storage
+    
+    # def getTemp(self):
+    #     return self.temp
     
 
 resource = Resource()
