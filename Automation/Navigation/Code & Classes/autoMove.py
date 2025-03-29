@@ -11,7 +11,7 @@ CLASS: AutoMove
     AutoMove class is used to allow the movement of the DUST simulation
     NASA Pressurized Rover to be done autonomously. By having methods 
     that increase and decrease throttle, steering and toggle brakes to 
-    move forwards, backwards, turn or stop.
+    move forward, backwards, turn or stop.
     
 """
 class AutoMove:
@@ -33,8 +33,7 @@ class AutoMove:
         Constructor that initializes the class attributes. 
     """
      def __init__(self):
-          # These values are subject to change. North, south, east, etc. WILL 
-          # change to better fit the whole 360 degrees and not leave empty spots.
+          # These values are subject to change.
           # All of these can be found on the tss files, cardinal directions are
           # found as "heading" and go from 0 to 180 and 0 to -180.
           self.throttle = 0.0
@@ -44,16 +43,16 @@ class AutoMove:
           self.minT = 30
           self.maxT = 100
           self.TIR = 3
-          self.SIR = 0.2
+          self.SIR = 0.4
           self.speed = 0.0
-          self.north = (-5, 5)
-          self.south = (-175, 175)
-          self.east = (85, 95)
-          self.west = (-85, -95)
-          self.northeast = (40, 50)
-          self.northwest = (-40, -50)
-          self.southeast = (130, 140)
-          self.southwest = (-130, -140)
+          self.north = (-22.5, 22.4)
+          self.south = (157.5, -157.6)
+          self.east = (67.5, 112.4)
+          self.west = (-112.5, -67.6)
+          self.northeast = (22.5, 67.4)
+          self.northwest = (-67.5, -22.6)
+          self.southeast = (112.5, 157.4)
+          self.southwest = (-157.5, -112.6)
           
      """
     Name: send_command
@@ -116,7 +115,7 @@ class AutoMove:
     """
      def receiveCommand(self, command):
           # call sendCommand to ask for data or move the rover.
-          self.sendCommand(command)
+          self.sendCommand(command, 0)
 
           # receiving speed or heading
           if command == 135 or command == 131:
@@ -143,6 +142,52 @@ class AutoMove:
                return None
 
      """
+    Name: increaseThrottle
+    
+    INPUT: 
+        N/A
+    
+    RETURN: 
+        N/A
+    
+    DESCRIPTION:
+        This method will increase the throttle by TIR and also check
+        to ensure that throttle does not surpass maximum potential throttle
+     """
+     def increaseThrottle(self):
+        
+        # check to ensure throotle does overflow
+        if self.throttle + self.TIR > 100.0:  
+            #if yes sets to maximum  
+            self.throttle = 100.0
+        else:
+            # if no overflow then simply increment 
+            self.throttle = self.throttle + self.TIR
+
+     """
+    Name: decreaseThrottle
+    
+    INPUT: 
+        N/A
+    
+    RETURN: 
+        N/A
+    
+    DESCRIPTION:
+        This method will decrease the throttle by TIR and also check
+        to ensure that throttle does not surpass minimum potential throttle
+    """
+     def decreaseThrottle(self):
+        # check to ensure throotle does underflow
+        if self.throttle - self.TIR < -100.0:
+            #if yes sets to minimum
+            self.throttle = -100.0
+        else:
+            # if no underflow then simply decrement 
+            self.throttle = self.throttle - self.TIR
+
+
+     """
     Name: maintainSpeed
     
     INPUT: 
@@ -157,13 +202,15 @@ class AutoMove:
      def maintainSpeed(self):
           # if the speed is positive, that means the rover is moving
           # forward. If it's less than the desired speed, increase the throttle
-          if self.speed > 0 and self.speed < 3.4:
-               self.throttle += self.TIR
+          self.speed = self.receiveCommand(135)
+
+          if self.speed >= 0 and self.speed < 3.4:
+               self.increaseThrottle()
           
           # if the speed is negative, rover moving backwards. decrease the throttle
           # if the speed is negative but greater than the desired speed.
-          elif self.speed < 0 and self.speed > -3.4:
-               self.throttle -= self.TIR
+          elif self.speed <= 0 and self.speed > -3.4:
+               self.decreaseThrottle()
           self.sendCommand(1109, self.throttle)
 
      """
@@ -345,26 +392,29 @@ class AutoMove:
         breaks to stop.
      """
      def stop(self):
+          self.speed = self.receiveCommand(135)
           # check if the speed is positive or negative.
           # decrease or increase speed to get it to be 
           while self.speed < -1 or self.speed > 1:
                if self.speed < 0:
-                    self.throttle += self.TIR
+                    self.increaseThrottle()
                     self.sendCommand(1109, self.throttle)
                else:
-                    self.throttle -= self.TIR
+                    self.decreaseThrottle()
                     self.sendCommand(1109, self.throttle)
+               self.speed = self.receiveCommand(135)
           
           # toggle brakes
-          self.brakes = True
+          self.brakes = 1
           self.sendCommand(1107, self.brakes)
+
 
           # decrease or increase the throttle to 0
           while self.throttle != 0:
                if self.throttle < 0:
-                    self.throttle += self.TIR
+                    self.increaseThrottle()
                else:
-                    self.throttle -= self.TIR
+                    self.decreaseThrottle()
 
      """
     Name: forward
@@ -383,16 +433,16 @@ class AutoMove:
           # increase the throttle to min_T (minimum throttle to move)
           # if it's not already
           while self.throttle < 30:
-               self.throttle += self.TIR
+               self.increaseThrottle()
                self.sendCommand(1109, self.throttle)
           
           # maintain optimal speed
           while self.speed < 3.4 or self.speed > 3.8:
                if self.speed < 3.4:
-                    self.throttle += self.TIR
+                    self.increaseThrottle()
                     self.sendCommand(1109, self.throttle)
                else:
-                    self.throttle -= self.TIR
+                    self.decreaseThrottle()
                     self.sendCommand(1109, self.throttle)
 
      """
@@ -412,16 +462,16 @@ class AutoMove:
           # increase the throttle to -min_T (minimum throttle to move)
           # if it's not already. Negative since moving backwards is negative
           while self.throttle > -30:
-               self.throttle -= self.TIR
+               self.decreaseThrottle()
                self.sendCommand(1109, self.throttle)
           
           # maintaining negative optimal speed
           while self.speed > -3.4 or self.speed < -3.8:
                if self.speed > -3.4:
-                    self.throttle -= self.TIR
+                    self.decreaseThrottle()
                     self.sendCommand(1109, self.throttle)
                else:
-                    self.throttle += self.TIR
+                    self.increaseThrottle()
                     self.sendCommand(1109, self.throttle)
 
      """
@@ -448,7 +498,7 @@ class AutoMove:
                self.steerRight()
                while turning:
                     self.maintainSpeed()
-                    # update facing to tss 
+                    facing = self.receiveCommand(131)
                     if(facing > self.east[0] and facing < self.east[1]):
                          self.stopRight(turning)
           
@@ -458,7 +508,7 @@ class AutoMove:
                self.steerRight()
                while turning:
                     self.maintainSpeed()
-                    # update facing to tss 
+                    facing = self.receiveCommand(131)
                     if(facing < self.south[0] or facing > self.south[1]):
                          self.stopRight(turning)
 
@@ -468,7 +518,7 @@ class AutoMove:
                self.steerRight()
                while turning:
                     self.maintainSpeed()
-                    # update facing to tss 
+                    facing = self.receiveCommand(131) 
                     if(facing < self.west[0] and facing > self.west[1]):
                          self.stopRight(turning)
           
@@ -478,7 +528,7 @@ class AutoMove:
                self.steerRight()
                while turning:
                     self.maintainSpeed()
-                    # update facing to tss 
+                    facing = self.receiveCommand(131)
                     if(facing > self.north[0] and facing < self.north[1]):
                          self.stopRight(turning)
 
@@ -496,8 +546,80 @@ class AutoMove:
         in that direction. Checks for heading to know where to head next.
      """
      def diagonalRight(self):
-          # WORK IN PROGRESS
           turning = True
+          facing = self.receiveCommand(131)
+
+          # if facing north turn northeast
+          if facing > self.north[0] and facing < self.north[1]:
+               self.steerHalfRight()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.northeast[0] and facing < self.northeast[1]):
+                         self.stopHalfRight(turning)
+          
+          # if facing northeast turn east
+          elif facing > self.northeast[0] and facing < self.northeast[1]:
+               self.steerHalfRight()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.east[0] or facing < self.east[1]):
+                         self.stopHalfRight(turning)
+
+          # if facing east turn southeast
+          elif facing > self.east[0] or facing < self.east[1]:
+               self.steerHalfRight()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.southeast[0] and facing < self.southeast[1]):
+                         self.stopHalfRight(turning)
+          
+          # if facing southeast turn south
+          elif facing > self.southeast[0] and facing < self.southeast[1]:
+               self.steerHalfRight()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing < self.south[0] or facing > self.south[1]):
+                         self.stopHalfRight(turning)
+
+          # if facing south turn southwest
+          elif facing < self.south[0] or facing > self.south[1]:
+               self.steerHalfRight()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.southwest[0] and facing < self.southwest[1]):
+                         self.stopHalfRight(turning)
+          
+          # if facing southwest turn west
+          elif facing > self.southwest[0] and facing < self.southwest[1]:
+               self.steerHalfRight()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.west[0] or facing < self.west[1]):
+                         self.stopHalfRight(turning)
+
+          # if facing west turn northwest
+          elif facing > self.west[0] or facing < self.west[1]:
+               self.steerHalfRight()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.northwest[0] and facing < self.northwest[1]):
+                         self.stopHalfRight(turning)
+          
+          # if facing northwest turn north
+          elif facing > self.northwest[0] and facing < self.northwest[1]:
+               self.steerHalfRight()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.north[0] and facing < self.north[1]):
+                         self.stopHalfRight(turning)
 
      
      """
@@ -519,31 +641,31 @@ class AutoMove:
 
           # if facing between north and northwest, turn to west
           # (left of north)
-          if facing < self.north[1] and facing > self.northwest[1]:
+          if facing < self.north[1] and facing > self.northwest[0]:
                self.steerLeft()
                while turning:
                     self.maintainSpeed()
-                    # update facing to tss 
-                    if(facing < self.west[0] and facing > self.west[1]):
+                    facing = self.receiveCommand(131)
+                    if(facing > self.west[0] and facing < self.west[1]):
                          self.stopLeft(turning)
           
           # if facing between west and southwest, turn to south
           # (left of west)
-          elif facing < self.west[0] and facing > self.southwest[1]:
+          elif facing < self.west[0] and facing > self.southwest[0]:
                self.steerLeft()
                while turning:
                     self.maintainSpeed()
-                    # update facing to tss 
-                    if(facing < self.south[0] or facing > self.south[1]):
+                    facing = self.receiveCommand(131)
+                    if(facing > self.south[0] or facing < self.south[1]):
                          self.stopLeft(turning)
 
           # if facing between south and southeast, turn to east
           # (left of south)
-          elif facing < self.south[0] or facing > self.southeast[0]:
+          elif facing < self.south[1] or facing > self.southeast[0]:
                self.steerLeft()
                while turning:
                     self.maintainSpeed()
-                    # update facing to tss 
+                    facing = self.receiveCommand(131)
                     if(facing > self.east[0] and facing < self.east[1]):
                          self.stopLeft(turning)
           
@@ -553,12 +675,12 @@ class AutoMove:
                self.steerLeft()
                while turning:
                     self.maintainSpeed()
-                    # update facing to tss 
+                    facing = self.receiveCommand(131)
                     if(facing > self.north[0] and facing < self.north[1]):
                          self.stopLeft(turning)
 
      """
-    Name: diagonal Right
+    Name: diagonalLeft
     
     INPUT: 
        N/A
@@ -571,9 +693,80 @@ class AutoMove:
         in that direction. Checks for heading to know where to head next.
      """
      def diagonalLeft(self):
-          # WORK IN PROGRESS
           turning = True
+          facing = self.receiveCommand(131)
 
+          # if facing north turn northwest
+          if facing > self.north[0] and facing < self.north[1]:
+               self.steerHalfLeft()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.northwest[0] and facing < self.northwest[1]):
+                         self.stopHalfLeft(turning)
+          
+          # if facing northwest turn west
+          elif facing > self.northwest[0] and facing < self.northwest[1]:
+               self.steerHalfLeft()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.west[0] or facing < self.west[1]):
+                         self.stopHalfLeft(turning)
+
+          # if facing west turn southwest
+          elif facing > self.west[0] or facing < self.west[1]:
+               self.steerHalfLeft()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.southwest[0] and facing < self.southwest[1]):
+                         self.stopHalfLeft(turning)
+          
+          # if facing southwest turn south
+          elif facing > self.southwest[0] and facing < self.southwest[1]:
+               self.steerHalfLeft()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing < self.south[0] or facing > self.south[1]):
+                         self.stopHalfLeft(turning)
+
+          # if facing south turn southeast
+          elif facing < self.south[0] or facing > self.south[1]:
+               self.steerHalfLeft()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.southeast[0] and facing < self.southeast[1]):
+                         self.stopHalfLeft(turning)
+          
+          # if facing southeast turn east
+          elif facing > self.southeast[0] and facing < self.southeast[1]:
+               self.steerHalfLeft()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.east[0] or facing < self.east[1]):
+                         self.stopHalfLeft(turning)
+
+          # if facing east turn northeast
+          elif facing > self.east[0] or facing < self.east[1]:
+               self.steerHalfLeft()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.northeast[0] and facing < self.northeast[1]):
+                         self.stopHalfLeft(turning)
+          
+          # if facing northeast turn north
+          elif facing > self.northeast[0] and facing < self.northeast[1]:
+               self.steerHalfLeft()
+               while turning:
+                    self.maintainSpeed()
+                    facing = self.receiveCommand(131)
+                    if(facing > self.north[0] and facing < self.north[1]):
+                         self.stopHalfLeft(turning)
 
      def __del__(self):
           print("deleting instance of class")
@@ -586,3 +779,11 @@ ipAdress = input("Please enter IP address: ")
 
 # initilizing UDP socket communication
 udpSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+moving = AutoMove()
+
+#moving.forward()
+#time.sleep(.2)
+moving.diagonalRight()
+moving.right()
+moving.left()
